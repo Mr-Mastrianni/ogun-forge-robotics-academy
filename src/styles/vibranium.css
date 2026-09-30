@@ -402,7 +402,15 @@ body {
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(2, 0, 10, 0.55) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 58%, rgba(2, 0, 10, 0.5) 100%);
+}
+[data-vibe='cosmic'] .vignette {
+  opacity: 0.55;
+}
+[data-vibe='psychedelic'][data-motion='on'] .vignette {
+  opacity: 1;
 }
 
 [data-vibe='psychedelic'][data-motion='on'] .cosmic-bg {

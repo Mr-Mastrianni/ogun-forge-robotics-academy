@@ -290,7 +290,7 @@ export function Layout() {
 
       <div className="mx-auto flex w-full max-w-[1620px]">
         {/* ------------------------------- sidebar ------------------------------ */}
-        <aside className="sticky top-0 hidden h-screen w-[272px] flex-none flex-col border-r border-[#8b5cf6]/20 bg-[#06031a]/60 px-3 py-4 backdrop-blur-xl lg:flex">
+        <aside className="sticky top-0 z-20 hidden h-screen w-[272px] flex-none flex-col border-r border-[#8b5cf6]/20 bg-[#06031a]/60 px-3 py-4 backdrop-blur-xl lg:flex">
           <Brand />
 
           <button
