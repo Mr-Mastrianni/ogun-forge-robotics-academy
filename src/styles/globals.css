@@ -1,0 +1,494 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Ọ̀GÚN'S FORGE — Afrocentric Galactic Psychedelic design system
+   Palettes:
+     Ogun's Forge     ember #ff6b1a  blood #c1121f  iron #3a2b2b  gold #f5b301
+     Dogon Starlight  void  #05010f  indigo #4338ca  violet #7c3aed  sirius #67e8f9
+     Ilé-Ifè Nebula   fuchsia #c026d3 acid #d9f99d  hot #ff2fb9  sun #ffd166
+     Mycelium Bloom   glow  #6ee7a8  spore #a3e635  deep #0f2e22
+   ============================================================ */
+
+:root {
+  --kente-grid: 28px;
+  color-scheme: dark;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #05010f;
+  color: #efe7ff;
+  font-family: 'Outfit', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #c026d3;
+  color: #fff;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0420;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f5b301, #c026d3 55%, #4338ca);
+  border-radius: 99px;
+  border: 2px solid #0a0420;
+}
+
+/* ---------- Cosmic backdrop ---------- */
+.cosmic-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(1100px 700px at 12% -5%, rgba(192, 38, 211, 0.34), transparent 60%),
+    radial-gradient(900px 620px at 92% 4%, rgba(67, 56, 202, 0.4), transparent 62%),
+    radial-gradient(820px 560px at 78% 88%, rgba(245, 179, 1, 0.16), transparent 60%),
+    radial-gradient(700px 500px at 18% 92%, rgba(110, 231, 168, 0.14), transparent 62%),
+    linear-gradient(180deg, #05010f 0%, #0a0420 45%, #120a2e 100%);
+  animation: cosmicShift 26s ease-in-out infinite alternate;
+}
+
+@keyframes cosmicShift {
+  0% {
+    filter: hue-rotate(0deg) saturate(1);
+  }
+  100% {
+    filter: hue-rotate(28deg) saturate(1.25);
+  }
+}
+
+.starfield,
+.starfield-2 {
+  position: fixed;
+  inset: -50%;
+  z-index: -2;
+  pointer-events: none;
+  background-repeat: repeat;
+  opacity: 0.55;
+}
+.starfield {
+  background-image:
+    radial-gradient(1.4px 1.4px at 20px 30px, #fff, transparent),
+    radial-gradient(1.2px 1.2px at 140px 90px, #f5b301, transparent),
+    radial-gradient(1.6px 1.6px at 260px 200px, #67e8f9, transparent),
+    radial-gradient(1.1px 1.1px at 380px 60px, #fff, transparent),
+    radial-gradient(1.3px 1.3px at 90px 300px, #c026d3, transparent),
+    radial-gradient(1px 1px at 460px 340px, #a3e635, transparent);
+  background-size: 520px 420px;
+  animation: starDrift 190s linear infinite;
+}
+.starfield-2 {
+  background-image:
+    radial-gradient(1px 1px at 60px 120px, #fff, transparent),
+    radial-gradient(1.8px 1.8px at 300px 60px, #f5b301, transparent),
+    radial-gradient(1px 1px at 200px 380px, #6ee7a8, transparent);
+  background-size: 380px 380px;
+  opacity: 0.35;
+  animation: starDrift 320s linear infinite reverse;
+}
+
+@keyframes starDrift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-520px, -420px, 0);
+  }
+}
+
+/* psychedelic plasma ribbon */
+.plasma-ribbon {
+  position: fixed;
+  left: -10%;
+  width: 120%;
+  height: 42vh;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(72px);
+  opacity: 0.4;
+  background: conic-gradient(
+    from 0deg,
+    #c026d3,
+    #4338ca,
+    #67e8f9,
+    #6ee7a8,
+    #f5b301,
+    #ff6b1a,
+    #c026d3
+  );
+  animation: plasmaSpin 48s linear infinite;
+}
+.plasma-ribbon.top {
+  top: -18vh;
+}
+.plasma-ribbon.bottom {
+  bottom: -20vh;
+  animation-direction: reverse;
+  opacity: 0.3;
+}
+
+@keyframes plasmaSpin {
+  to {
+    transform: rotate(360deg) scale(1.15);
+  }
+}
+
+/* ---------- Adinkra watermark band ---------- */
+.adinkra-band {
+  background-image: var(--adinkra-url, none);
+  background-size: 96px 96px;
+  opacity: 0.05;
+}
+
+/* ---------- Kente strip ---------- */
+.kente-strip {
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f5b301 0 14px,
+    #05010f 14px 20px,
+    #c1121f 20px 30px,
+    #05010f 30px 36px,
+    #6ee7a8 36px 46px,
+    #05010f 46px 52px,
+    #c026d3 52px 66px,
+    #05010f 66px 72px
+  );
+}
+
+/* ---------- Panels ---------- */
+.glass {
+  background: linear-gradient(155deg, rgba(24, 12, 54, 0.82), rgba(9, 4, 26, 0.66));
+  border: 1px solid rgba(245, 179, 1, 0.22);
+  backdrop-filter: blur(14px) saturate(1.2);
+  border-radius: 18px;
+}
+
+.glass-hot {
+  background: linear-gradient(155deg, rgba(51, 8, 44, 0.82), rgba(12, 3, 26, 0.7));
+  border: 1px solid rgba(192, 38, 211, 0.35);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+}
+
+.glass-myco {
+  background: linear-gradient(155deg, rgba(9, 40, 30, 0.8), rgba(5, 15, 12, 0.7));
+  border: 1px solid rgba(110, 231, 168, 0.34);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+}
+
+.panel-edge {
+  position: relative;
+}
+.panel-edge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, rgba(245, 179, 1, 0.65), rgba(192, 38, 211, 0.5), rgba(103, 232, 249, 0.55));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ---------- Text effects ---------- */
+.text-psy {
+  background: linear-gradient(92deg, #f5b301, #ff6b1a 22%, #c026d3 48%, #67e8f9 72%, #6ee7a8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+
+.text-afro {
+  background: linear-gradient(180deg, #ffe9a8 0%, #f5b301 38%, #c96f2b 62%, #8c3b1e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.title-3d {
+  font-family: 'Bungee', Impact, sans-serif;
+  letter-spacing: 0.01em;
+  text-shadow:
+    0 1px 0 #6b3410,
+    0 2px 0 #5a2b0d,
+    0 3px 0 #4a230a,
+    0 4px 0 #3a1b07,
+    0 6px 14px rgba(0, 0, 0, 0.75),
+    0 0 34px rgba(245, 179, 1, 0.4);
+}
+
+.outline-title {
+  font-family: 'Bungee', Impact, sans-serif;
+  color: #f5b301;
+  -webkit-text-stroke: 2px #2b0f04;
+  paint-order: stroke fill;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-heading font-semibold transition-all duration-200;
+  border: 1px solid rgba(245, 179, 1, 0.4);
+}
+.btn-primary {
+  background: linear-gradient(120deg, #f5b301, #ff6b1a 45%, #c026d3);
+  color: #17030f;
+  box-shadow: 0 8px 26px rgba(192, 38, 211, 0.35);
+}
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 34px rgba(245, 179, 1, 0.45);
+}
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f3e9ff;
+}
+.btn-ghost:hover {
+  background: rgba(245, 179, 1, 0.12);
+  border-color: #f5b301;
+}
+.btn-myco {
+  background: linear-gradient(120deg, #6ee7a8, #16a34a);
+  color: #04150e;
+  border-color: rgba(110, 231, 168, 0.6);
+}
+.btn-myco:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 26px rgba(110, 231, 168, 0.5);
+}
+
+/* ---------- Badges / chips ---------- */
+.chip {
+  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold tracking-wide;
+  border: 1px solid rgba(245, 179, 1, 0.35);
+  background: rgba(245, 179, 1, 0.1);
+  color: #ffe9a8;
+}
+.chip-myco {
+  border-color: rgba(110, 231, 168, 0.45);
+  background: rgba(110, 231, 168, 0.12);
+  color: #b8f5d0;
+}
+.chip-psy {
+  border-color: rgba(192, 38, 211, 0.45);
+  background: rgba(192, 38, 211, 0.14);
+  color: #f5c8ff;
+}
+
+/* ---------- Prose (lesson reading) ---------- */
+.lesson-prose h2 {
+  @apply font-heading text-2xl font-bold mt-10 mb-3;
+  color: #f5b301;
+}
+.lesson-prose h3 {
+  @apply font-heading text-lg font-semibold mt-7 mb-2 text-nebula-fuchsia;
+  color: #e9a6ff;
+}
+.lesson-prose p {
+  @apply my-3 leading-relaxed text-[15px] md:text-base;
+  color: #ded4f2;
+}
+.lesson-prose ul {
+  @apply my-3 space-y-2 pl-1;
+}
+.lesson-prose li {
+  @apply leading-relaxed text-[15px];
+  color: #ded4f2;
+}
+.lesson-prose strong {
+  color: #ffe9a8;
+}
+.lesson-prose em {
+  color: #a3e635;
+  font-style: italic;
+}
+.lesson-prose code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.86em;
+  background: rgba(103, 232, 249, 0.12);
+  border: 1px solid rgba(103, 232, 249, 0.25);
+  border-radius: 6px;
+  padding: 1px 6px;
+  color: #a5f3fc;
+}
+.lesson-prose a {
+  color: #67e8f9;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- KaTeX ---------- */
+.katex {
+  color: #ffe9a8;
+  font-size: 1.05em;
+}
+.formula-block {
+  @apply my-4 overflow-x-auto rounded-xl px-4 py-3;
+  background: rgba(103, 232, 249, 0.07);
+  border: 1px solid rgba(103, 232, 249, 0.22);
+}
+
+/* ---------- Tables ---------- */
+.forge-table {
+  @apply w-full border-collapse text-sm;
+}
+.forge-table thead th {
+  @apply font-heading text-left px-3 py-2.5 text-xs uppercase tracking-wider;
+  background: linear-gradient(120deg, rgba(245, 179, 1, 0.2), rgba(192, 38, 211, 0.18));
+  color: #ffe9a8;
+  border-bottom: 1px solid rgba(245, 179, 1, 0.35);
+  position: sticky;
+  top: 0;
+}
+.forge-table tbody td {
+  @apply px-3 py-2.5 align-top;
+  border-bottom: 1px solid rgba(245, 179, 1, 0.12);
+  color: #ded4f2;
+}
+.forge-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.022);
+}
+.forge-table tbody tr:hover {
+  background: rgba(245, 179, 1, 0.07);
+}
+
+/* ---------- Flip card ---------- */
+.flip-scene {
+  perspective: 1400px;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.62s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  padding: 1.25rem;
+  overflow: auto;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* ---------- Misc ---------- */
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 42s linear infinite;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.glyph-ring {
+  animation: spinSlow 90s linear infinite;
+  transform-origin: center;
+}
+
+.progress-rail {
+  height: 9px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #6ee7a8, #f5b301 45%, #c026d3);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, rgba(245, 179, 1, 0.5), rgba(192, 38, 211, 0.5));
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #f5b301 45%, #c1121f);
+  border: 2px solid rgba(5, 1, 15, 0.85);
+  box-shadow: 0 0 14px rgba(245, 179, 1, 0.75);
+  cursor: pointer;
+}
+input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #f5b301 45%, #c1121f);
+  border: 2px solid rgba(5, 1, 15, 0.85);
+  cursor: pointer;
+}
+
+.canvas-host canvas {
+  border-radius: 16px;
+  touch-action: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-bg,
+  .starfield,
+  .starfield-2,
+  .plasma-ribbon,
+  .marquee-track,
+  .glyph-ring {
+    animation: none !important;
+  }
+}
+
+/* ---------- Extra panel tones (psychic + sirius) ---------- */
+.glass-psy {
+  background: linear-gradient(155deg, rgba(58, 16, 92, 0.82), rgba(12, 4, 30, 0.7));
+  border: 1px solid rgba(192, 38, 211, 0.42);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border-radius: 18px;
+}
+
+.glass-sirius {
+  background: linear-gradient(155deg, rgba(8, 24, 56, 0.82), rgba(4, 6, 26, 0.72));
+  border: 1px solid rgba(103, 232, 249, 0.36);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border-radius: 18px;
+}
