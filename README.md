@@ -66,6 +66,7 @@ pnpm dev          # http://localhost:5173
 pnpm build        # tsc -b && vite build  → dist/
 pnpm preview      # serve the production build on :4173
 pnpm typecheck    # tsc --noEmit
+pnpm smoke        # server-renders all 34 routes and fails if any render throws
 ```
 
 ## Deployment
@@ -118,3 +119,16 @@ are validated by review — the schema is enforced by `tsc`.
 Course outline and instructor credit: **Bhanu Kushwaha, Lead Robotics Engineer, OXA** — 8 weeks, 16 lessons,
 hands-on builds, simulation, sensors, control systems, AI and perception, IoT, safety, industry insights,
 teamwork, problem solving, automation, embedded systems, prototyping, real-world impact, future skills.
+
+---
+
+## Verification
+
+`pnpm build` runs `tsc --noEmit` (strict, zero errors) followed by the Vite production build, which
+reports no circular chunks. `pnpm smoke` builds a development-only SSR entry (`ssr-smoke.tsx`) and
+server-renders every route — all 34 currently pass — which catches component-tree errors that a
+type-check cannot, such as a React Three Fiber hook called outside `<Canvas>`.
+
+Content inventory at time of writing: 16 lessons, 112 lesson quiz questions, 8 boss trials with 80
+questions, 155 flashcards, 129 key terms, 12 curated reference tables, 80 Idea Lab blueprints, 24
+Heritage Atlas entries, 10 labs, 14 badges.

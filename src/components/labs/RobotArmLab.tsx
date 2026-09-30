@@ -229,25 +229,43 @@ function TargetMarker({ p }: { p: THREE.Vector3 }) {
   );
 }
 
-function useTrail(tip: THREE.Vector3, on: boolean, resetKey: number) {
-  const [trail, setTrail] = useState<THREE.Vector3[]>([]);
+/**
+ * Tool-centre-point trail recorder. This MUST live inside <Canvas>: useFrame is
+ * an R3F hook and throws if it is called from a component outside the canvas tree.
+ */
+function TrailTracker({
+  tip,
+  enabled,
+  resetKey,
+  store,
+  onUpdate,
+}: {
+  tip: THREE.Vector3;
+  enabled: boolean;
+  resetKey: number;
+  store: { current: THREE.Vector3[] };
+  onUpdate: (pts: THREE.Vector3[]) => void;
+}) {
   const last = useRef(0);
-  const ref = useRef<THREE.Vector3[]>([tip.clone()]);
+  // Reset only when the user clears the trace — never when the pose changes.
   useEffect(() => {
-    ref.current = [tip.clone()];
-    setTrail([tip.clone()]);
+    const pts = [tip.clone()];
+    store.current = pts;
+    onUpdate(pts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resetKey]);
   useFrame(({ clock }) => {
+    if (!enabled) return;
     const now = clock.elapsedTime;
-    if (!on || now - last.current < 0.05) return;
+    if (now - last.current < 0.06) return;
     last.current = now;
-    const pts = ref.current;
+    const pts = store.current;
     if (pts.length && pts[pts.length - 1].distanceTo(tip) < 0.02) return;
     pts.push(tip.clone());
     if (pts.length > 900) pts.shift();
-    setTrail([...pts]);
+    onUpdate(pts.slice());
   });
-  return trail;
+  return null;
 }
 
 /* ------------------------------ lab ------------------------------- */
@@ -262,7 +280,8 @@ export default function RobotArmLab({ tasks }: LabProps) {
   const [status, setStatus] = useState({ err: 0, w: 0 });
 
   const tip = useMemo(() => fk(q), [q]);
-  const trail = useTrail(tip, trailOn, resetKey);
+  const [trail, setTrail] = useState<THREE.Vector3[]>([]);
+  const trailStore = useRef<THREE.Vector3[]>([]);
 
   useEffect(() => {
     if (!ikMode) return;
@@ -366,6 +385,7 @@ export default function RobotArmLab({ tasks }: LabProps) {
         <pointLight position={[6, 2, 6]} color="#6ee7a8" intensity={1.4} distance={18} />
         <gridHelper args={[24, 24, '#4338ca', '#1b1440']} position={[0, 0, 0]} />
         <Arm q={q} trail={trail} showTrail={trailOn} />
+        <TrailTracker tip={tip} enabled={trailOn} resetKey={resetKey} store={trailStore} onUpdate={setTrail} />
         <WorkspaceCloud show={wsOn} />
         {ikMode && <TargetMarker p={target} />}
         <OrbitControls enablePan target={[0, 1.6, 0]} maxPolarAngle={Math.PI / 2.03} minDistance={4} maxDistance={24} />

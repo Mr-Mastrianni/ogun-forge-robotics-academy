@@ -14,17 +14,14 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (!id.includes('node_modules')) {
-            if (id.includes('/src/content/')) return 'content';
-            if (id.includes('/src/components/labs/')) return 'labs';
-            return undefined;
-          }
-          if (id.includes('/three/') || id.includes('@react-three')) return 'three';
-          if (id.includes('recharts') || id.includes('/d3-')) return 'charts';
-          if (id.includes('katex')) return 'katex';
-          if (id.includes('framer-motion')) return 'motion';
-          return 'vendor';
+          // Only group our own heavy source trees. Let Rollup decide node_modules
+          // chunking from the real import graph: hand-grouping three.js and its
+          // ecosystem into one chunk creates a three <-> vendor cycle.
+          if (id.includes('/src/content/')) return 'content';
+          if (id.includes('/src/components/labs/')) return 'labs';
+          return undefined;
         },
+
       },
     },
   },

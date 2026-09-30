@@ -1,4 +1,4 @@
-import type { BossQuiz, ReferenceTable } from './types';
+import type { BossQuiz } from './types';
 
 export const bossQuizzes: BossQuiz[] = [
   {
@@ -1167,6 +1167,3 @@ export const bossQuizzes: BossQuiz[] = [
   },
 ];
 
-export const referenceTables: ReferenceTable[] = [
-  // __TABLES_PART1__
-];
