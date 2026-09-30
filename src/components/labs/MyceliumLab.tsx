@@ -1,4 +1,4 @@
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Line, OrbitControls } from '@react-three/drei';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -185,11 +185,22 @@ function MyceliumScene({
       {activeNodes.map((i) => {
         const age = tNow - times[i];
         const glow = Math.max(0, 1 - age / 26);
+        const hue = (0.44 - glow * 0.34 + tNow * 0.008) % 1;
         return (
-          <mesh key={i} position={nodes[i].p}>
-            <sphereGeometry args={[0.055 + glow * 0.075, 8, 8]} />
-            <meshBasicMaterial color={new THREE.Color().setHSL(0.36 - glow * 0.24, 1, 0.45 + glow * 0.25)} />
-          </mesh>
+          <group key={i} position={nodes[i].p}>
+            <mesh>
+              <sphereGeometry args={[0.055 + glow * 0.09, 10, 10]} />
+              <meshBasicMaterial color={new THREE.Color().setHSL(hue, 1, 0.5 + glow * 0.28)} />
+            </mesh>
+            <mesh>
+              <sphereGeometry args={[0.12 + (1 - glow) * 0.36, 12, 12]} />
+              <meshBasicMaterial
+                color={new THREE.Color().setHSL(hue, 1, 0.62)}
+                transparent
+                opacity={0.14 * glow}
+              />
+            </mesh>
+          </group>
         );
       })}
 
@@ -227,6 +238,88 @@ function MyceliumScene({
         <meshStandardMaterial color="#0f2e22" roughness={0.95} />
       </mesh>
       <gridHelper args={[12, 24, '#16a34a', '#0f3f2c']} position={[0, -0.68, 0]} />
+    </group>
+  );
+}
+
+/* ---------------- trippy living-field decorations ---------------- */
+
+function BreathLight() {
+  const ref = useRef<THREE.PointLight>(null);
+  useFrame(({ clock }) => {
+    if (ref.current) ref.current.intensity = 1.6 + Math.sin(clock.elapsedTime * 0.7) * 0.8;
+  });
+  return <pointLight ref={ref} position={[-4, 3, -4]} color="#67e8f9" intensity={2} distance={20} />;
+}
+
+function Spores({ count = 260, radius = 6 }: { count?: number; radius?: number }) {
+  const ref = useRef<THREE.Points>(null);
+  const geo = useMemo(() => {
+    const pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const r = radius * Math.cbrt(Math.random());
+      const th = Math.random() * Math.PI * 2;
+      const ph = Math.acos(Math.random());
+      pos[i * 3] = r * Math.sin(ph) * Math.cos(th);
+      pos[i * 3 + 1] = Math.random() * 6 - 0.4;
+      pos[i * 3 + 2] = r * Math.sin(ph) * Math.sin(th);
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    return g;
+  }, [count, radius]);
+
+  useFrame(({ clock }, delta) => {
+    const pos = geo.getAttribute('position') as THREE.BufferAttribute;
+    const t = clock.elapsedTime;
+    for (let i = 0; i < count; i++) {
+      let y = pos.getY(i) + delta * (0.05 + (i % 7) * 0.012);
+      if (y > 6) y = -0.4;
+      pos.setY(i, y);
+      pos.setX(i, pos.getX(i) + Math.sin(t * 0.4 + i) * delta * 0.05);
+    }
+    pos.needsUpdate = true;
+    if (ref.current) ref.current.rotation.y = t * 0.02;
+  });
+
+  return (
+    <points ref={ref} geometry={geo}>
+      <pointsMaterial size={0.035} color="#a3e635" transparent opacity={0.5} sizeAttenuation />
+    </points>
+  );
+}
+
+/** Holographic concentric substrate rings with a slow breathing scan. */
+function HyperGrid() {
+  const scan = useRef<THREE.Mesh>(null);
+  useFrame(({ clock }) => {
+    if (scan.current) {
+      const r = 0.4 + ((clock.elapsedTime * 0.55) % 5);
+      scan.current.scale.setScalar(r);
+      (scan.current.material as THREE.MeshBasicMaterial).opacity = Math.max(0, 0.35 - r * 0.06);
+    }
+  });
+  return (
+    <group position={[0, -0.66, 0]}>
+      {[1.2, 2.4, 3.6, 4.8, 5.8].map((r) => (
+        <mesh key={r} rotation={[-Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[r, 0.008, 6, 96]} />
+          <meshBasicMaterial color="#6ee7a8" transparent opacity={0.22} />
+        </mesh>
+      ))}
+      <mesh ref={scan} rotation={[-Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[1, 0.02, 6, 96]} />
+        <meshBasicMaterial color="#67e8f9" transparent opacity={0.3} />
+      </mesh>
+      {Array.from({ length: 12 }).map((_, i) => {
+        const a = (i / 12) * Math.PI * 2;
+        return (
+          <mesh key={i} rotation={[0, -a, 0]}>
+            <boxGeometry args={[0.006, 0.006, 11.6]} />
+            <meshBasicMaterial color="#8b5cf6" transparent opacity={0.16} />
+          </mesh>
+        );
+      })}
     </group>
   );
 }
@@ -399,10 +492,13 @@ export default function MyceliumLab({ tasks }: LabProps) {
       <Canvas camera={{ position: [6, 5.2, 7.5], fov: 46 }} dpr={[1, 1.7]}>
         <color attach="background" args={['#04120d']} />
         <fog attach="fog" args={['#04120d', 10, 26]} />
-        <ambientLight intensity={0.6} />
+        <ambientLight intensity={0.55} />
+        <BreathLight />
         <pointLight position={[3, 6, 3]} color="#6ee7a8" intensity={2.4} distance={18} />
         <pointLight position={[-4, 2, -3]} color="#a3e635" intensity={1.2} distance={16} />
         <MyceliumScene nodes={nodes} edges={edges} times={t} tNow={tNow} electrode={electrode} showSignals={showSignals} />
+        <Spores />
+        <HyperGrid />
         <OrbitControls enablePan target={[0, 1.2, 0]} minDistance={3} maxDistance={22} />
       </Canvas>
       <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-[#6ee7a8]/20 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-[#9fd9bb]">

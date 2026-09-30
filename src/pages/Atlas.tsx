@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Chip, FadeIn, Panel, SectionTitle, StatOrb } from '@/components/ui';
 import { colorPalettes, heritageEntries } from '@/content';
 import { ADINKRA_GLYPHS } from '@/lib/progression';
@@ -14,6 +15,17 @@ export default function Atlas() {
   const [status, setStatus] = useState('all');
   const [q, setQ] = useState('');
   const [open, setOpen] = useState<string | null>(null);
+  const [params] = useSearchParams();
+
+  // deep link from search: /atlas?e=<entry id>
+  useEffect(() => {
+    const eid = params.get('e');
+    if (!eid) return;
+    setOpen(eid);
+    setStatus('all');
+    const timer = setTimeout(() => document.getElementById('atlas-' + eid)?.scrollIntoView({ block: 'center' }), 120);
+    return () => clearTimeout(timer);
+  }, [params]);
 
   const filtered = useMemo(
     () =>
@@ -94,7 +106,7 @@ export default function Atlas() {
           const isOpen = open === e.id;
           return (
             <FadeIn key={e.id} delay={Math.min(i * 0.03, 0.4)}>
-              <Panel hover className="flex h-full flex-col p-4">
+              <Panel hover id={`atlas-${e.id}`} className="flex h-full flex-col p-4">
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-3xl text-[#f5b301]">{e.glyph}</span>
                   <div className="text-right">

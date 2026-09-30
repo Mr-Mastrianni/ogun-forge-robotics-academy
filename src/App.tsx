@@ -4,6 +4,7 @@ import { Layout } from '@/components/Layout';
 
 const Home = lazy(() => import('@/pages/Home'));
 const Course = lazy(() => import('@/pages/Course'));
+const MyceliumHub = lazy(() => import('@/pages/MyceliumHub'));
 const LessonPage = lazy(() => import('@/pages/LessonPage'));
 const Labs = lazy(() => import('@/pages/Labs'));
 const QuizArena = lazy(() => import('@/pages/QuizArena'));
@@ -40,6 +41,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/course" element={<Course />} />
+          <Route path="/mycelium" element={<MyceliumHub />} />
           <Route path="/lesson/:lessonId" element={<LessonPage />} />
           <Route path="/labs" element={<Labs />} />
           <Route path="/labs/:labId" element={<Labs />} />

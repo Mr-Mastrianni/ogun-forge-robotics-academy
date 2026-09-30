@@ -10,11 +10,14 @@ export function Panel({
   className = '',
   tone = 'gold',
   hover = false,
+  id,
 }: {
   children: ReactNode;
   className?: string;
   tone?: 'gold' | 'hot' | 'myco' | 'psy' | 'sirius';
   hover?: boolean;
+  /** anchor target for deep links from search */
+  id?: string;
 }) {
   const base =
     tone === 'hot'
@@ -28,6 +31,7 @@ export function Panel({
             : 'glass';
   return (
     <div
+      id={id}
       className={`${base} panel-edge ${hover ? 'transition-transform duration-300 hover:-translate-y-1' : ''} ${className}`}
     >
       {children}

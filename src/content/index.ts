@@ -16,7 +16,8 @@ import { lesson as w8l15 } from './lessons/w8l15';
 import { lesson as w8l16 } from './lessons/w8l16';
 import { bossQuizzes } from './bossAndTables';
 import { referenceTables } from './referenceTables';
-import { myceliumProjects } from './ideas/mycelium';
+import { myceliumProjects as myceliumProjectsBase } from './ideas/mycelium';
+import { myceliumAdvancedProjects } from './ideas/mycelium-advanced';
 import { natureProjects as natureProjectsA } from './ideas/nature';
 import { natureProjectsB } from './ideas/nature-b';
 import { natureProjectsC } from './ideas/nature-c';
@@ -24,7 +25,9 @@ import { natureProjectsD } from './ideas/nature-d';
 import { jyotishProjects, afrofutureProjects } from './ideas/jyotish-afrofuture';
 import { energyProjects, quantumProjects, spaceProjects } from './ideas/energy-quantum';
 import { heritageEntries, colorPalettes } from './heritage';
+import { lessonGuides } from './lessonGuides';
 import type { Flashcard, IdeaProject, Lesson, QuizQuestion, TrackId } from './types';
+import type { LessonGuide } from './lessonGuides';
 
 export const lessons: Lesson[] = [
   w1l1,
@@ -58,6 +61,9 @@ export const weeks: { week: number; title: string; theme: string; lessons: Lesso
   { week: 8, title: 'Forge, Launch, Transcend', theme: 'Manufacturing, capstone and living machines', lessons: [] },
 ].map((w) => ({ ...w, lessons: lessons.filter((l) => l.week === w.week) }));
 
+/* Core mycelium builds plus the advanced living-machine tier. */
+export const myceliumProjects: IdeaProject[] = [...myceliumProjectsBase, ...myceliumAdvancedProjects];
+
 export const natureProjects: IdeaProject[] = [
   ...natureProjectsA,
   ...natureProjectsB,
@@ -66,7 +72,6 @@ export const natureProjects: IdeaProject[] = [
 ];
 
 export {
-  myceliumProjects,
   jyotishProjects,
   afrofutureProjects,
   energyProjects,
@@ -128,3 +133,8 @@ export const TRACK_LABELS: Record<TrackId, string> = {
 };
 
 export { bossQuizzes, referenceTables, heritageEntries, colorPalettes };
+
+/* Plain-language guides: one per lesson, keyed by lesson id. */
+export { lessonGuides };
+export type { LessonGuide };
+export const guideFor = (id: string): LessonGuide | undefined => lessonGuides.find((g) => g.lessonId === id);

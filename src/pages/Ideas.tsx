@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Chip, FadeIn, Meter, Panel, SectionTitle, StatOrb } from '@/components/ui';
+import { Term } from '@/components/Term';
 import { allProjects } from '@/content';
 import type { Difficulty, IdeaCategory } from '@/content/types';
 import { useProgress } from '@/lib/store';
@@ -73,6 +74,41 @@ export default function Ideas() {
         <StatOrb value={saved.length} label="saved by you" glyph="★" tone="gold" />
       </div>
 
+
+      {/* beginner on-ramp: three builds you can actually start this weekend */}
+      <Panel tone="myco" className="p-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="holo-kicker">New to building? Start with these</span>
+          <Chip tone="myco">high DIY feasibility</Chip>
+          <Chip tone="dim">beginner friendly</Chip>
+        </div>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          {allProjects
+            .filter((p) => p.diyFeasibility >= 70 && (p.difficulty === 'seedling' || p.difficulty === 'apprentice'))
+            .slice(0, 3)
+            .map((p) => (
+              <Link
+                key={p.id}
+                to={`/ideas/${p.id}`}
+                className="rounded-xl border border-[#6ee7a8]/25 bg-[#6ee7a8]/5 p-3 hover:border-[#6ee7a8]/60"
+              >
+                <div className="font-heading text-[13px] text-white">{p.title}</div>
+                <div className="mt-0.5 font-mono text-[10px] text-[#6ee7a8]">
+                  {p.category} · {p.costBand} · {p.buildTime}
+                </div>
+              </Link>
+            ))}
+          <Link
+            to="/mycelium"
+            className="rounded-xl border border-[#67e8f9]/30 bg-[#67e8f9]/5 p-3 hover:border-[#67e8f9]/70"
+          >
+            <div className="font-heading text-[13px] text-white">🍄 Mycelium Tech hub</div>
+            <div className="mt-0.5 font-mono text-[10px] text-[#67e8f9]">
+              grow protocol · substrate data · biosafety
+            </div>
+          </Link>
+        </div>
+      </Panel>
       <Panel className="p-4">
         <div className="flex flex-col gap-3">
           <input

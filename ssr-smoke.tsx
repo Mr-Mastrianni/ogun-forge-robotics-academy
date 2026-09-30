@@ -10,6 +10,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import Home from '@/pages/Home';
 import Course from '@/pages/Course';
+import MyceliumHub from '@/pages/MyceliumHub';
 import LessonPage from '@/pages/LessonPage';
 import Labs from '@/pages/Labs';
 import QuizArena from '@/pages/QuizArena';
@@ -29,6 +30,8 @@ import { allProjects, bossQuizzes, flashcards, lessons, referenceTables, heritag
 const ROUTES: [string, string][] = [
   ['/', 'ROBOTICS'],
   ['/course', '8 weeks'],
+  ['/mycelium', 'Mycelium'],
+  ['/mycelium#protocol', 'Mycelium'],
   ['/lesson/w1l1', 'What a Robot Actually Is'],
   ['/lesson/w4l8', 'Inverse Kinematics'],
   ['/lesson/w8l16', 'Capstone'],
@@ -69,6 +72,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/course" element={<Course />} />
+        <Route path="/mycelium" element={<MyceliumHub />} />
         <Route path="/lesson/:lessonId" element={<LessonPage />} />
         <Route path="/labs" element={<Labs />} />
         <Route path="/labs/:labId" element={<Labs />} />

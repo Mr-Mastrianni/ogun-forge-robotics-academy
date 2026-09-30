@@ -1,8 +1,9 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 import { Blocks } from '@/components/LessonBlocks';
+import { Term } from '@/components/Term';
 import { Chip, DifficultyPips, Panel, Progress } from '@/components/ui';
-import { bossQuizzes, flashcards, lessonById, lessons } from '@/content';
+import { bossQuizzes, flashcards, guideFor, lessonById, lessons } from '@/content';
 import { TRACK_LABELS } from '@/content';
 import { useProgress } from '@/lib/store';
 import { Math as MathTex } from '@/lib/rich';
@@ -52,6 +53,7 @@ export default function LessonPage() {
 
   const prev = index > 0 ? lessons[index - 1] : null;
   const next = index >= 0 && index < lessons.length - 1 ? lessons[index + 1] : null;
+  const guide = guideFor(lesson.id);
   const cards = flashcards.filter((f) => f.lessonId === lesson.id);
   const boss = bossQuizzes.find((b) => b.lessonIds.includes(lesson.id));
 
@@ -109,6 +111,74 @@ export default function LessonPage() {
             </div>
           </Panel>
 
+          {guide && (
+            <Panel tone="sirius" className="mb-6 p-4 sm:p-5">
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <span className="holo-kicker">Plain English</span>
+                <Chip tone="dim">no jargon</Chip>
+              </div>
+              <p className="text-[15.5px] leading-relaxed text-[#e8e0ff]">{guide.plain}</p>
+
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                <div className="holo-well p-3">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#67e8f9]">
+                    Think of it like…
+                  </div>
+                  <p className="mt-1 text-[14px] leading-relaxed text-[#ded4f2]">{guide.analogy}</p>
+                </div>
+                <div className="holo-well p-3">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#f5b301]">
+                    If you remember one thing
+                  </div>
+                  <p className="mt-1 font-heading text-[14.5px] leading-relaxed text-[#ffe9a8]">{guide.remember}</p>
+                </div>
+              </div>
+
+              <div className="mt-3 grid gap-3 md:grid-cols-2">
+                <div className="holo-well p-3">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#6ee7a8]">
+                    By the end you can
+                  </div>
+                  <ul className="mt-1.5 space-y-1">
+                    {guide.canDo.map((c, i) => (
+                      <li key={i} className="flex gap-2 text-[13.5px] leading-relaxed text-[#cfe9dc]">
+                        <span className="text-[#6ee7a8]">✓</span>
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="holo-well p-3">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#ff8fd6]">
+                    Common mix-up
+                  </div>
+                  <p className="mt-1 text-[13.5px] leading-relaxed text-[#f3e9ff]">{guide.misconception}</p>
+                  <div className="mt-2 border-t border-white/10 pt-2">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8c82a8]">
+                      Where you meet this
+                    </div>
+                    <p className="mt-1 text-[13px] leading-relaxed text-[#ded4f2]">{guide.realWorld}</p>
+                  </div>
+                </div>
+              </div>
+
+              {guide.prereqs.length > 0 && (
+                <div className="mt-3 flex flex-wrap items-center gap-2 text-[12px] text-[#c9bde6]">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8c82a8]">Read first:</span>
+                  {guide.prereqs.map((pid) => (
+                    <Link
+                      key={pid}
+                      to={`/lesson/${pid}`}
+                      className="rounded-full border border-white/15 px-2.5 py-0.5 hover:border-[#67e8f9]/60 hover:text-white"
+                    >
+                      {lessonById[pid] ? `L${lessonById[pid].number} · ${lessonById[pid].title}` : pid}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </Panel>
+          )}
+
           <article className="lesson-prose">
             {lesson.blocks.map((b, i) => (
               <div key={i} id={`b${i}`} className="scroll-mt-24">
@@ -124,7 +194,9 @@ export default function LessonPage() {
               {lesson.keyTerms.map((t) => (
                 <div key={t.term} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                   <dt className="font-heading text-[13px] text-[#ffe9a8]">
-                    <MathTex tex={t.term} />
+                    <Term term={t.term}>
+                      <MathTex tex={t.term} />
+                    </Term>
                   </dt>
                   <dd className="mt-1 text-[12.5px] leading-relaxed text-[#ded4f2]">{t.definition}</dd>
                 </div>
@@ -199,6 +271,30 @@ export default function LessonPage() {
               </Link>
             )}
           </div>
+          {/* sticky next-step bar: keeps the path obvious while reading on a phone */}
+          <div className="fixed bottom-[58px] left-0 right-0 z-40 flex items-center gap-2 border-t border-[#8b5cf6]/30 bg-[#06031a]/92 px-3 py-2 backdrop-blur-xl lg:hidden">
+            <button
+              onClick={() => markLessonRead(lesson.id)}
+              disabled={completed}
+              className={`flex-none rounded-lg border px-2.5 py-1.5 font-mono text-[11px] ${
+                completed
+                  ? 'border-[#6ee7a8]/40 bg-[#6ee7a8]/10 text-[#6ee7a8]'
+                  : 'border-white/15 bg-white/[0.04] text-[#ded4f2]'
+              }`}
+            >
+              {completed ? '✓ done' : 'mark done'}
+            </button>
+            {next ? (
+              <Link to={`/lesson/${next.id}`} className="btn btn-primary min-w-0 flex-1 !py-1.5 text-[12px]">
+                <span className="truncate">Next: {next.title} →</span>
+              </Link>
+            ) : (
+              <Link to="/ideas" className="btn btn-myco min-w-0 flex-1 !py-1.5 text-[12px]">
+                <span className="truncate">Finish in the Idea Lab →</span>
+              </Link>
+            )}
+          </div>
+
         </div>
 
         {/* ------------------------------ sidebar ------------------------------ */}
@@ -209,12 +305,15 @@ export default function LessonPage() {
                 on this page
               </div>
               <nav className="max-h-[280px] space-y-1 overflow-auto pr-1">
-                {toc.map((t) => (
+                {toc.map((t, ti) => (
                   <a
                     key={t.id}
                     href={`#${t.id}`}
                     className="block truncate border-l-2 border-white/10 pl-2.5 text-[12px] leading-snug text-[#c9bde6] transition-colors hover:border-[#f5b301] hover:text-[#f5b301]"
                   >
+                    <span className="mr-1.5 font-mono text-[10px] text-[#67e8f9]">
+                      {String(ti + 1).padStart(2, '0')}
+                    </span>
                     {t.label}
                   </a>
                 ))}

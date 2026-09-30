@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Chip, Panel, SectionTitle } from '@/components/ui';
 import { referenceTables, lessons } from '@/content';
 import type { Block } from '@/content/types';
@@ -19,6 +20,17 @@ export default function Tables() {
   const [cat, setCat] = useState('all');
   const [q, setQ] = useState('');
   const [open, setOpen] = useState<string | null>(null);
+  const [params] = useSearchParams();
+
+  // deep link from search: /tables?t=<table id>
+  useEffect(() => {
+    const tid = params.get('t');
+    if (!tid) return;
+    setOpen(tid);
+    setCat('all');
+    const timer = setTimeout(() => document.getElementById('table-' + tid)?.scrollIntoView({ block: 'start' }), 120);
+    return () => clearTimeout(timer);
+  }, [params]);
 
   const cats = ['all', ...Array.from(new Set(referenceTables.map((t) => t.category)))];
 
@@ -92,7 +104,7 @@ export default function Tables() {
 
       <div className="grid gap-4">
         {filtered.map((t) => (
-          <Panel key={t.id} className="overflow-hidden">
+          <Panel key={t.id} id={`table-${t.id}`} className="overflow-hidden">
             <button
               onClick={() => setOpen(open === t.id ? null : t.id)}
               className="flex w-full items-center gap-3 border-b border-white/10 px-4 py-3 text-left"
