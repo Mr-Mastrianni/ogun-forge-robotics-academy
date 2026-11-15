@@ -11,6 +11,7 @@ export default function SpecimenViewer({ specimen, file }: { specimen: Specimen;
   const controlsRef = useRef<OrbitControls>();
   const partsRef = useRef<ReturnType<typeof buildSpecimen>['parts']>([]);
   const [error, setError] = useState('');
+  const [unavailable, setUnavailable] = useState(false);
   const [explode, setExplode] = useState(0);
   const motion = useUi(s => s.motion);
   const [spin, setSpin] = useState(false);
@@ -18,13 +19,13 @@ export default function SpecimenViewer({ specimen, file }: { specimen: Specimen;
     if (!stage.current) return;
     let renderer: THREE.WebGLRenderer;
     try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); }
-    catch { setError('3D is unavailable on this device. Every specimen and its learning details are still available below.'); return; }
+    catch { setUnavailable(true); setError('3D is unavailable on this device. Every specimen and its learning details are still available below.'); return; }
     const host = stage.current;
     let disposed = false;
     let frame = 0;
     let model: THREE.Group | undefined;
     let concept: ReturnType<typeof buildSpecimen> | undefined;
-    setError(''); setExplode(0);
+    setError(''); setUnavailable(false); setExplode(0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     host.appendChild(renderer.domElement);
     renderer.domElement.setAttribute('aria-label', `Interactive concept model: ${specimen.name}. Drag to rotate, scroll to zoom.`);
@@ -97,12 +98,14 @@ export default function SpecimenViewer({ specimen, file }: { specimen: Specimen;
 
   return <div className="glass panel-edge overflow-hidden">
     <div className="flex flex-wrap items-center justify-between gap-2 p-4 font-mono text-xs text-[#f5b301]"><span>{file ? `Local model · ${file.name}` : `Concept preview · ${specimen.name}`}</span><span className="text-[#c9bde6]">Drag to orbit · scroll to zoom</span></div>
-    <div ref={stage} className="h-[360px] w-full bg-gradient-to-b from-[#151036] to-[#05010f] sm:h-[430px]" />
+    <div ref={stage} className="relative grid h-[360px] w-full place-items-center bg-gradient-to-b from-[#151036] to-[#05010f] sm:h-[430px]">
+      {unavailable && <div className="max-w-sm p-8 text-center"><div aria-hidden="true" className="mb-4 text-7xl text-[#f5b301]">⬡</div><h3 className="font-heading text-xl font-bold text-white">{specimen.name}</h3><p className="mt-3 text-sm text-[#c9bde6]">{specimen.project}</p><p className="mt-4 font-mono text-xs text-[#f5b301]">3D preview requires WebGL</p></div>}
+    </div>
     {error && <p role="status" className="px-4 text-sm text-[#ffd166]">{error}</p>}
     <div className="flex flex-wrap items-center gap-3 p-4">
       <label htmlFor="specimen-explode" className="text-sm">Take it apart</label>
-      <input id="specimen-explode" className="min-w-0 flex-1 accent-[#f5b301]" type="range" min="0" max="100" value={explode} onChange={e => { const value = Number(e.target.value); setExplode(value); partsRef.current.forEach(p => p.obj.position.copy(p.base).addScaledVector(p.dir, value / 100 * 1.1)); }} />
-      <button className="btn-ghost text-xs" aria-pressed={spin} onClick={() => { const c = controlsRef.current; if (c) { c.autoRotate = !c.autoRotate; setSpin(c.autoRotate); } }}>Auto-spin</button>
+      <input id="specimen-explode" disabled={unavailable} className="min-w-0 flex-1 accent-[#f5b301]" type="range" min="0" max="100" value={explode} onChange={e => { const value = Number(e.target.value); setExplode(value); partsRef.current.forEach(p => p.obj.position.copy(p.base).addScaledVector(p.dir, value / 100 * 1.1)); }} />
+      <button className="btn btn-ghost text-xs" disabled={unavailable} aria-pressed={spin} onClick={() => { const c = controlsRef.current; if (c) { c.autoRotate = !c.autoRotate; setSpin(c.autoRotate); } }}>Auto-spin</button>
     </div>
   </div>;
 }

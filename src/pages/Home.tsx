@@ -286,7 +286,7 @@ export default function Home() {
       <section>
         <SectionTitle
           eyebrow="what is inside"
-          title="Eight ways to build the skill"
+          title="Ten ways to build the skill"
           sub="Reading is the smallest part. Everything else has a knob, a graph or a mesh you can push against."
         />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

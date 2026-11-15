@@ -433,8 +433,8 @@ export function Layout() {
               </div>
               {[
                 { title: 'Learn', items: [...NAV_GROUPS[0].items, ...NAV_GROUPS[1].items] },
-                { title: 'Practise', items: NAV_GROUPS[2].items },
-                { title: 'Reference & build', items: [...NAV_GROUPS[3].items, ...NAV_GROUPS[4].items] },
+                { title: 'Living technology', items: NAV_GROUPS.find(g => g.label === 'Living Technology')!.items },
+                { title: 'Practise, reference & build', items: NAV_GROUPS.filter(g => ['Practise', 'Reference', 'Build'].includes(g.label)).flatMap(g => g.items) },
               ].map((col) => (
                 <div key={col.title}>
                   <div className="mb-2 font-heading text-xs uppercase tracking-widest text-[#d8fbff]">{col.title}</div>
