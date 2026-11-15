@@ -9,7 +9,9 @@
     "preview": "vite preview --port 4173",
     "typecheck": "tsc --noEmit",
     "smoke": "vite build --ssr ssr-smoke.tsx --outDir .smoke --logLevel error && node .smoke/ssr-smoke.js",
-    "test:manufacturing": "vite build --ssr manufacturing-check.ts --outDir .manufacturing-check --logLevel error && node .manufacturing-check/manufacturing-check.js"
+    "test:manufacturing": "vite build --ssr manufacturing-check.ts --outDir .manufacturing-check --logLevel error && node .manufacturing-check/manufacturing-check.js",
+    "test:contact": "node --test tests/contact.test.js",
+    "test:kamitron": "node --test tests/contact.test.js tests/specimen.test.js"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.3",

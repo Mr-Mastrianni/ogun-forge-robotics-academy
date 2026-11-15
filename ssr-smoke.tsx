@@ -1,3 +1,6 @@
+import Kamitron from '@/pages/Kamitron';
+import SpecimenVault from '@/pages/SpecimenVault';
+import { SPECIMENS } from '@/content/kamitron';
 /**
  * SSR smoke test (development-only, not shipped).
  * Renders every route with renderToString to prove the component tree executes:
@@ -35,6 +38,13 @@ const testProject = newProject('Smoke production project');
 testProject.id = 'smoke-project';
 const ROUTES: [string, string][] = [
   ['/', 'ROBOTICS'],
+  ['/kamitron', 'Inner Kingdom'],
+  ['/services', 'AI Consulting'],
+  ['/about', 'Our journey'],
+  ['/community', 'Heal One Creek'],
+  ['/contact', 'message-form'],
+  ['/vault', 'Hyalos GX-8'],
+  ...SPECIMENS.map(s => [`/vault?lab=${s.lab.id}&specimen=${s.id}`, s.name] as [string, string]),
   ['/manufacturing', 'Manufacturing Forge'],
   ['/manufacturing/project/smoke-project', 'Smoke production project'],
   ['/manufacturing/project/missing', 'Project not found'],
@@ -88,6 +98,9 @@ function App() {
         <Route path="/manufacturing/project/:productionId" element={<Manufacturing />} />
         <Route path="/manufacturing/learn" element={<ManufacturingLearn />} />
         <Route path="/manufacturing/learn/:moduleId" element={<ManufacturingLearn />} />
+        <Route path="/kamitron" element={<Kamitron />} />
+        <Route path="/vault" element={<SpecimenVault />} />
+        {['services', 'about', 'community', 'contact'].map(path => <Route key={path} path={`/${path}`} element={<Kamitron />} />)}
         <Route path="/course" element={<Course />} />
         <Route path="/mycelium" element={<MyceliumHub />} />
         <Route path="/lesson/:lessonId" element={<LessonPage />} />

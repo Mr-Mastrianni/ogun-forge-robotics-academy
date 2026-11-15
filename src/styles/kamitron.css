@@ -1,0 +1,35 @@
+/* Migrated content uses the Forge's panels, fonts, controls and palette. No source-site globals. */
+.kamitron-content { color: #c9bde6; line-height: 1.7; min-width: 0; }
+.kamitron-content .wrap { width: 100%; }
+.kamitron-content .section, .kamitron-content .hero { margin-bottom: 2rem; scroll-margin-top: 6rem; }
+.kamitron-content h1 { font-family: 'Unbounded', sans-serif; color: white; font-size: clamp(1.8rem,4vw,3rem); font-weight: 800; line-height: 1.2; margin: .5rem 0 1rem; }
+.kamitron-content h2 { font-family: 'Unbounded', sans-serif; color: white; font-size: clamp(1.3rem,3vw,1.8rem); font-weight: 700; line-height: 1.35; margin: .5rem 0 1rem; }
+.kamitron-content h3 { font-family: 'Unbounded', sans-serif; color: white; font-size: 1rem; font-weight: 700; margin: .7rem 0; }
+.kamitron-content em, .kamitron-content .yr { color: #f5b301; font-style: normal; }
+.kamitron-content p { margin: .5rem 0 1rem; }
+.kamitron-content .eyebrow, .kamitron-content .kicker { color: #f5b301; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: .18em; font-size: .7rem; }
+.kamitron-content .grid, .kamitron-content .content-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
+.kamitron-content .card, .kamitron-content .panel, .kamitron-content .lab, .kamitron-content .char, .kamitron-content .era, .kamitron-content .mile, .kamitron-content .content-callout { border: 1px solid #f5b30133; background: linear-gradient(135deg,#160b2cbb,#100822cc); border-radius: 1rem; padding: 1.4rem; box-shadow: inset 0 1px 0 #ffffff0a; min-width: 0; }
+.kamitron-content .card:hover, .kamitron-content .lab:hover { border-color: #f5b30177; }
+.kamitron-content .sec-head { margin-bottom: 1.2rem; }
+.kamitron-content .btns, .kamitron-content .content-flex, .kamitron-content .actions, .kamitron-content .card-top { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.kamitron-content .big-btn, .kamitron-content .text-btn, .kamitron-content .copy { display: inline-flex; align-items: center; gap: .5rem; padding: .7rem 1rem; border: 1px solid #f5b30155; border-radius: .65rem; background: #f5b30115; color: #ffd166; font-size: .85rem; font-weight: 600; text-decoration: none; }
+.kamitron-content .big-btn.primary { background: linear-gradient(135deg,#f5b301,#ff6b1a); color: #160b20; }
+.kamitron-content a { color: #f5b301; text-underline-offset: 3px; }
+.kamitron-content .pill { display: inline-flex; border: 1px solid #c026d355; background: #c026d315; color: #e4b4ee; padding: .15rem .55rem; border-radius: 999px; font-size: .7rem; }
+.kamitron-content ul { padding-left: 1.2rem; list-style: disc; }
+.kamitron-content .timeline, .kamitron-content .form, .kamitron-content .field { display: grid; gap: 1rem; }
+.kamitron-content .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.kamitron-content .field { gap: .4rem; }
+.kamitron-content label { color: #efe7ff; font-size: .85rem; }
+.kamitron-content input, .kamitron-content select, .kamitron-content textarea { min-width: 0; width: 100%; color: #efe7ff; background: #05010fcc; border: 1px solid #ffffff25; border-radius: .6rem; padding: .8rem; }
+.kamitron-content form[data-form=waitlist] { display: flex; flex-wrap: wrap; gap: 1rem; }
+.kamitron-content .hive-input { flex: 1 1 240px; }
+.kamitron-content .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.kamitron-content .status { flex-basis: 100%; color: #f5b301; }
+.kamitron-content button:disabled { opacity: .5; cursor: wait; }
+.kamitron-content :focus-visible { outline: 2px solid #67e8f9; outline-offset: 4px; }
+.kamitron-content .times > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; border-bottom: 1px solid #ffffff15; padding: .6rem 0; }
+.kamitron-content svg { max-width: 100%; width: 1.4rem; height: 1.4rem; }
+.kamitron-content .content-callout { margin: 1rem 0; }
+@media (max-width: 680px) { .kamitron-content .grid, .kamitron-content .content-grid, .kamitron-content .row2 { grid-template-columns: minmax(0,1fr); } }
