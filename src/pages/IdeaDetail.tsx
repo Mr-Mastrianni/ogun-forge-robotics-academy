@@ -1,12 +1,16 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Chip, Meter, Panel, Progress } from '@/components/ui';
 import { allProjects, lessonById, projectById } from '@/content';
+import { useManufacturing } from '@/lib/manufacturingStore';
+import { newProject } from '@/lib/manufacturing';
 import { useProgress } from '@/lib/store';
 
 export default function IdeaDetail() {
   const { projectId } = useParams();
   const nav = useNavigate();
   const p = projectId ? projectById[projectId] : undefined;
+  const production = useManufacturing(s => s.projects.find(p => p.blueprintId === projectId));
+  const addProduction = useManufacturing(s => s.add);
   const saved = useProgress((s) => s.savedProjects);
   const toggleProject = useProgress((s) => s.toggleProject);
 
@@ -180,6 +184,12 @@ export default function IdeaDetail() {
             <button onClick={() => toggleProject(p.id)} className={`btn w-full ${isSaved ? 'btn-myco' : 'btn-primary'}`}>
               {isSaved ? '★ saved to your forge' : '☆ save blueprint'}
             </button>
+            <button className="btn btn-myco w-full mt-3" onClick={() => {
+              if (production) { nav(`/manufacturing/project/${production.id}`); return; }
+              const project = newProject(p.title, p.id, `${p.summary}\n\nEngineering reality: ${p.realitySplit.real}\n\nSafety considerations: ${p.safety.join('; ')}`, p.billOfMaterials.map(b => `${b.qty} × ${b.item}${b.note ? ` — ${b.note}` : ''}`).join('\n'));
+              addProduction(project); nav(`/manufacturing/project/${project.id}`);
+            }}>{production ? 'Open production project →' : 'Start production project →'}</button>
+            <p className="mt-2 text-xs text-[#c9bde6]">Copies this blueprint and BOM into a production workspace. Validate feasibility and demand before spending.</p>
             <div className="mt-4 space-y-3">
               <Meter label="Wakanda index" value={p.wakandaIndex} tone="psy" />
               <Meter label="DIY feasibility" value={p.diyFeasibility} tone="myco" />

@@ -32,6 +32,7 @@ const NAV_GROUPS: { label: string; items: NavEntry[] }[] = [
     label: 'Learn',
     items: [
       { to: '/labs', label: '3D Labs', glyph: '⚙', hint: 'Ten simulators you can break' },
+      { to: '/manufacturing/learn', label: 'Manufacturing Academy', glyph: '⌘', hint: 'Six lessons from idea to production' },
       { to: '/mycelium', label: 'Mycelium Tech', glyph: '🍄', hint: 'Living machines and protocols' },
       { to: '/glossary', label: 'Glossary', glyph: '✎', hint: 'Every term, explained simply' },
     ],
@@ -55,6 +56,7 @@ const NAV_GROUPS: { label: string; items: NavEntry[] }[] = [
   {
     label: 'Build',
     items: [
+      { to: '/manufacturing', label: 'Manufacturing Forge', glyph: '⚒', hint: 'Suppliers, costs and production evidence' },
       { to: '/ideas', label: 'Idea Lab', glyph: '🧬', hint: `${allProjects.length} blueprints to build` },
       { to: '/achievements', label: 'Trophies', glyph: '🏆', hint: 'Badges and ranks' },
       { to: '/beyond', label: 'What next', glyph: '🚀', hint: 'How to make it better' },

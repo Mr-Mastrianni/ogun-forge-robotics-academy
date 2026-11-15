@@ -1,3 +1,4 @@
+import { manufacturingModules } from '@/content/manufacturing';
 import { allKeyTerms, allProjects, bossQuizzes, heritageEntries, lessons, referenceTables } from '@/content';
 import { LABS } from '@/components/labs';
 
@@ -26,6 +27,8 @@ export const KIND_META: Record<HitKind, { label: string; glyph: string; color: s
 };
 
 export const PAGES: SearchHit[] = [
+  { id: 'p-manufacturing', kind: 'page', title: 'Manufacturing Forge', subtitle: 'Production projects, suppliers, costs and payments', to: '/manufacturing', glyph: '⚒', keywords: 'factory RFQ MOQ DFM golden sample inspection tooling landed cost sourcing workflow' },
+  { id: 'p-manufacturing-learn', kind: 'page', title: 'Manufacturing Academy', subtitle: 'Six lessons from blueprint to batch', to: '/manufacturing/learn', glyph: '⌘', keywords: 'manufacturing lessons quiz flashcards production quality supply chain' },
   { id: 'p-home', kind: 'page', title: 'Home', subtitle: 'Start here — the 4-step path', to: '/', glyph: '◉', keywords: 'start overview intro beginning' },
   { id: 'p-course', kind: 'page', title: 'Course roadmap', subtitle: 'All 16 lessons across 8 weeks', to: '/course', glyph: '⌘', keywords: 'syllabus curriculum weeks roadmap all lessons' },
   { id: 'p-labs', kind: 'page', title: '3D Labs', subtitle: 'Ten interactive simulators', to: '/labs', glyph: '⚙', keywords: 'interactive simulation three dimensional practice' },
@@ -44,6 +47,7 @@ export const PAGES: SearchHit[] = [
 
 export const SEARCH_INDEX: SearchHit[] = [
   ...PAGES,
+  ...manufacturingModules.map<SearchHit>(m => ({ id: `manufacturing-${m.id}`, kind: 'lesson', title: m.title, subtitle: 'Manufacturing Academy', to: `/manufacturing/learn/${m.id}`, glyph: '⚒', keywords: `${m.summary} ${m.sections.map(s => s.body).join(' ')} ${m.terms.map(t => t.term).join(' ')}` })),
   ...lessons.map<SearchHit>((l) => ({
     id: `l-${l.id}`,
     kind: 'lesson',

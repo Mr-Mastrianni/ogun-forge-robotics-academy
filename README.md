@@ -170,3 +170,49 @@ type-check cannot, such as a React Three Fiber hook called outside `<Canvas>`.
 Content inventory at time of writing: 16 lessons, 112 lesson quiz questions, 8 boss trials with 80
 questions, 155 flashcards, 129 key terms, 12 curated reference tables, 88 Idea Lab blueprints, 24
 Heritage Atlas entries, 10 labs, 14 badges.
+
+## Manufacturing Forge — blueprint to batch
+
+![Manufacturing workbench with QA demonstration records](docs/manufacturing-preview.jpg)
+
+The manufacturing expansion adds an applied companion track without changing the original 8-week robotics curriculum.
+
+- `/manufacturing` — create production projects, import validated JSON backups, reopen saved projects and export records.
+- `/manufacturing/learn` — six lessons (120 minutes), 18 explained quiz questions and 18 revealable glossary flashcards. Lesson-read status and best quiz scores persist independently of the core robotics course.
+- `/manufacturing/project/:productionId` — eight sequential evidence gates, supplier qualification and comparable quote records, USD landed-cost/contribution modeling, and dated milestone payment records.
+- Every Idea Lab blueprint can start a production project with its brief, engineering reality, safety considerations and BOM copied across. An existing linked project opens instead of duplicating it.
+- Sidebar, mobile navigation sheet, footer and command search include the manufacturing track.
+
+### Try the complete flow
+
+1. Open an Idea Lab blueprint and choose **Start production project**.
+2. Review the copied brief/BOM; document demand evidence, reviewer and review date.
+3. Add suppliers with scope, qualification evidence and comparable quotes. Select a partner; explicitly copy its quoted price into the cost scenario if desired.
+4. Enter only additional costs outside the quote. Record origin, destination, classification and broker/date evidence for duty assumptions.
+5. Complete each gate's checks and evidence. Later gates can be prepared early, but clearance depends on every earlier gate. Removing upstream evidence reopens the sequence.
+6. Set dated milestone percentages totaling 100%, then record release evidence before marking a payment as paid. Changing goods price or order quantity clears paid flags so old records cannot silently imply payment of a new invoice amount.
+7. Download a draft RFQ and export a JSON backup. Import creates a new project with a fresh identity, preserving existing projects.
+
+### Calculation contract
+
+All money inputs use USD. `repeat landed/unit = quoted unit price + additional packaging + additional transport/insurance + additional duties/taxes + additional batch fees / quantity`.
+
+First-run cash includes repeat landed cost times quantity, tooling/NRE and one-time testing. The contingency is applied to that total. Gross margin excludes variable selling expenses; contribution deducts them. Break-even units recover only one-time setup/testing and are unavailable at non-positive contribution. The tool does not determine HTS classification, customs value, applicable duty rates or tax treatment. DDP inclusions must be confirmed to prevent double-counting.
+
+Payment percentages apply to quoted goods value only. Other costs require separate funding. These are planning and recording tools: they do not contact suppliers, inspect hardware, certify products, place orders, transfer money, or guarantee supplier credit.
+
+### Source and data boundaries
+
+Teaching content is an original adaptation of the supplied manufacturing transcript. It corrects oversimplifications about OEM/ODM, tooling versus NRE, AQL, radio modules, CE marking and price/margin calculations. Tariff percentages and holiday dates from the transcript are not hard-coded. Official CBP, USITC, Trade.gov, FCC, European Commission, SINOSURE and WIPO reference links are included in the Academy; product-specific requirements still need review at the time of a real decision.
+
+Project records, read status and scores use the versioned `ogun-manufacturing-v1` browser storage key. They are local to this browser, with no server sync or authentication. Export backups for portability; use references to sensitive CAD/contracts rather than pasting confidential files. The import accepts version-1 project backups under 2 MB and validates known fields, numbers, dates, supplier references and gate check IDs. Manufacturing flashcards are simple reveal cards; the existing robotics spaced-repetition deck remains separate.
+
+### Verification
+
+```bash
+pnpm build
+pnpm smoke                 # 47 route renders, including all new lessons and a populated workspace fixture
+pnpm test:manufacturing    # cost math, sequential gates, payment allocation, imports and invoice changes
+```
+
+`pnpm-workspace.yaml` carries the esbuild approval for current pnpm; the existing package-level setting is retained for older pnpm versions. No new runtime dependencies were added.

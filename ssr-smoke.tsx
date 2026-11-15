@@ -8,6 +8,10 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
+import ProductionWorkspace from '@/components/manufacturing/ProductionWorkspace';
+import Manufacturing from '@/pages/Manufacturing';
+import ManufacturingLearn from '@/pages/ManufacturingLearn';
+import { newProject } from '@/lib/manufacturing';
 import Home from '@/pages/Home';
 import Course from '@/pages/Course';
 import MyceliumHub from '@/pages/MyceliumHub';
@@ -27,8 +31,16 @@ import Glossary from '@/pages/Glossary';
 import Beyond from '@/pages/Beyond';
 import { allProjects, bossQuizzes, flashcards, lessons, referenceTables, heritageEntries, allKeyTerms } from '@/content';
 
+const testProject = newProject('Smoke production project');
+testProject.id = 'smoke-project';
 const ROUTES: [string, string][] = [
   ['/', 'ROBOTICS'],
+  ['/manufacturing', 'Manufacturing Forge'],
+  ['/manufacturing/project/smoke-project', 'Smoke production project'],
+  ['/manufacturing/project/missing', 'Project not found'],
+  ['/manufacturing/learn', 'Manufacturing Academy'],
+  ...['validate', 'economics', 'suppliers', 'samples', 'quality', 'scale'].map(id => [`/manufacturing/learn/${id}`, 'Knowledge check'] as [string, string]),
+  ['/manufacturing/learn/missing', 'does not exist'],
   ['/course', '8 weeks'],
   ['/mycelium', 'Mycelium'],
   ['/mycelium#protocol', 'Mycelium'],
@@ -71,6 +83,11 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/manufacturing" element={<Manufacturing />} />
+        <Route path="/manufacturing/project/smoke-project" element={<ProductionWorkspace project={testProject} />} />
+        <Route path="/manufacturing/project/:productionId" element={<Manufacturing />} />
+        <Route path="/manufacturing/learn" element={<ManufacturingLearn />} />
+        <Route path="/manufacturing/learn/:moduleId" element={<ManufacturingLearn />} />
         <Route path="/course" element={<Course />} />
         <Route path="/mycelium" element={<MyceliumHub />} />
         <Route path="/lesson/:lessonId" element={<LessonPage />} />
