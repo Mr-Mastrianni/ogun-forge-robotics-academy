@@ -1,6 +1,9 @@
 import { Suspense, lazy } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
+
+const Kamitron = lazy(() => import('@/pages/Kamitron'));
+const SpecimenVault = lazy(() => import('@/pages/SpecimenVault'));
 
 const Manufacturing = lazy(() => import('@/pages/Manufacturing'));
 const ManufacturingLearn = lazy(() => import('@/pages/ManufacturingLearn'));
@@ -37,6 +40,11 @@ function Forging() {
   );
 }
 
+function LegacyKamitron({ to }: { to: string }) {
+  const { search, hash } = useLocation();
+  return <Navigate to={to + search + hash} replace />;
+}
+
 export default function App() {
   return (
     <Suspense fallback={<Forging />}>
@@ -47,6 +55,10 @@ export default function App() {
           <Route path="/manufacturing/project/:productionId" element={<Manufacturing />} />
           <Route path="/manufacturing/learn" element={<ManufacturingLearn />} />
           <Route path="/manufacturing/learn/:moduleId" element={<ManufacturingLearn />} />
+          <Route path="/kamitron" element={<Kamitron />} />
+          <Route path="/vault" element={<SpecimenVault />} />
+          {['services', 'about', 'community', 'contact'].map(path => <Route key={path} path={`/${path}`} element={<Kamitron />} />)}
+          {['vault', 'services', 'about', 'community', 'contact'].map(path => <Route key={`${path}-legacy`} path={`/${path}.html`} element={<LegacyKamitron to={`/${path}`} />} />)}
           <Route path="/course" element={<Course />} />
           <Route path="/mycelium" element={<MyceliumHub />} />
           <Route path="/lesson/:lessonId" element={<LessonPage />} />

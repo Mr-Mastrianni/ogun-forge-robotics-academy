@@ -216,3 +216,7 @@ pnpm test:manufacturing    # cost math, sequential gates, payment allocation, im
 ```
 
 `pnpm-workspace.yaml` carries the esbuild approval for current pnpm; the existing package-level setting is retained for older pnpm versions. No new runtime dependencies were added.
+
+## Kamitron integration
+
+Ogun Forge now includes Kamitron's living technology departments, 35-specimen 3D Vault, services, community, series, history, contact and waitlist. Start at `/kamitron` or `/vault`. See [the integration guide](docs/KAMITRON_INTEGRATION.md) for the route map, GLB model setup, email environment variables and validation commands.

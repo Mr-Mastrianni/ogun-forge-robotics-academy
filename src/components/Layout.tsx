@@ -38,6 +38,17 @@ const NAV_GROUPS: { label: string; items: NavEntry[] }[] = [
     ],
   },
   {
+    label: 'Living Technology',
+    items: [
+      { to: '/kamitron', label: 'Kamitron', glyph: '✺', hint: 'Nature-inspired engineering and Inner Kingdom' },
+      { to: '/vault', label: 'Specimen Vault', glyph: '⬡', hint: '35 builds across seven living labs' },
+      { to: '/services', label: 'Services', glyph: '⚒', hint: 'AI, automation and immersive development' },
+      { to: '/community', label: 'The Hive', glyph: '❖', hint: 'Community, events and workshops' },
+      { to: '/about', label: 'Our story', glyph: '✵', hint: 'Kamitron vision, values and journey' },
+      { to: '/contact', label: 'Contact', glyph: '✉', hint: 'Start a project or partnership' },
+    ],
+  },
+  {
     label: 'Practise',
     items: [
       { to: '/quiz', label: 'Quiz Arena', glyph: '⚔', hint: 'Lesson quizzes and boss trials' },

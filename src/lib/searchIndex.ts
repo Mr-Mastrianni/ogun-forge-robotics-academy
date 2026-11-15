@@ -1,3 +1,4 @@
+import { KAMITRON_PAGES, SPECIMENS } from '@/content/kamitron';
 import { manufacturingModules } from '@/content/manufacturing';
 import { allKeyTerms, allProjects, bossQuizzes, heritageEntries, lessons, referenceTables } from '@/content';
 import { LABS } from '@/components/labs';
@@ -47,6 +48,8 @@ export const PAGES: SearchHit[] = [
 
 export const SEARCH_INDEX: SearchHit[] = [
   ...PAGES,
+  ...KAMITRON_PAGES.map<SearchHit>(p => ({ id: `kamitron-page-${p.key}`, kind: 'page', title: p.title, subtitle: p.summary, to: p.path, glyph: '⬡', keywords: `kamitron ${p.summary}` })),
+  ...SPECIMENS.map<SearchHit>(s => ({ id: `specimen-${s.id}`, kind: 'project', title: s.name, subtitle: `${s.lab.name} · ${s.project}`, to: `/vault?lab=${s.lab.id}&specimen=${s.id}`, glyph: '⬡', keywords: `${s.project} ${s.learn} ${s.lab.line}` })),
   ...manufacturingModules.map<SearchHit>(m => ({ id: `manufacturing-${m.id}`, kind: 'lesson', title: m.title, subtitle: 'Manufacturing Academy', to: `/manufacturing/learn/${m.id}`, glyph: '⚒', keywords: `${m.summary} ${m.sections.map(s => s.body).join(' ')} ${m.terms.map(t => t.term).join(' ')}` })),
   ...lessons.map<SearchHit>((l) => ({
     id: `l-${l.id}`,

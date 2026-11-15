@@ -24,6 +24,8 @@ interface Step {
 }
 
 const PILLARS = [
+  { glyph: '⬡', title: 'Kamitron · Living Technology', to: '/kamitron', text: 'Seven living labs, 35 collectible concept specimens, conscious AI, heritage engineering, services, community and Inner Kingdom.', tone: 'myco' as const },
+  { glyph: '⬡', title: 'Specimen Vault', to: '/vault', text: 'Explore 35 nature-inspired builds in 3D, take models apart, save your next build and carry it into the Manufacturing Forge.', tone: 'gold' as const },
   { glyph: '⌘', title: '16 lessons · 8 weeks', to: '/course', text: 'Each lesson is a complete engineering text: plain-English summary, formulas, real data tables, code and interactive labs.', tone: 'gold' as const },
   { glyph: '⚙', title: '10 interactive labs', to: '/labs', text: 'Real solvers, not animations — inverse kinematics, a Kalman filter, a PID flight controller, a growing mycelial network, a qubit.', tone: 'sirius' as const },
   { glyph: '🍄', title: 'Mycelium Tech hub', to: '/mycelium', text: 'Living materials as engineering: grow protocol, substrate data, biosafety, and 24 blueprints from a chassis to myco-computing.', tone: 'myco' as const },
