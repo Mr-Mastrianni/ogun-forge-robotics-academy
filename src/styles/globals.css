@@ -492,3 +492,19 @@ input[type='range']::-moz-range-thumb {
   backdrop-filter: blur(14px) saturate(1.15);
   border-radius: 18px;
 }
+
+/* Manufacturing workbench: keep editable records legible across field modes. */
+.forge-input {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid rgba(201, 189, 230, .3);
+  border-radius: .65rem;
+  padding: .65rem .75rem;
+  color: #f3e9ff;
+  background: #130d24;
+  user-select: text;
+}
+.forge-input:focus-visible { outline: 2px solid #67e8f9; outline-offset: 2px; }
+textarea.forge-input { resize: vertical; }
+button:disabled { opacity: .5; cursor: not-allowed; }

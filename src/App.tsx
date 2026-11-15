@@ -2,6 +2,9 @@ import { Suspense, lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 
+const Manufacturing = lazy(() => import('@/pages/Manufacturing'));
+const ManufacturingLearn = lazy(() => import('@/pages/ManufacturingLearn'));
+
 const Home = lazy(() => import('@/pages/Home'));
 const Course = lazy(() => import('@/pages/Course'));
 const MyceliumHub = lazy(() => import('@/pages/MyceliumHub'));
@@ -40,6 +43,10 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/manufacturing" element={<Manufacturing />} />
+          <Route path="/manufacturing/project/:productionId" element={<Manufacturing />} />
+          <Route path="/manufacturing/learn" element={<ManufacturingLearn />} />
+          <Route path="/manufacturing/learn/:moduleId" element={<ManufacturingLearn />} />
           <Route path="/course" element={<Course />} />
           <Route path="/mycelium" element={<MyceliumHub />} />
           <Route path="/lesson/:lessonId" element={<LessonPage />} />
