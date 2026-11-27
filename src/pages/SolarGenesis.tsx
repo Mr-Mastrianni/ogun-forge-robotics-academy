@@ -1,28 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUi } from '@/lib/uiStore';
+import SolarCore from '@/components/kamitron/SolarCore';
+import LiquidWordmark from '@/components/kamitron/LiquidWordmark';
+import { Glyph, GlyphFrieze, type GlyphKind } from '@/components/kamitron/Glyphs';
+import '@fontsource/unbounded/latin-800.css';
 import '@/styles/solar-genesis.css';
+import '@/styles/solar-genesis-living.css';
 
 const divisions = [
   { n:'01', name:'The Forge of Ogun', type:'Robotics & physical engineering', text:'Study motion, control, sensors and fabrication. Take an idea from the engineering bench to the manufacturing workspace.', path:'/academy', glyph:'forge', action:'Enter the academy', color:'#ffc36e' },
-  { n:'02', name:'Mycelial Intelligence', type:'Living materials & mycotechnology', text:'Explore fungal networks, substrate science, living materials and simulated biological circuits.', path:'/mycelium', glyph:'myco', action:'Explore living systems', color:'#a6eb9b' },
-  { n:'03', name:'Ancestral Intelligence', type:'Knowledge systems & cultural computing', text:'Trace engineering heritage, African knowledge systems and traditional cosmologies. Distinguish historical evidence, tradition and speculation.', path:'/atlas', glyph:'atlas', action:'Open the heritage atlas', color:'#f4c983' },
-  { n:'04', name:'Spatial Laboratory', type:'Simulation & immersive technology', text:'Experiment with interactive models of kinematics, perception, locomotion and other engineering principles.', path:'/labs', glyph:'spatial', action:'Enter the simulations', color:'#81dcd4' },
-  { n:'05', name:'Biosystems', type:'Biomimicry & experimental science', text:'Investigate nature-inspired design, ecological materials and energy systems through a library of clearly labeled concepts.', path:'/vault', glyph:'bio', action:'Explore the specimen vault', color:'#b8da8a' },
-  { n:'06', name:'Kamitron Studios', type:'Creative technology & storytelling', text:'Enter Inner Kingdom, a speculative story-world where the human body and the living Earth become mirrored cities.', path:'/kamitron#series', glyph:'studio', action:'Discover Inner Kingdom', color:'#e4a9ea' },
-] as const;
-
-function Glyph({kind}: {kind:string}) {
-  return <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
-    <circle cx="50" cy="50" r="43" strokeDasharray="2 5" opacity=".45"/><circle cx="50" cy="50" r="35" opacity=".3"/>
-    {kind==='forge' ? <><path d="M20 40H80L64 54H57V73H70V78H30V73H43V54H36Z"/><path d="M37 29L50 14L63 29L50 35Z"/><path d="M50 36V45"/></> :
-     kind==='myco' ? <><path d="M50 79V45M50 62L30 48 18 51M50 55L73 42 85 46M50 45L38 31 27 32M50 45L60 26 74 22M50 73L29 70 18 79M50 70L71 68 84 77"/>{[[18,51],[85,46],[27,32],[74,22],[18,79],[84,77],[50,45]].map(([x,y])=><circle key={x+','+y} cx={x} cy={y} r="3"/>)}</> :
-     kind==='atlas' ? <><path d="M20 50Q50 18 80 50Q50 82 20 50Z"/><circle cx="50" cy="50" r="11"/><path d="M50 13V26M50 74V87M16 50H7M84 50H93M35 78L50 88 65 78"/></> :
-     kind==='spatial' ? <><path d="M50 18L78 34V66L50 82 22 66V34Z M22 34L50 50 78 34M50 50V82M50 18V50M22 66L50 50 78 66"/><circle cx="50" cy="50" r="5"/></> :
-     kind==='bio' ? <><path d="M36 18C80 40 20 60 64 82M64 18C20 40 80 60 36 82M39 30H61M36 42H64M36 58H64M39 70H61"/><circle cx="50" cy="50" r="4"/></> :
-     <><path d="M20 70L50 18 80 70Z M35 62L50 36 65 62Z"/><circle cx="50" cy="55" r="17"/><path d="M50 7V15M50 81V91M8 50H17M83 50H92"/></>}
-  </svg>;
-}
+  { n:'02', name:'Mycelial Intelligence', type:'Living materials & mycotechnology', text:'Explore fungal networks, substrate science, living materials and simulated biological circuits.', path:'/mycelium', glyph:'mycelium', action:'Explore living systems', color:'#a6eb9b' },
+  { n:'03', name:'Ancestral Intelligence', type:'Knowledge systems & cultural computing', text:'Trace engineering heritage, African knowledge systems and traditional cosmologies. Distinguish historical evidence, tradition and speculation.', path:'/atlas', glyph:'memory', action:'Open the heritage atlas', color:'#f4c983' },
+  { n:'04', name:'Spatial Laboratory', type:'Simulation & immersive technology', text:'Experiment with interactive models of kinematics, perception, locomotion and other engineering principles.', path:'/labs', glyph:'orbit', action:'Enter the simulations', color:'#81dcd4' },
+  { n:'05', name:'Biosystems', type:'Biomimicry & experimental science', text:'Investigate nature-inspired design, ecological materials and energy systems through a library of clearly labeled concepts.', path:'/vault', glyph:'life', action:'Explore the specimen vault', color:'#b8da8a' },
+  { n:'06', name:'Kamitron Studios', type:'Creative technology & storytelling', text:'Enter Inner Kingdom, a speculative story-world where the human body and the living Earth become mirrored cities.', path:'/kamitron#series', glyph:'eye', action:'Discover Inner Kingdom', color:'#e4a9ea' },
+] as const satisfies readonly { glyph: GlyphKind; [key: string]: unknown }[];
 
 function SolarIllustration() {
   const rings=Array.from({length:36},(_,i)=>i);
@@ -85,7 +78,7 @@ export default function SolarGenesis() {
   return <div className="sg" data-sg-motion={motion?'on':'off'}>
     <a className="sg-skip" href="#sg-main">Skip to content</a>
     <header className="sg-header">
-      <Link to="/" className="sg-brand" aria-label="Kamitron home"><span className="sg-brand-mark"><Glyph kind="atlas"/></span>KAMITRON</Link>
+      <Link to="/" className="sg-brand" aria-label="Kamitron home"><span className="sg-brand-mark"><Glyph kind="sun" lit/></span>KAMITRON</Link>
       <button className="sg-menu" type="button" aria-expanded={menu} aria-controls="sg-nav" onClick={()=>setMenu(!menu)}>{menu?'Close':'Menu'}</button>
       <nav id="sg-nav" className={menu?'sg-nav sg-nav-open':'sg-nav'} aria-label="Primary">
         <a href="#divisions" onClick={()=>setMenu(false)}>Research</a><Link to="/academy">Academy</Link><Link to="/vault">Vault</Link><Link to="/about">About</Link><Link to="/contact">Collaborate</Link>
@@ -95,17 +88,20 @@ export default function SolarGenesis() {
     <main id="sg-main">
       <section className="sg-hero" aria-labelledby="sg-title">
         <div className="sg-grid" aria-hidden="true"/>
-        <div className="sg-hero-art"><SolarIllustration/></div>
+        <SolarCore className="sg-solar" animate={motion} fallback={<div className="sg-hero-art"><SolarIllustration/></div>}/>
         <div className="sg-hero-copy">
           <p className="sg-kicker"><span/> Independent research & engineering studio</p>
-          <h1 id="sg-title" className="sg-wordmark"><span className="sg-word-outline" aria-hidden="true">KAMITRON</span><span className="sg-word-fluid">KAMITRON</span></h1>
+          <LiquidWordmark animate={motion}/>
           <p className="sg-manifesto">Ancient roots.<br/>Living intelligence.<br/><em>Future technology.</em></p>
           <p className="sg-description">We explore the meeting point of robotics, biological systems, ancestral knowledge and digital worlds. From the forge to the forest, from the circuit to the cosmos.</p>
           <div className="sg-actions"><a href="#divisions" className="sg-cta">Explore the laboratory <span aria-hidden="true">↘</span></a><Link to="/academy" className="sg-secondary">Enter Ogun Forge <span aria-hidden="true">↗</span></Link></div>
         </div>
         <div className="sg-coordinate" aria-hidden="true"><span>FIG. 01 / SOLAR GENESIS</span><span>IRON · MYCELIUM · LIGHT</span></div>
       </section>
-      <section className="sg-band" aria-label="Research principles"><span>01 / Learn from nature</span><span>02 / Build with evidence</span><span>03 / Imagine responsibly</span></section>
+      <section className="sg-codex" aria-labelledby="sg-codex-title">
+        <div className="sg-codex-head"><h2 id="sg-codex-title">A written language for the lab</h2><p>Each Kamitron glyph pairs an ancient form with a modern circuit, and marks one field of research.</p></div>
+        <GlyphFrieze/>
+      </section>
       <section id="divisions" className="sg-section">
         <div className="sg-section-intro"><p className="sg-kicker">The research constellation</p><h2>Six paths.<br/><em>One living intelligence.</em></h2><p>Explore the working educational tools and creative experiments already inside the platform. Our wider research directions are invitations to investigate, not claims of completed scientific breakthroughs.</p></div>
         <div className="sg-divisions">{divisions.map(d=><Link to={d.path} className="sg-division" key={d.n}>
@@ -113,10 +109,10 @@ export default function SolarGenesis() {
         </Link>)}</div>
       </section>
       <section className="sg-feature">
-        <div className="sg-feature-visual"><Glyph kind="forge"/><span>THE FORGE / 01</span></div>
+        <div className="sg-feature-visual"><Glyph kind="forge"/><span>The forge</span></div>
         <div><p className="sg-kicker">Flagship learning platform</p><h2>Iron remembers.<br/><em>Engineering evolves.</em></h2><p>Ogun Forge Robotics Academy brings theory to life through lessons, quizzes, mathematical simulations and a hands-on blueprint library. Learn, experiment, and carry your designs into the manufacturing workspace.</p><div className="sg-actions"><Link className="sg-cta" to="/course">Explore the curriculum ↗</Link><Link className="sg-secondary" to="/manufacturing">Manufacturing Forge</Link></div></div>
       </section>
-      <section className="sg-section sg-method"><p className="sg-kicker">Our research standard</p><h2>Wonder without confusion.</h2><p>Established science, engineering simulations, experimental concepts, traditional knowledge and speculative storytelling belong in conversation. They do not belong under the same evidence label.</p><Link className="sg-secondary" to="/atlas">Explore the knowledge atlas ↗</Link></section>
+      <section className="sg-section sg-method"><p className="sg-kicker">Our research standard</p><h2>Wonder without confusion.</h2><ul className="sg-principles"><li>Learn from nature</li><li>Build with evidence</li><li>Imagine responsibly</li></ul><p>Established science, engineering simulations, experimental concepts, traditional knowledge and speculative storytelling belong in conversation. They do not belong under the same evidence label.</p><Link className="sg-secondary" to="/atlas">Explore the knowledge atlas ↗</Link></section>
       <section className="sg-section sg-invite"><p className="sg-kicker">Build with us</p><h2>The next horizon<br/><em>is a collective work.</em></h2><div className="sg-actions"><Link className="sg-cta" to="/contact">Start a collaboration ↗</Link><Link className="sg-secondary" to="/community">Join the Hive</Link></div></section>
     </main>
     <footer className="sg-footer"><Link to="/" className="sg-brand">KAMITRON</Link><span>Nature · intelligence · technology</span><Link to="/services">Services</Link><Link to="/contact">Contact</Link><Link to="/kamitron">Original factory</Link></footer>
