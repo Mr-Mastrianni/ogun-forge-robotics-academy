@@ -60,17 +60,17 @@ export default function LessonPage() {
   return (
     <div className="space-y-6">
       <div className="fixed left-0 top-[57px] z-40 h-[3px] w-full bg-transparent">
-        <div className="h-full bg-gradient-to-r from-[#6ee7a8] via-[#f5b301] to-[#c026d3] transition-all" style={{ width: `${scrolled * 100}%` }} />
+        <div className="h-full bg-gradient-to-r from-k-moss via-k-gold to-k-ember transition-all" style={{ width: `${scrolled * 100}%` }} />
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#c9bde6]">
-        <Link to="/course" className="hover:text-[#f5b301]">
+      <div className="flex flex-wrap items-center gap-2 text-[12px] text-k-muted">
+        <Link to="/course" className="hover:text-k-gold">
           ← roadmap
         </Link>
         <span>/</span>
         <span>Week {lesson.week}</span>
         <span>/</span>
-        <span className="text-[#f5b301]">Lesson {lesson.number}</span>
+        <span className="text-k-gold">Lesson {lesson.number}</span>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
@@ -84,26 +84,26 @@ export default function LessonPage() {
               {completed && <Chip tone="myco">✓ completed</Chip>}
             </div>
             <h1 className="font-heading text-3xl font-bold leading-tight text-white md:text-4xl">{lesson.title}</h1>
-            <p className="mt-2 text-[15px] text-[#c9bde6]">{lesson.subtitle}</p>
-            <div className="mt-3 flex items-center gap-2 text-[12px] text-[#c9bde6]">
+            <p className="mt-2 text-[15px] text-k-muted">{lesson.subtitle}</p>
+            <div className="mt-3 flex items-center gap-2 text-[12px] text-k-muted">
               <DifficultyPips level={lesson.difficulty} />
               <span className="capitalize">{lesson.difficulty}</span>
             </div>
           </header>
 
           <Panel tone="psy" className="mb-6 p-4">
-            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5c8ff]">
+            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-sand">
               why this lesson exists
             </div>
-            <p className="mt-1.5 font-heading text-[15px] italic leading-relaxed text-[#ffe9a8]">{lesson.hook}</p>
+            <p className="mt-1.5 font-heading text-[15px] italic leading-relaxed text-k-glint">{lesson.hook}</p>
             <div className="mt-3 border-t border-white/10 pt-3">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">
                 learning objectives
               </div>
               <ul className="space-y-1.5">
                 {lesson.objectives.map((o, i) => (
-                  <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-[#ded4f2]">
-                    <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-[#f5b301] to-[#c026d3]" />
+                  <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-k-text">
+                    <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-k-gold to-k-ember" />
                     {o}
                   </li>
                 ))}
@@ -117,59 +117,59 @@ export default function LessonPage() {
                 <span className="holo-kicker">Plain English</span>
                 <Chip tone="dim">no jargon</Chip>
               </div>
-              <p className="text-[15.5px] leading-relaxed text-[#e8e0ff]">{guide.plain}</p>
+              <p className="text-[15.5px] leading-relaxed text-[#f0e8d4]">{guide.plain}</p>
 
               <div className="mt-4 grid gap-3 md:grid-cols-2">
                 <div className="holo-well p-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#67e8f9]">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-k-light">
                     Think of it like…
                   </div>
-                  <p className="mt-1 text-[14px] leading-relaxed text-[#ded4f2]">{guide.analogy}</p>
+                  <p className="mt-1 text-[14px] leading-relaxed text-k-text">{guide.analogy}</p>
                 </div>
                 <div className="holo-well p-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#f5b301]">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-k-gold">
                     If you remember one thing
                   </div>
-                  <p className="mt-1 font-heading text-[14.5px] leading-relaxed text-[#ffe9a8]">{guide.remember}</p>
+                  <p className="mt-1 font-heading text-[14.5px] leading-relaxed text-k-glint">{guide.remember}</p>
                 </div>
               </div>
 
               <div className="mt-3 grid gap-3 md:grid-cols-2">
                 <div className="holo-well p-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#6ee7a8]">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-k-moss">
                     By the end you can
                   </div>
                   <ul className="mt-1.5 space-y-1">
                     {guide.canDo.map((c, i) => (
-                      <li key={i} className="flex gap-2 text-[13.5px] leading-relaxed text-[#cfe9dc]">
-                        <span className="text-[#6ee7a8]">✓</span>
+                      <li key={i} className="flex gap-2 text-[13.5px] leading-relaxed text-k-mint">
+                        <span className="text-k-moss">✓</span>
                         {c}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="holo-well p-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#ff8fd6]">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#ffb27a]">
                     Common mix-up
                   </div>
-                  <p className="mt-1 text-[13.5px] leading-relaxed text-[#f3e9ff]">{guide.misconception}</p>
+                  <p className="mt-1 text-[13.5px] leading-relaxed text-k-paper">{guide.misconception}</p>
                   <div className="mt-2 border-t border-white/10 pt-2">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8c82a8]">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-k-dim">
                       Where you meet this
                     </div>
-                    <p className="mt-1 text-[13px] leading-relaxed text-[#ded4f2]">{guide.realWorld}</p>
+                    <p className="mt-1 text-[13px] leading-relaxed text-k-text">{guide.realWorld}</p>
                   </div>
                 </div>
               </div>
 
               {guide.prereqs.length > 0 && (
-                <div className="mt-3 flex flex-wrap items-center gap-2 text-[12px] text-[#c9bde6]">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#8c82a8]">Read first:</span>
+                <div className="mt-3 flex flex-wrap items-center gap-2 text-[12px] text-k-muted">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-k-dim">Read first:</span>
                   {guide.prereqs.map((pid) => (
                     <Link
                       key={pid}
                       to={`/lesson/${pid}`}
-                      className="rounded-full border border-white/15 px-2.5 py-0.5 hover:border-[#67e8f9]/60 hover:text-white"
+                      className="rounded-full border border-white/15 px-2.5 py-0.5 hover:border-k-light/60 hover:text-white"
                     >
                       {lessonById[pid] ? `L${lessonById[pid].number} · ${lessonById[pid].title}` : pid}
                     </Link>
@@ -189,16 +189,16 @@ export default function LessonPage() {
 
           {/* key terms */}
           <Panel className="mt-8 p-5">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">key terms</div>
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">key terms</div>
             <dl className="grid gap-3 sm:grid-cols-2">
               {lesson.keyTerms.map((t) => (
                 <div key={t.term} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                  <dt className="font-heading text-[13px] text-[#ffe9a8]">
+                  <dt className="font-heading text-[13px] text-k-glint">
                     <Term term={t.term}>
                       <MathTex tex={t.term} />
                     </Term>
                   </dt>
-                  <dd className="mt-1 text-[12.5px] leading-relaxed text-[#ded4f2]">{t.definition}</dd>
+                  <dd className="mt-1 text-[12.5px] leading-relaxed text-k-text">{t.definition}</dd>
                 </div>
               ))}
             </dl>
@@ -206,18 +206,18 @@ export default function LessonPage() {
 
           {/* forge prompts */}
           <Panel tone="myco" className="mt-5 p-5">
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#6ee7a8]">
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-moss">
               forge prompts → idea lab
             </div>
             <ul className="space-y-2">
               {lesson.forgePrompts.map((f, i) => (
-                <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-[#cfe9dc]">
-                  <span className="text-[#6ee7a8]">🔥</span>
+                <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-k-mint">
+                  <span className="text-k-moss">🔥</span>
                   {f}
                 </li>
               ))}
             </ul>
-            <Link to="/ideas" className="mt-4 inline-flex text-[12.5px] text-[#6ee7a8] underline">
+            <Link to="/ideas" className="mt-4 inline-flex text-[12.5px] text-k-moss underline">
               open the Idea Lab →
             </Link>
           </Panel>
@@ -226,21 +226,21 @@ export default function LessonPage() {
           <div className="mt-8 grid gap-3 md:grid-cols-3">
             <Panel hover className="p-4">
               <div className="font-heading text-sm text-white">⚔ Test yourself</div>
-              <p className="mt-1 text-[12.5px] text-[#c9bde6]">{lesson.quiz.length} questions with explanations.</p>
+              <p className="mt-1 text-[12.5px] text-k-muted">{lesson.quiz.length} questions with explanations.</p>
               <Link to={`/quiz/${lesson.id}`} className="btn btn-primary mt-3 w-full !py-1.5 text-[12px]">
                 take the quiz
               </Link>
             </Panel>
             <Panel hover tone="psy" className="p-4">
               <div className="font-heading text-sm text-white">✦ Drill the cards</div>
-              <p className="mt-1 text-[12.5px] text-[#c9bde6]">{cards.length} flashcards from this lesson.</p>
+              <p className="mt-1 text-[12.5px] text-k-muted">{cards.length} flashcards from this lesson.</p>
               <Link to="/flashcards" className="btn btn-ghost mt-3 w-full !py-1.5 text-[12px]">
                 open flashcards
               </Link>
             </Panel>
             <Panel hover tone="myco" className="p-4">
               <div className="font-heading text-sm text-white">{completed ? '✓ Marked complete' : '⚒ Mark complete'}</div>
-              <p className="mt-1 text-[12.5px] text-[#c9bde6]">
+              <p className="mt-1 text-[12.5px] text-k-muted">
                 {completed ? 'Progress saved. Revisit anytime.' : 'Adds +40 XP and unlocks the next rank step.'}
               </p>
               <button
@@ -272,14 +272,14 @@ export default function LessonPage() {
             )}
           </div>
           {/* sticky next-step bar: keeps the path obvious while reading on a phone */}
-          <div className="fixed bottom-[58px] left-0 right-0 z-40 flex items-center gap-2 border-t border-[#8b5cf6]/30 bg-[#06031a]/92 px-3 py-2 backdrop-blur-xl lg:hidden">
+          <div className="fixed bottom-[58px] left-0 right-0 z-40 flex items-center gap-2 border-t border-k-bronze/30 bg-[#0a1611]/92 px-3 py-2 backdrop-blur-xl lg:hidden">
             <button
               onClick={() => markLessonRead(lesson.id)}
               disabled={completed}
               className={`flex-none rounded-lg border px-2.5 py-1.5 font-mono text-[11px] ${
                 completed
-                  ? 'border-[#6ee7a8]/40 bg-[#6ee7a8]/10 text-[#6ee7a8]'
-                  : 'border-white/15 bg-white/[0.04] text-[#ded4f2]'
+                  ? 'border-k-moss/40 bg-k-moss/10 text-k-moss'
+                  : 'border-white/15 bg-white/[0.04] text-k-text'
               }`}
             >
               {completed ? '✓ done' : 'mark done'}
@@ -301,7 +301,7 @@ export default function LessonPage() {
         <aside className="hidden lg:block">
           <div className="sticky top-24 space-y-4">
             <Panel className="p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">
                 on this page
               </div>
               <nav className="max-h-[280px] space-y-1 overflow-auto pr-1">
@@ -309,9 +309,9 @@ export default function LessonPage() {
                   <a
                     key={t.id}
                     href={`#${t.id}`}
-                    className="block truncate border-l-2 border-white/10 pl-2.5 text-[12px] leading-snug text-[#c9bde6] transition-colors hover:border-[#f5b301] hover:text-[#f5b301]"
+                    className="block truncate border-l-2 border-white/10 pl-2.5 text-[12px] leading-snug text-k-muted transition-colors hover:border-k-gold hover:text-k-gold"
                   >
-                    <span className="mr-1.5 font-mono text-[10px] text-[#67e8f9]">
+                    <span className="mr-1.5 font-mono text-[10px] text-k-light">
                       {String(ti + 1).padStart(2, '0')}
                     </span>
                     {t.label}
@@ -321,9 +321,9 @@ export default function LessonPage() {
             </Panel>
 
             <Panel className="p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">progress</div>
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">progress</div>
               <Progress value={scrolled} label="read" />
-              <div className="mt-3 space-y-1.5 font-mono text-[11px] text-[#c9bde6]">
+              <div className="mt-3 space-y-1.5 font-mono text-[11px] text-k-muted">
                 <div className="flex justify-between">
                   <span>blocks</span>
                   <span>{lesson.blocks.length}</span>
@@ -343,7 +343,7 @@ export default function LessonPage() {
               <Panel tone="hot" className="p-4">
                 <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#ffd0b0]">week boss</div>
                 <div className="mt-1 font-heading text-sm text-white">{boss.title}</div>
-                <p className="mt-1 text-[12px] text-[#e8d8ff]">{boss.subtitle}</p>
+                <p className="mt-1 text-[12px] text-[#efe3c8]">{boss.subtitle}</p>
                 <Link to={`/boss/${boss.week}`} className="btn btn-ghost mt-3 w-full !py-1.5 text-[12px]">
                   enter trial
                 </Link>
@@ -351,7 +351,7 @@ export default function LessonPage() {
             )}
 
             <Panel tone="myco" className="p-4">
-              <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#6ee7a8]">week {lesson.week}</div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-moss">week {lesson.week}</div>
               <ul className="mt-2 space-y-1.5">
                 {lessons
                   .filter((l) => l.week === lesson.week)
@@ -359,7 +359,7 @@ export default function LessonPage() {
                     <li key={l.id}>
                       <Link
                         to={`/lesson/${l.id}`}
-                        className={`block text-[12px] leading-snug ${l.id === lesson.id ? 'text-[#f5b301]' : 'text-[#cfe9dc] hover:text-[#6ee7a8]'}`}
+                        className={`block text-[12px] leading-snug ${l.id === lesson.id ? 'text-k-gold' : 'text-k-mint hover:text-k-moss'}`}
                       >
                         {l.number}. {l.title}
                       </Link>

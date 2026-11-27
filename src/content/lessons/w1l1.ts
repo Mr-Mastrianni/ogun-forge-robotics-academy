@@ -54,7 +54,7 @@ export const lesson: Lesson = {
       caption: 'ISO 9283 pose repeatability, datasheet values. Precision falls as the payload class grows.',
       chartType: 'bar', xLabel: 'Industrial arm (rated payload)', yLabel: 'Pose repeatability (± mm)',
       x: ['UR5e (5 kg)', 'KR 6 R900 (6 kg)', 'M-10iD/12 (12 kg)', 'UR10e (12.5 kg)', 'IRB 6700-235 (235 kg)'],
-      series: [{ key: 'rep', label: 'Pose repeatability', color: '#f59e0b', data: [0.03, 0.03, 0.02, 0.05, 0.05] }] },
+      series: [{ key: 'rep', label: 'Pose repeatability', color: '#e9a64e', data: [0.03, 0.03, 0.02, 0.05, 0.05] }] },
     { kind: 'prose', heading: 'The specifications that decide the job',
       body: 'Six numbers pick the machine. **Payload**: mass carried at full speed (UR5e, 5 kg). **Reach**: base to wrist centre (UR5e, 850 mm). **Repeatability**: ISO 9283 spread when returning to one taught point (UR5e ±0.03 mm; ABB IRB 6700-235/2.65 stays within ±0.05 mm while carrying 235 kg). **Cycle time**: seconds per pick-and-place (SCARA class, 0.3-0.5 s for a 300 mm move). **Duty cycle**: on-time fraction a motor holds thermally (25% at 2 A for a cheap gearmotor, 100% for a continuous-rated servo). **MTBF**: mean hours between failures, commonly quoted at 50,000-100,000 h for industrial arms — and the reducer usually fails before the motor.\n\n' +
         'Families matter because these numbers move together: a manipulator trades reach for repeatability, a legged platform trades payload for terrain, a swarm trades per-unit precision for coverage.' },

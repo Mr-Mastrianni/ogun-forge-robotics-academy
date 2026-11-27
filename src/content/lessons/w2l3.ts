@@ -41,8 +41,8 @@ export const lesson: Lesson = {
       chartType: 'line', xLabel: 'Averaging time τ (s)', yLabel: 'Allan deviation σ(τ) (°/h)',
       x: [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30, 100, 300, 1000],
       series: [
-        { key: 'consumer', label: 'Consumer MEMS gyro (0.2 °/√h ARW)', color: '#f59e0b', data: [120, 69.3, 37.9, 21.9, 12.0, 6.9, 4.0, 10.0, 10.1, 10.0, 31.6] },
-        { key: 'tactical', label: 'Tactical MEMS gyro (0.09 °/√h ARW)', color: '#38bdf8', data: [54.0, 31.2, 17.1, 9.86, 5.40, 3.12, 1.71, 0.99, 0.80, 0.82, 2.53] },
+        { key: 'consumer', label: 'Consumer MEMS gyro (0.2 °/√h ARW)', color: '#e9a64e', data: [120, 69.3, 37.9, 21.9, 12.0, 6.9, 4.0, 10.0, 10.1, 10.0, 31.6] },
+        { key: 'tactical', label: 'Tactical MEMS gyro (0.09 °/√h ARW)', color: '#5cc8c0', data: [54.0, 31.2, 17.1, 9.86, 5.40, 3.12, 1.71, 0.99, 0.80, 0.82, 2.53] },
       ] },
     { kind: 'formula', title: 'Allan variance and what each slope means',
       tex: '\\sigma_y^2(\\tau) = \\frac{1}{2(N-1)}\\sum_{k=1}^{N-1}\\left(\\bar{y}_{k+1}(\\tau) - \\bar{y}_k(\\tau)\\right)^2',

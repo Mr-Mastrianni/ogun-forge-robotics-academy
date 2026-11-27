@@ -12,11 +12,11 @@ export interface QuizResult {
 }
 
 const LEVEL_COLORS: Record<string, string> = {
-  recall: '#67e8f9',
-  understand: '#6ee7a8',
-  apply: '#f5b301',
-  analyze: '#ff6b1a',
-  design: '#c026d3',
+  recall: '#81dcd4',
+  understand: '#a6eb9b',
+  apply: '#f7c77c',
+  analyze: '#f2853a',
+  design: '#e0782f',
 };
 
 export function QuizRunner({
@@ -129,11 +129,11 @@ export function QuizRunner({
 
   const grade = useMemo(() => {
     const pct = total ? correct / total : 0;
-    if (pct === 1) return { label: 'Flawless — Dwennimmen', color: '#6ee7a8', note: 'Humility with strength. No corrections needed.' };
+    if (pct === 1) return { label: 'Flawless — Dwennimmen', color: '#a6eb9b', note: 'Humility with strength. No corrections needed.' };
     if (pct >= 0.8) return { label: 'Forged well', color: '#a3e635', note: 'Strong command. Review the misses and move on.' };
-    if (pct >= 0.6) return { label: 'Heated but not hardened', color: '#f5b301', note: 'Re-read the lesson sections behind your misses.' };
-    if (pct >= 0.4) return { label: 'Back to the anvil', color: '#ff6b1a', note: 'Revisit the lesson and re-run the lab before retrying.' };
-    return { label: 'Cold iron', color: '#ff2fb9', note: 'Start the lesson again from the objectives — the loop has not closed yet.' };
+    if (pct >= 0.6) return { label: 'Heated but not hardened', color: '#f7c77c', note: 'Re-read the lesson sections behind your misses.' };
+    if (pct >= 0.4) return { label: 'Back to the anvil', color: '#f2853a', note: 'Revisit the lesson and re-run the lab before retrying.' };
+    return { label: 'Cold iron', color: '#ff8a4c', note: 'Start the lesson again from the objectives — the loop has not closed yet.' };
   }, [correct, total]);
 
   if (!q) return null;
@@ -142,35 +142,35 @@ export function QuizRunner({
     return (
       <Panel className="p-6 md:p-8" tone={bossMode ? 'hot' : 'gold'}>
         <div className="mx-auto max-w-2xl text-center">
-          <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#f5b301]">result</div>
+          <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-k-gold">result</div>
           <h2 className="mt-2 font-display text-3xl text-white md:text-4xl" style={{ color: grade.color }}>
             {grade.label}
           </h2>
-          <p className="mt-2 text-sm text-[#c9bde6]">{grade.note}</p>
+          <p className="mt-2 text-sm text-k-muted">{grade.note}</p>
 
           <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
             <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
               <div className="font-heading text-2xl text-white">
                 {correct}/{total}
               </div>
-              <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">score</div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">score</div>
             </div>
             <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
               <div className="font-heading text-2xl text-white">{Math.round((correct / total) * 100)}%</div>
-              <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">accuracy</div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">accuracy</div>
             </div>
-            <div className="rounded-xl border border-[#f5b301]/30 bg-[#f5b301]/10 p-3">
-              <div className="font-heading text-2xl text-[#ffe9a8]">+{gained}</div>
-              <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">XP earned</div>
+            <div className="rounded-xl border border-k-gold/30 bg-k-gold/10 p-3">
+              <div className="font-heading text-2xl text-k-glint">+{gained}</div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">XP earned</div>
             </div>
             <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
               <div className="font-heading text-2xl text-white">×{bestCombo}</div>
-              <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">best combo</div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">best combo</div>
             </div>
           </div>
 
           <div className="mt-6 text-left">
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">
               performance by cognitive level
             </div>
             <div className="space-y-2">
@@ -185,7 +185,7 @@ export function QuizRunner({
                       style={{ width: `${(v.correct / v.total) * 100}%`, background: LEVEL_COLORS[lvl] }}
                     />
                   </div>
-                  <span className="w-12 text-right font-mono text-[11px] text-[#c9bde6]">
+                  <span className="w-12 text-right font-mono text-[11px] text-k-muted">
                     {v.correct}/{v.total}
                   </span>
                 </div>
@@ -207,11 +207,11 @@ export function QuizRunner({
     <Panel className={`overflow-hidden ${shake ? 'animate-[pulseGlow_0.4s_ease-in-out]' : ''}`} tone={bossMode ? 'hot' : 'gold'}>
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 px-4 py-3">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">
+          <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">
             {bossMode ? 'boss trial' : 'lesson quiz'}
           </div>
           <div className="font-heading text-base text-white">{title}</div>
-          {subtitle && <div className="text-[12px] text-[#c9bde6]">{subtitle}</div>}
+          {subtitle && <div className="text-[12px] text-k-muted">{subtitle}</div>}
         </div>
         <div className="flex items-center gap-2">
           {combo > 1 && <Chip tone="psy">🔥 combo ×{combo}</Chip>}
@@ -223,7 +223,7 @@ export function QuizRunner({
 
       <div className="h-1 w-full bg-white/10">
         <div
-          className="h-full bg-gradient-to-r from-[#f5b301] to-[#c026d3] transition-all"
+          className="h-full bg-gradient-to-r from-k-gold to-k-ember transition-all"
           style={{ width: `${((idx + (locked ? 1 : 0)) / total) * 100}%` }}
         />
       </div>
@@ -237,13 +237,13 @@ export function QuizRunner({
             {q.level}
           </span>
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[11px] text-[#c9bde6]">⏱ {timeLeft}s</span>
+            <span className="font-mono text-[11px] text-k-muted">⏱ {timeLeft}s</span>
             <div className="h-1.5 w-24 overflow-hidden rounded-full bg-white/10">
               <div
                 className="h-full rounded-full transition-all duration-1000"
                 style={{
                   width: `${(timeLeft / secondsPerQuestion) * 100}%`,
-                  background: timeLeft < 8 ? '#ff2fb9' : '#6ee7a8',
+                  background: timeLeft < 8 ? '#ff8a4c' : '#a6eb9b',
                 }}
               />
             </div>
@@ -258,9 +258,9 @@ export function QuizRunner({
             const isChosen = i === chosen;
             const state = !locked ? 'idle' : isAnswer ? 'right' : isChosen ? 'wrong' : 'dim';
             const styles: Record<string, string> = {
-              idle: 'border-white/12 bg-white/[0.03] hover:border-[#f5b301]/60 hover:bg-[#f5b301]/10',
-              right: 'border-[#6ee7a8] bg-[#6ee7a8]/15 text-white',
-              wrong: 'border-[#ff2fb9] bg-[#ff2fb9]/15 text-white',
+              idle: 'border-white/12 bg-white/[0.03] hover:border-k-gold/60 hover:bg-k-gold/10',
+              right: 'border-k-moss bg-k-moss/15 text-white',
+              wrong: 'border-[#ff8a4c] bg-[#ff8a4c]/15 text-white',
               dim: 'border-white/8 bg-white/[0.02] opacity-50',
             };
             return (
@@ -270,12 +270,12 @@ export function QuizRunner({
                 onClick={() => commit(i)}
                 className={`flex items-start gap-3 rounded-xl border px-4 py-3 text-left transition-all ${styles[state]}`}
               >
-                <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-lg border border-white/20 font-mono text-[11px] text-[#c9bde6]">
+                <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-lg border border-white/20 font-mono text-[11px] text-k-muted">
                   {String.fromCharCode(65 + i)}
                 </span>
-                <span className="text-[14px] leading-snug text-[#ded4f2]">{c}</span>
-                {locked && isAnswer && <span className="ml-auto text-[#6ee7a8]">✓</span>}
-                {locked && isChosen && !isAnswer && <span className="ml-auto text-[#ff2fb9]">✗</span>}
+                <span className="text-[14px] leading-snug text-k-text">{c}</span>
+                {locked && isAnswer && <span className="ml-auto text-k-moss">✓</span>}
+                {locked && isChosen && !isAnswer && <span className="ml-auto text-[#ff8a4c]">✗</span>}
               </button>
             );
           })}
@@ -291,14 +291,14 @@ export function QuizRunner({
               <div
                 className="mt-4 rounded-xl border p-4"
                 style={{
-                  borderColor: chosen === q.answer ? '#6ee7a866' : '#ff2fb966',
-                  background: chosen === q.answer ? 'rgba(110,231,168,0.08)' : 'rgba(255,47,185,0.07)',
+                  borderColor: chosen === q.answer ? '#a6eb9b66' : '#ff8a4c66',
+                  background: chosen === q.answer ? 'rgba(166,235,155,0.08)' : 'rgba(255,138,76,0.07)',
                 }}
               >
-                <div className="mb-1 font-heading text-[13px] font-semibold" style={{ color: chosen === q.answer ? '#6ee7a8' : '#ff8fd6' }}>
+                <div className="mb-1 font-heading text-[13px] font-semibold" style={{ color: chosen === q.answer ? '#a6eb9b' : '#ffb27a' }}>
                   {chosen === q.answer ? 'Correct' : chosen === null ? 'Time expired' : 'Not quite'}
                 </div>
-                <p className="text-[13.5px] leading-relaxed text-[#ded4f2]">{q.explanation}</p>
+                <p className="text-[13.5px] leading-relaxed text-k-text">{q.explanation}</p>
               </div>
               <div className="mt-4 flex justify-end">
                 <button onClick={next} className="btn btn-primary">

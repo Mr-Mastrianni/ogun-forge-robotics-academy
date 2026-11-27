@@ -54,10 +54,10 @@ export function SectionTitle({
     <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
       <div>
         {eyebrow && (
-          <div className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-[#f5b301]/80">{eyebrow}</div>
+          <div className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-k-gold/80">{eyebrow}</div>
         )}
         <h2 className="font-heading text-2xl font-bold text-white md:text-3xl">{title}</h2>
-        {sub && <p className="mt-1 max-w-2xl text-sm text-[#c9bde6]">{sub}</p>}
+        {sub && <p className="mt-1 max-w-2xl text-sm text-k-muted">{sub}</p>}
       </div>
       {right}
     </div>
@@ -86,7 +86,7 @@ export function Progress({ value, label }: { value: number; label?: string }) {
   return (
     <div>
       {label && (
-        <div className="mb-1.5 flex justify-between font-mono text-[11px] uppercase tracking-wider text-[#c9bde6]">
+        <div className="mb-1.5 flex justify-between font-mono text-[11px] uppercase tracking-wider text-k-muted">
           <span>{label}</span>
           <span>{Math.round(value * 100)}%</span>
         </div>
@@ -110,10 +110,10 @@ export function StatOrb({
   tone?: 'gold' | 'myco' | 'psy' | 'sirius';
 }) {
   const ring: Record<string, string> = {
-    gold: 'from-[#f5b301] to-[#ff6b1a]',
-    myco: 'from-[#6ee7a8] to-[#16a34a]',
-    psy: 'from-[#c026d3] to-[#7c3aed]',
-    sirius: 'from-[#67e8f9] to-[#4338ca]',
+    gold: 'from-k-gold to-k-forge',
+    myco: 'from-k-moss to-[#16a34a]',
+    psy: 'from-k-ember to-[#b8863f]',
+    sirius: 'from-k-light to-[#2f6b5f]',
   };
   return (
     <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
@@ -122,7 +122,7 @@ export function StatOrb({
         {glyph && <span className="text-lg">{glyph}</span>}
         <span className="font-heading text-2xl font-bold text-white">{value}</span>
       </div>
-      <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#c9bde6]">{label}</div>
+      <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-k-muted">{label}</div>
     </div>
   );
 }
@@ -130,9 +130,9 @@ export function StatOrb({
 export function GlyphDivider({ glyph = '◆' }: { glyph?: string }) {
   return (
     <div className="my-8 flex items-center gap-3 opacity-70">
-      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#f5b301]/50 to-transparent" />
-      <span className="text-[#f5b301]">{glyph}</span>
-      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#c026d3]/50 to-transparent" />
+      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-k-gold/50 to-transparent" />
+      <span className="text-k-gold">{glyph}</span>
+      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-k-ember/50 to-transparent" />
     </div>
   );
 }
@@ -161,15 +161,15 @@ export function FadeIn({
 
 export function Meter({ label, value, tone = 'gold' }: { label: string; value: number; tone?: string }) {
   const colors: Record<string, string> = {
-    gold: 'bg-gradient-to-r from-[#f5b301] to-[#ff6b1a]',
-    myco: 'bg-gradient-to-r from-[#6ee7a8] to-[#16a34a]',
-    psy: 'bg-gradient-to-r from-[#c026d3] to-[#7c3aed]',
-    sirius: 'bg-gradient-to-r from-[#67e8f9] to-[#4338ca]',
-    hot: 'bg-gradient-to-r from-[#ff2fb9] to-[#c1121f]',
+    gold: 'bg-gradient-to-r from-k-gold to-k-forge',
+    myco: 'bg-gradient-to-r from-k-moss to-[#16a34a]',
+    psy: 'bg-gradient-to-r from-k-ember to-[#b8863f]',
+    sirius: 'bg-gradient-to-r from-k-light to-[#2f6b5f]',
+    hot: 'bg-gradient-to-r from-[#ff8a4c] to-[#c7432a]',
   };
   return (
     <div>
-      <div className="mb-1 flex justify-between font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">
+      <div className="mb-1 flex justify-between font-mono text-[10px] uppercase tracking-widest text-k-muted">
         <span>{label}</span>
         <span>{value}</span>
       </div>
@@ -183,7 +183,7 @@ export function Meter({ label, value, tone = 'gold' }: { label: string; value: n
 export function DifficultyPips({ level }: { level: string }) {
   const order = ['seedling', 'apprentice', 'journeyman', 'master', 'orisha'];
   const idx = Math.max(0, order.indexOf(level));
-  const colors = ['#6ee7a8', '#a3e635', '#f5b301', '#ff6b1a', '#c026d3'];
+  const colors = ['#a6eb9b', '#a3e635', '#f7c77c', '#f2853a', '#e0782f'];
   return (
     <span className="inline-flex items-center gap-1" title={level}>
       {order.map((_, i) => (

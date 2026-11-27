@@ -18,14 +18,14 @@ import { LabButton, LabFrame, Readout, Slider, Toggle } from './LabFrame';
 type Mode = 'atmospheric' | 'geothermal' | 'isotope' | 'solar' | 'kinetic';
 
 const POWER_BARS = [
-  { name: 'atmos.', w: 2e-6, color: '#67e8f9' },
-  { name: 'telluric', w: 5e-5, color: '#4338ca' },
-  { name: 'piezo shoe', w: 5e-3, color: '#f5b301' },
-  { name: 'plant MFC', w: 1e-4, color: '#6ee7a8' },
-  { name: 'TEG 100K', w: 5, color: '#ff6b1a' },
-  { name: 'solar 1 m²', w: 200, color: '#ffd166' },
-  { name: 'Li-ion 1 kg', w: 250, color: '#c026d3' },
-  { name: 'MMRTG', w: 110, color: '#e0f2fe' },
+  { name: 'atmos.', w: 2e-6, color: '#81dcd4' },
+  { name: 'telluric', w: 5e-5, color: '#2f6b5f' },
+  { name: 'piezo shoe', w: 5e-3, color: '#f7c77c' },
+  { name: 'plant MFC', w: 1e-4, color: '#a6eb9b' },
+  { name: 'TEG 100K', w: 5, color: '#f2853a' },
+  { name: 'solar 1 m²', w: 200, color: '#f7c77c' },
+  { name: 'Li-ion 1 kg', w: 250, color: '#e0782f' },
+  { name: 'MMRTG', w: 110, color: '#dff3ef' },
 ];
 
 function Particles({ rate, height }: { rate: number; height: number }) {
@@ -54,7 +54,7 @@ function Particles({ rate, height }: { rate: number; height: number }) {
   });
   return (
     <points ref={ref} geometry={geo}>
-      <pointsMaterial size={0.055} color="#67e8f9" transparent opacity={0.75} />
+      <pointsMaterial size={0.055} color="#81dcd4" transparent opacity={0.75} />
     </points>
   );
 }
@@ -70,11 +70,11 @@ function ModeScene({ mode, field, depth, glow }: { mode: Mode; field: number; de
         <>
           <mesh position={[0, 4, 0]}>
             <cylinderGeometry args={[0.07, 0.12, 8, 12]} />
-            <meshStandardMaterial color="#8c82a8" metalness={0.9} roughness={0.25} />
+            <meshStandardMaterial color="#8fa08c" metalness={0.9} roughness={0.25} />
           </mesh>
           <mesh position={[0, 8.1, 0]}>
             <sphereGeometry args={[0.34, 20, 20]} />
-            <meshStandardMaterial color="#67e8f9" emissive="#0891b2" emissiveIntensity={1.6} />
+            <meshStandardMaterial color="#81dcd4" emissive="#2f8f86" emissiveIntensity={1.6} />
           </mesh>
           <Particles rate={field / 40} height={8} />
           <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
@@ -96,18 +96,18 @@ function ModeScene({ mode, field, depth, glow }: { mode: Mode; field: number; de
           ))}
           <mesh position={[0, -5.4, 0]}>
             <boxGeometry args={[7.4, 0.9, 7.4]} />
-            <meshStandardMaterial color="#ff2fb9" emissive="#c1121f" emissiveIntensity={2} />
+            <meshStandardMaterial color="#ff8a4c" emissive="#c7432a" emissiveIntensity={2} />
           </mesh>
-          <pointLight ref={heat} position={[0, -5, 0]} color="#ff6b1a" intensity={2.4} distance={16} />
+          <pointLight ref={heat} position={[0, -5, 0]} color="#f2853a" intensity={2.4} distance={16} />
           {/* borehole + TEG stack */}
           <mesh position={[0, 0.4, 0]}>
             <cylinderGeometry args={[0.14, 0.14, 11, 12]} />
-            <meshStandardMaterial color="#e0f2fe" metalness={0.85} roughness={0.2} />
+            <meshStandardMaterial color="#dff3ef" metalness={0.85} roughness={0.2} />
           </mesh>
           {Array.from({ length: Math.max(1, Math.round(depth / 20)) }).slice(0, 8).map((_, i) => (
             <mesh key={i} position={[0, 1.1 + i * 0.34, 0]}>
               <boxGeometry args={[0.9, 0.26, 0.9]} />
-              <meshStandardMaterial color="#c026d3" emissive="#7c3aed" emissiveIntensity={0.7} metalness={0.6} />
+              <meshStandardMaterial color="#e0782f" emissive="#b8863f" emissiveIntensity={0.7} metalness={0.6} />
             </mesh>
           ))}
         </>
@@ -116,14 +116,14 @@ function ModeScene({ mode, field, depth, glow }: { mode: Mode; field: number; de
         <>
           <mesh position={[0, 1.6, 0]}>
             <cylinderGeometry args={[0.9, 0.9, 2.4, 28]} />
-            <meshStandardMaterial color="#f5b301" emissive="#ff6b1a" emissiveIntensity={glow} metalness={0.7} roughness={0.3} />
+            <meshStandardMaterial color="#f7c77c" emissive="#f2853a" emissiveIntensity={glow} metalness={0.7} roughness={0.3} />
           </mesh>
           {Array.from({ length: 12 }).map((_, i) => {
             const a = (i / 12) * Math.PI * 2;
             return (
               <mesh key={i} position={[Math.cos(a) * 1.6, 1.6, Math.sin(a) * 1.6]} rotation={[0, -a, 0]}>
                 <boxGeometry args={[0.9, 2.4, 0.05]} />
-                <meshStandardMaterial color="#8c82a8" metalness={0.9} roughness={0.25} />
+                <meshStandardMaterial color="#8fa08c" metalness={0.9} roughness={0.25} />
               </mesh>
             );
           })}
@@ -131,7 +131,7 @@ function ModeScene({ mode, field, depth, glow }: { mode: Mode; field: number; de
             <cylinderGeometry args={[0.5, 0.5, 0.4, 20]} />
             <meshStandardMaterial color="#3a2b2b" metalness={0.8} />
           </mesh>
-          <pointLight position={[0, 1.6, 0]} color="#ff6b1a" intensity={glow * 5} distance={14} />
+          <pointLight position={[0, 1.6, 0]} color="#f2853a" intensity={glow * 5} distance={14} />
         </>
       )}
       {mode === 'solar' && (
@@ -140,15 +140,15 @@ function ModeScene({ mode, field, depth, glow }: { mode: Mode; field: number; de
             [0, 1, 2].map((c) => (
               <mesh key={`${r}${c}`} position={[(c - 1) * 2.5, 1.4, (r - 1) * 2.5]} rotation={[-0.5, 0, 0]}>
                 <boxGeometry args={[2.2, 0.08, 1.6]} />
-                <meshStandardMaterial color="#4338ca" emissive="#1e1b4b" metalness={0.6} roughness={0.25} />
+                <meshStandardMaterial color="#2f6b5f" emissive="#25412e" metalness={0.6} roughness={0.25} />
               </mesh>
             )),
           )}
           <mesh position={[6, 6.5, 5]}>
             <sphereGeometry args={[0.9, 24, 24]} />
-            <meshBasicMaterial color="#ffd166" />
+            <meshBasicMaterial color="#f7c77c" />
           </mesh>
-          <pointLight position={[6, 6.5, 5]} color="#ffd166" intensity={4} distance={26} />
+          <pointLight position={[6, 6.5, 5]} color="#f7c77c" intensity={4} distance={26} />
         </>
       )}
       {mode === 'kinetic' && (
@@ -160,12 +160,12 @@ function ModeScene({ mode, field, depth, glow }: { mode: Mode; field: number; de
           {Array.from({ length: 9 }).map((_, i) => (
             <mesh key={i} position={[(i % 3) - 1, 0.24, Math.floor(i / 3) - 1]}>
               <boxGeometry args={[0.8, 0.14, 0.8]} />
-              <meshStandardMaterial color="#f5b301" emissive="#ff6b1a" emissiveIntensity={glow * 0.6} />
+              <meshStandardMaterial color="#f7c77c" emissive="#f2853a" emissiveIntensity={glow * 0.6} />
             </mesh>
           ))}
           <mesh position={[0, 0.72, 0]}>
             <sphereGeometry args={[0.3, 16, 16]} />
-            <meshStandardMaterial color="#6ee7a8" emissive="#16a34a" emissiveIntensity={1.2} />
+            <meshStandardMaterial color="#a6eb9b" emissive="#16a34a" emissiveIntensity={1.2} />
           </mesh>
         </>
       )}
@@ -250,7 +250,7 @@ export default function EnergyFieldLab({ tasks }: LabProps) {
               <Slider label="mast height" value={mastHeight} min={5} max={500} step={5} onChange={setMastHeight} format={(v) => v + ' m'} />
               <Slider label="collector area" value={area} min={0.1} max={100} step={0.1} onChange={setArea} format={(v) => v.toFixed(1) + ' m²'} />
               <Slider label="conduction current" value={currentDensity} min={0.5} max={6} step={0.1} onChange={setCurrentDensity} format={(v) => v.toFixed(1) + ' pA/m²'} />
-              <div className="text-[11px] leading-snug text-[#9ec9e0]">
+              <div className="text-[11px] leading-snug text-[#a5d9d6]">
                 P = V · J · A with V = E·h = {atmosV.toFixed(0)} V. Thunderstorm fields reach ~10–20 kV/m but only
                 for seconds at a time.
               </div>
@@ -262,7 +262,7 @@ export default function EnergyFieldLab({ tasks }: LabProps) {
               <Slider label="ΔT across TEG" value={deltaT} min={5} max={300} step={5} onChange={setDeltaT} format={(v) => v + ' K'} />
               <Slider label="TEG modules (40×40 mm)" value={modules} min={1} max={200} onChange={setModules} />
               <Slider label="borehole depth" value={depth} min={100} max={8000} step={100} onChange={setDepth} format={(v) => (v / 1000).toFixed(1) + ' km'} />
-              <div className="text-[11px] leading-snug text-[#9ec9e0]">
+              <div className="text-[11px] leading-snug text-[#a5d9d6]">
                 Gradient ≈ {geoGradient} °C/km → rock at {depth} m ≈ {rockTemp.toFixed(0)} °C (plus ~1 °C per 100 m
                 of drilling cost). P ≈ 5 W · (ΔT/100)² per module, an empirical fit for a TEG1-127 class device.
               </div>
@@ -272,7 +272,7 @@ export default function EnergyFieldLab({ tasks }: LabProps) {
           {mode === 'isotope' && (
             <>
               <Slider label="MMRTG units" value={rtgCount} min={1} max={6} onChange={setRtgCount} />
-              <div className="text-[11px] leading-snug text-[#9ec9e0]">
+              <div className="text-[11px] leading-snug text-[#a5d9d6]">
                 ²³⁸Pu decays at 87.7 y half-life. Each MMRTG: ~2000 W thermal → 110 W electrical (≈{rtgEff.toFixed(1)}
                 %), 45 kg. You cannot legally own one, and that is the point: this row exists so you can sanity-check
                 fringe claims that a garage build is nuclear powered.
@@ -285,7 +285,7 @@ export default function EnergyFieldLab({ tasks }: LabProps) {
               <Slider label="irradiance" value={irradiance} min={200} max={1100} step={10} onChange={setIrradiance} format={(v) => v + ' W/m²'} />
               <Slider label="panel area" value={panelArea} min={0.01} max={20} step={0.01} onChange={setPanelArea} format={(v) => v.toFixed(2) + ' m²'} />
               <Slider label="panel efficiency" value={panelEff} min={5} max={40} step={0.5} onChange={setPanelEff} format={(v) => v.toFixed(1) + ' %'} />
-              <div className="text-[11px] leading-snug text-[#9ec9e0]">
+              <div className="text-[11px] leading-snug text-[#a5d9d6]">
                 Indoor lighting is 1–10 W/m², not 1000 — roughly 100–1000× less than sunlight, which is why indoor
                 photovoltaics only power µW-class nodes.
               </div>
@@ -295,7 +295,7 @@ export default function EnergyFieldLab({ tasks }: LabProps) {
           {mode === 'kinetic' && (
             <>
               <Slider label="footsteps per second" value={steps} min={0.2} max={5} step={0.1} onChange={setSteps} format={(v) => v.toFixed(1) + ' /s'} />
-              <div className="text-[11px] leading-snug text-[#9ec9e0]">
+              <div className="text-[11px] leading-snug text-[#a5d9d6]">
                 A piezo insole converts roughly 5 mJ per step. At {steps} steps/s that is {fmtW(piezoP)} — enough to
                 keep a coin cell topped up, not enough to drive a motor.
               </div>
@@ -306,43 +306,43 @@ export default function EnergyFieldLab({ tasks }: LabProps) {
       }
       readouts={
         <>
-          <Readout label="available power" value={fmtW(current)} tone="#67e8f9" />
+          <Readout label="available power" value={fmtW(current)} tone="#81dcd4" />
           <Readout label="voltage" value={mode === 'atmospheric' ? atmosV.toFixed(0) + ' V' : mode === 'solar' ? '~18 V' : '—'} />
           <Readout
             label="energy per day"
             value={current * 86400 >= 1000 ? ((current * 86400) / 3600).toFixed(2) + ' Wh' : (current * 86400 * 1000).toFixed(1) + ' mJ'}
           />
           <Readout label="mass penalty" value={mode === 'isotope' ? rtgMass + ' kg' : mode === 'geothermal' ? 'borehole + working fluid' : 'negligible'} />
-          <div className="rounded-xl border border-[#67e8f9]/25 bg-black/30 p-2">
-            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[#67e8f9]">
+          <div className="rounded-xl border border-k-light/25 bg-black/30 p-2">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-k-light">
               what {fmtW(current)} can actually run
             </div>
             <div className="space-y-0.5 text-[11px]">
               {serviceable.length ? (
                 serviceable.map((l) => (
-                  <div key={l.name} className="flex justify-between gap-2 text-[#9fd9bb]">
+                  <div key={l.name} className="flex justify-between gap-2 text-[#a9d4a2]">
                     <span>✓ {l.name}</span>
                     <span className="font-mono text-[10px] opacity-70">{fmtW(l.draw)}</span>
                   </div>
                 ))
               ) : (
-                <div className="text-[#ff6b1a]">Nothing in this list — you are below the µW floor.</div>
+                <div className="text-k-forge">Nothing in this list — you are below the µW floor.</div>
               )}
             </div>
           </div>
           {showBars && (
             <div className="rounded-xl border border-white/10 bg-black/30 p-2">
-              <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">
+              <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-k-muted">
                 log₁₀ watts available (real-world)
               </div>
               <div className="h-[150px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={bars} layout="vertical" margin={{ left: 4, right: 8 }}>
-                    <CartesianGrid stroke="#1b1440" strokeDasharray="2 4" />
-                    <XAxis type="number" domain={[-7, 3]} tick={{ fill: '#c9bde6', fontSize: 9 }} stroke="#3a2b6b" />
-                    <YAxis type="category" dataKey="name" tick={{ fill: '#c9bde6', fontSize: 9 }} stroke="#3a2b6b" width={62} />
+                    <CartesianGrid stroke="#16261d" strokeDasharray="2 4" />
+                    <XAxis type="number" domain={[-7, 3]} tick={{ fill: '#b8c7b6', fontSize: 9 }} stroke="#2c4232" />
+                    <YAxis type="category" dataKey="name" tick={{ fill: '#b8c7b6', fontSize: 9 }} stroke="#2c4232" width={62} />
                     <Tooltip
-                      contentStyle={{ background: '#0a0420', border: '1px solid #3a2b6b', fontSize: 11 }}
+                      contentStyle={{ background: '#0c1914', border: '1px solid #2c4232', fontSize: 11 }}
                       formatter={(_v: number, _n, p) => [fmtW((p.payload as { w: number }).w), 'power']}
                     />
                     <RBar dataKey="log" radius={[0, 4, 4, 0]}>
@@ -355,7 +355,7 @@ export default function EnergyFieldLab({ tasks }: LabProps) {
               </div>
             </div>
           )}
-          <div className="pt-1 text-[11px] leading-snug text-[#c9bde6]">
+          <div className="pt-1 text-[11px] leading-snug text-k-muted">
             Reading the chart left to right is the single most useful habit in frontier energy: atmospheric and
             telluric harvesting live six orders of magnitude below a lithium cell, geothermal and nuclear live above
             it but demand mass, boreholes or regulation. Design the load to the source, never the reverse.
@@ -364,21 +364,21 @@ export default function EnergyFieldLab({ tasks }: LabProps) {
       }
     >
       <Canvas camera={{ position: [7.5, 5.5, 9], fov: 46 }} dpr={[1, 1.7]}>
-        <color attach="background" args={['#03040f']} />
-        <fog attach="fog" args={['#03040f', 16, 40]} />
+        <color attach="background" args={['#060d09']} />
+        <fog attach="fog" args={['#060d09', 16, 40]} />
         <ambientLight intensity={0.45} />
         <directionalLight position={[6, 12, 5]} intensity={1.1} />
-        <pointLight position={[-6, 4, -6]} color="#4338ca" intensity={2} distance={26} />
+        <pointLight position={[-6, 4, -6]} color="#2f6b5f" intensity={2} distance={26} />
         <ModeScene
           mode={mode}
           field={field}
           depth={depth}
           glow={mode === 'isotope' ? Math.min(1.4, 0.5 + rtgCount * 0.15) : 0.5}
         />
-        <gridHelper args={[24, 24, '#1b1440', '#0d0824']} />
+        <gridHelper args={[24, 24, '#16261d', '#0e2017']} />
         <OrbitControls enablePan target={[0, mode === 'geothermal' ? -1.4 : 2, 0]} minDistance={5} maxDistance={30} />
       </Canvas>
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-[#c9bde6]">
+      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-k-muted">
         {mode === 'atmospheric'
           ? 'cyan column = fair-weather conduction current'
           : mode === 'geothermal'

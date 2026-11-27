@@ -38,9 +38,9 @@ export default function SpecimenViewer({ specimen, file }: { specimen: Specimen;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches || !motion;
     controls.autoRotate = !reduce; controls.autoRotateSpeed = 1.4;
     setSpin(!reduce); controlsRef.current = controls;
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x4338ca, 2));
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x2f6b5f, 2));
     const light = new THREE.DirectionalLight(0xffffff, 3); light.position.set(3, 5, 4); scene.add(light);
-    const rim = new THREE.DirectionalLight(0xf5b301, 2); rim.position.set(-4, 2, -3); scene.add(rim);
+    const rim = new THREE.DirectionalLight(0xf7c77c, 2); rim.position.set(-4, 2, -3); scene.add(rim);
     function release(group: THREE.Group) {
       const materials = new Set<THREE.Material>();
       group.traverse(o => {
@@ -97,14 +97,14 @@ export default function SpecimenViewer({ specimen, file }: { specimen: Specimen;
   }, [specimen, file, motion]);
 
   return <div className="glass panel-edge overflow-hidden">
-    <div className="flex flex-wrap items-center justify-between gap-2 p-4 font-mono text-xs text-[#f5b301]"><span>{file ? `Local model · ${file.name}` : `Concept preview · ${specimen.name}`}</span><span className="text-[#c9bde6]">Drag to orbit · scroll to zoom</span></div>
-    <div ref={stage} className="relative grid h-[360px] w-full place-items-center bg-gradient-to-b from-[#151036] to-[#05010f] sm:h-[430px]">
-      {unavailable && <div className="max-w-sm p-8 text-center"><div aria-hidden="true" className="mb-4 text-7xl text-[#f5b301]">⬡</div><h3 className="font-heading text-xl font-bold text-white">{specimen.name}</h3><p className="mt-3 text-sm text-[#c9bde6]">{specimen.project}</p><p className="mt-4 font-mono text-xs text-[#f5b301]">3D preview requires WebGL</p></div>}
+    <div className="flex flex-wrap items-center justify-between gap-2 p-4 font-mono text-xs text-k-gold"><span>{file ? `Local model · ${file.name}` : `Concept preview · ${specimen.name}`}</span><span className="text-k-muted">Drag to orbit · scroll to zoom</span></div>
+    <div ref={stage} className="relative grid h-[360px] w-full place-items-center bg-gradient-to-b from-[#163425] to-k-ink sm:h-[430px]">
+      {unavailable && <div className="max-w-sm p-8 text-center"><div aria-hidden="true" className="mb-4 text-7xl text-k-gold">⬡</div><h3 className="font-heading text-xl font-bold text-white">{specimen.name}</h3><p className="mt-3 text-sm text-k-muted">{specimen.project}</p><p className="mt-4 font-mono text-xs text-k-gold">3D preview requires WebGL</p></div>}
     </div>
-    {error && <p role="status" className="px-4 text-sm text-[#ffd166]">{error}</p>}
+    {error && <p role="status" className="px-4 text-sm text-k-gold">{error}</p>}
     <div className="flex flex-wrap items-center gap-3 p-4">
       <label htmlFor="specimen-explode" className="text-sm">Take it apart</label>
-      <input id="specimen-explode" disabled={unavailable} className="min-w-0 flex-1 accent-[#f5b301]" type="range" min="0" max="100" value={explode} onChange={e => { const value = Number(e.target.value); setExplode(value); partsRef.current.forEach(p => p.obj.position.copy(p.base).addScaledVector(p.dir, value / 100 * 1.1)); }} />
+      <input id="specimen-explode" disabled={unavailable} className="min-w-0 flex-1 accent-k-gold" type="range" min="0" max="100" value={explode} onChange={e => { const value = Number(e.target.value); setExplode(value); partsRef.current.forEach(p => p.obj.position.copy(p.base).addScaledVector(p.dir, value / 100 * 1.1)); }} />
       <button className="btn btn-ghost text-xs" disabled={unavailable} aria-pressed={spin} onClick={() => { const c = controlsRef.current; if (c) { c.autoRotate = !c.autoRotate; setSpin(c.autoRotate); } }}>Auto-spin</button>
     </div>
   </div>;

@@ -147,7 +147,7 @@ function Segment({ a, b, radius, color }: { a: THREE.Vector3; b: THREE.Vector3; 
 function Arm({ q, trail, showTrail }: { q: Q; trail: THREE.Vector3[]; showTrail: boolean }) {
   const pts = useMemo(() => joints(q), [q]);
   const tip = pts[3];
-  const colors = ['#c96f2b', '#f5b301', '#e0f2fe', '#67e8f9'];
+  const colors = ['#c96f2b', '#f7c77c', '#dff3ef', '#81dcd4'];
   return (
     <group>
       <mesh position={[0, 0.28, 0]} castShadow receiveShadow>
@@ -160,7 +160,7 @@ function Arm({ q, trail, showTrail }: { q: Q; trail: THREE.Vector3[]; showTrail:
       {pts.map((p, i) => (
         <mesh key={`j${i}`} position={p}>
           <sphereGeometry args={[i === 3 ? 0.2 : 0.25 - i * 0.02, 20, 20]} />
-          <meshStandardMaterial color="#f5b301" metalness={0.9} roughness={0.2} emissive="#7a4a00" emissiveIntensity={0.5} />
+          <meshStandardMaterial color="#f7c77c" metalness={0.9} roughness={0.2} emissive="#7a4a00" emissiveIntensity={0.5} />
         </mesh>
       ))}
       {/* gripper */}
@@ -168,12 +168,12 @@ function Arm({ q, trail, showTrail }: { q: Q; trail: THREE.Vector3[]; showTrail:
         {[-1, 1].map((s) => (
           <mesh key={s} position={[s * 0.16, -0.24, 0]}>
             <boxGeometry args={[0.08, 0.42, 0.1]} />
-            <meshStandardMaterial color="#e0f2fe" metalness={0.8} roughness={0.25} />
+            <meshStandardMaterial color="#dff3ef" metalness={0.8} roughness={0.25} />
           </mesh>
         ))}
       </group>
       {showTrail && trail.length > 1 && (
-        <Line points={trail} color="#ff2fb9" lineWidth={2.4} transparent opacity={0.85} />
+        <Line points={trail} color="#ff8a4c" lineWidth={2.4} transparent opacity={0.85} />
       )}
     </group>
   );
@@ -200,7 +200,7 @@ function WorkspaceCloud({ show }: { show: boolean }) {
   if (!show) return null;
   return (
     <points geometry={geo}>
-      <pointsMaterial size={0.035} color="#4338ca" transparent opacity={0.5} sizeAttenuation />
+      <pointsMaterial size={0.035} color="#2f6b5f" transparent opacity={0.5} sizeAttenuation />
     </points>
   );
 }
@@ -218,13 +218,13 @@ function TargetMarker({ p }: { p: THREE.Vector3 }) {
     <group position={p}>
       <mesh ref={ref}>
         <icosahedronGeometry args={[0.16, 1]} />
-        <meshStandardMaterial color="#6ee7a8" emissive="#16a34a" emissiveIntensity={1.6} />
+        <meshStandardMaterial color="#a6eb9b" emissive="#16a34a" emissiveIntensity={1.6} />
       </mesh>
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.42, 0.012, 8, 40]} />
-        <meshBasicMaterial color="#6ee7a8" transparent opacity={0.5} />
+        <meshBasicMaterial color="#a6eb9b" transparent opacity={0.5} />
       </mesh>
-      <pointLight color="#6ee7a8" intensity={2.4} distance={3.2} />
+      <pointLight color="#a6eb9b" intensity={2.4} distance={3.2} />
     </group>
   );
 }
@@ -351,22 +351,22 @@ export default function RobotArmLab({ tasks }: LabProps) {
       }
       readouts={
         <>
-          <Readout label="TCP X" value={tip.x.toFixed(3) + ' m'} tone="#67e8f9" />
-          <Readout label="TCP Y" value={tip.y.toFixed(3) + ' m'} tone="#67e8f9" />
-          <Readout label="TCP Z" value={tip.z.toFixed(3) + ' m'} tone="#67e8f9" />
+          <Readout label="TCP X" value={tip.x.toFixed(3) + ' m'} tone="#81dcd4" />
+          <Readout label="TCP Y" value={tip.y.toFixed(3) + ' m'} tone="#81dcd4" />
+          <Readout label="TCP Z" value={tip.z.toFixed(3) + ' m'} tone="#81dcd4" />
           <Readout label="planar radius" value={d.toFixed(3) + ' m'} />
           <Readout label="max reach" value={reach.toFixed(2) + ' m'} />
           <Readout
             label="IK residual"
             value={(status.err * 1000).toFixed(1) + ' mm'}
-            tone={status.err < 0.01 ? '#6ee7a8' : status.err < 0.1 ? '#f5b301' : '#ff6b1a'}
+            tone={status.err < 0.01 ? '#a6eb9b' : status.err < 0.1 ? '#f7c77c' : '#f2853a'}
           />
           <Readout
             label="manipulability"
             value={status.w.toFixed(3)}
-            tone={status.w > 1 ? '#6ee7a8' : status.w > 0.15 ? '#f5b301' : '#ff2fb9'}
+            tone={status.w > 1 ? '#a6eb9b' : status.w > 0.15 ? '#f7c77c' : '#ff8a4c'}
           />
-          <div className="pt-1 text-[11px] leading-snug text-[#c9bde6]">
+          <div className="pt-1 text-[11px] leading-snug text-k-muted">
             {d > reach
               ? 'Target is outside the reachable workspace — the solver saturates at full extension.'
               : status.w < 0.15
@@ -377,20 +377,20 @@ export default function RobotArmLab({ tasks }: LabProps) {
       }
     >
       <Canvas shadows camera={{ position: [6.4, 4.6, 7.4], fov: 42 }} dpr={[1, 1.8]}>
-        <color attach="background" args={['#07021a']} />
-        <fog attach="fog" args={['#07021a', 16, 34]} />
+        <color attach="background" args={['#0a1611']} />
+        <fog attach="fog" args={['#0a1611', 16, 34]} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[7, 12, 6]} intensity={1.5} castShadow />
-        <pointLight position={[-6, 3, -6]} color="#c026d3" intensity={2.2} distance={20} />
-        <pointLight position={[6, 2, 6]} color="#6ee7a8" intensity={1.4} distance={18} />
-        <gridHelper args={[24, 24, '#4338ca', '#1b1440']} position={[0, 0, 0]} />
+        <pointLight position={[-6, 3, -6]} color="#e0782f" intensity={2.2} distance={20} />
+        <pointLight position={[6, 2, 6]} color="#a6eb9b" intensity={1.4} distance={18} />
+        <gridHelper args={[24, 24, '#2f6b5f', '#16261d']} position={[0, 0, 0]} />
         <Arm q={q} trail={trail} showTrail={trailOn} />
         <TrailTracker tip={tip} enabled={trailOn} resetKey={resetKey} store={trailStore} onUpdate={setTrail} />
         <WorkspaceCloud show={wsOn} />
         {ikMode && <TargetMarker p={target} />}
         <OrbitControls enablePan target={[0, 1.6, 0]} maxPolarAngle={Math.PI / 2.03} minDistance={4} maxDistance={24} />
       </Canvas>
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-[#c9bde6]">
+      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-k-muted">
         drag to orbit · scroll to zoom · green icosahedron = IK target
       </div>
     </LabFrame>

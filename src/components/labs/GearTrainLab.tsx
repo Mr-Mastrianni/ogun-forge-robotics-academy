@@ -70,7 +70,7 @@ function Gear({
       {/* pitch circle */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[pitchR, 0.008, 6, 64]} />
-        <meshBasicMaterial color="#67e8f9" transparent opacity={0.55} />
+        <meshBasicMaterial color="#81dcd4" transparent opacity={0.55} />
       </mesh>
     </group>
   );
@@ -121,7 +121,7 @@ function Train({
     setAngles(teeth.map((_, i) => signs[i] * base * Math.abs(ratioTo[i]) + (i > 0 ? Math.PI / teeth[i] : 0)));
   });
 
-  const colourFor = (i: number) => ['#c96f2b', '#f5b301', '#e0f2fe'][i % 3];
+  const colourFor = (i: number) => ['#c96f2b', '#f7c77c', '#dff3ef'][i % 3];
   const totalRatio = ratioTo[ratioTo.length - 1];
   const eff = Math.pow(0.975, teeth.length - 1);
 
@@ -130,7 +130,7 @@ function Train({
       {/* base plate */}
       <mesh position={[(pos[0][0] + pos[pos.length - 1][0]) / 2, 0.55, 0]} receiveShadow>
         <boxGeometry args={[pos[pos.length - 1][0] + 2.4, 0.16, 2.6]} />
-        <meshStandardMaterial color="#1b1440" metalness={0.6} roughness={0.5} />
+        <meshStandardMaterial color="#16261d" metalness={0.6} roughness={0.5} />
       </mesh>
       {pos.map((p, i) => (
         <group key={i} position={p}>
@@ -138,7 +138,7 @@ function Train({
           {/* shaft */}
           <mesh position={[0, -0.55, 0]}>
             <cylinderGeometry args={[0.07, 0.07, 1.1, 12]} />
-            <meshStandardMaterial color="#8c82a8" metalness={0.9} roughness={0.2} />
+            <meshStandardMaterial color="#8fa08c" metalness={0.9} roughness={0.2} />
           </mesh>
           {/* bearing block */}
           <mesh position={[0, -1.03, 0]}>
@@ -150,23 +150,23 @@ function Train({
       {/* input crank marker */}
       <mesh position={[0, 1.1, 0.42]}>
         <boxGeometry args={[0.1, 0.1, 0.3]} />
-        <meshStandardMaterial color="#ff6b1a" emissive="#c1121f" emissiveIntensity={0.6} />
+        <meshStandardMaterial color="#f2853a" emissive="#c7432a" emissiveIntensity={0.6} />
       </mesh>
       {/* load disc on output */}
       <mesh position={[pos[pos.length - 1][0], 1.1, 0]}>
         <torusGeometry args={[radii[radii.length - 1] + 0.34, 0.05, 8, 40]} />
-        <meshStandardMaterial color="#6ee7a8" emissive="#16a34a" emissiveIntensity={0.7} />
+        <meshStandardMaterial color="#a6eb9b" emissive="#16a34a" emissiveIntensity={0.7} />
       </mesh>
       <mesh position={[pos[pos.length - 1][0] + 1.9, 1.1, 0]}>
         <boxGeometry args={[0.7, 0.7, 0.7]} />
-        <meshStandardMaterial color="#c026d3" metalness={0.6} roughness={0.35} />
+        <meshStandardMaterial color="#e0782f" metalness={0.6} roughness={0.35} />
       </mesh>
       <Line
         points={[
           new THREE.Vector3(pos[pos.length - 1][0], 1.1, 0),
           new THREE.Vector3(pos[pos.length - 1][0] + 1.9, 1.1, 0),
         ]}
-        color="#6ee7a8"
+        color="#a6eb9b"
         lineWidth={3}
       />
       <group />
@@ -245,14 +245,14 @@ export default function GearTrainLab({ tasks }: LabProps) {
       }
       readouts={
         <>
-          <Readout label="overall ratio" value={`1 : ${(1 / ratio).toFixed(2)}`} tone="#f5b301" />
+          <Readout label="overall ratio" value={`1 : ${(1 / ratio).toFixed(2)}`} tone="#f7c77c" />
           <Readout label="stage ratios" value={`${(t1 / t2).toFixed(2)} × ${(t2 / t3).toFixed(2)}`} />
-          <Readout label="output speed" value={outRpm.toFixed(1) + ' rpm'} tone="#67e8f9" />
-          <Readout label="output torque" value={outTorque.toFixed(3) + ' N·m'} tone="#f5b301" />
+          <Readout label="output speed" value={outRpm.toFixed(1) + ' rpm'} tone="#81dcd4" />
+          <Readout label="output torque" value={outTorque.toFixed(3) + ' N·m'} tone="#f7c77c" />
           <Readout label="output power" value={((2 * Math.PI * outRpm * outTorque) / 60).toFixed(2) + ' W'} />
           <Readout label="mesh efficiency" value={(eff * 100).toFixed(1) + '%'} />
-          <Readout label="reflected inertia factor" value={reflectedInertia.toExponential(2)} tone="#6ee7a8" />
-          <div className="pt-1 text-[11px] leading-snug text-[#c9bde6]">
+          <Readout label="reflected inertia factor" value={reflectedInertia.toExponential(2)} tone="#a6eb9b" />
+          <div className="pt-1 text-[11px] leading-snug text-k-muted">
             Two meshes at 97.5% each gives ≈95% overall. Real spur stages run 97–99%; worm drives can drop to 40–70%
             but are self-locking. The idler gear reverses direction without changing the ratio — useful for layout,
             useless for speed reduction.
@@ -261,19 +261,19 @@ export default function GearTrainLab({ tasks }: LabProps) {
       }
     >
       <Canvas shadows camera={{ position: [3.6, 4.4, 7.6], fov: 42 }} dpr={[1, 1.7]}>
-        <color attach="background" args={['#0a0420']} />
+        <color attach="background" args={['#0c1914']} />
         <ambientLight intensity={0.6} />
         <directionalLight position={[6, 12, 6]} intensity={1.5} castShadow />
-        <pointLight position={[-5, 3, -4]} color="#c026d3" intensity={1.8} distance={20} />
-        <pointLight position={[5, 2, 4]} color="#ff6b1a" intensity={1.2} distance={16} />
+        <pointLight position={[-5, 3, -4]} color="#e0782f" intensity={1.8} distance={20} />
+        <pointLight position={[5, 2, 4]} color="#f2853a" intensity={1.2} distance={16} />
         <Train teeth={teeth} rpm={rpm} torque={torque} animate={animate} />
         <mesh position={[0, -1.3, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
           <planeGeometry args={[40, 40]} />
-          <meshStandardMaterial color="#120a2e" roughness={0.95} />
+          <meshStandardMaterial color="#12211a" roughness={0.95} />
         </mesh>
         <OrbitControls enablePan target={[3.2, 1.1, 0]} minDistance={4} maxDistance={22} />
       </Canvas>
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-[#c9bde6]">
+      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-k-muted">
         orange = input · gold = idler · white = output · cyan ring = pitch circle
       </div>
     </LabFrame>

@@ -94,8 +94,8 @@ print(fk((0.38629, 1.25297)))  # (0.35000000, 0.44999999) m -- error 1.5e-9 m` }
       chartType: 'line', xLabel: 'Move progress t/T', yLabel: 'Normalised velocity  v·T/Δq',
       x: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
       series: [
-        { key: 'trap', label: 'Trapezoidal (0.2T ramp)', color: '#f59e0b', data: [0, 0.5, 1.0, 1.25, 1.25, 1.25, 1.25, 1.25, 1.0, 0.5, 0] },
-        { key: 'quintic', label: 'Quintic polynomial', color: '#38bdf8', data: [0, 0.07, 0.29, 0.57, 0.85, 1.00, 0.91, 0.61, 0.23, 0.02, 0] },
+        { key: 'trap', label: 'Trapezoidal (0.2T ramp)', color: '#e9a64e', data: [0, 0.5, 1.0, 1.25, 1.25, 1.25, 1.25, 1.25, 1.0, 0.5, 0] },
+        { key: 'quintic', label: 'Quintic polynomial', color: '#5cc8c0', data: [0, 0.07, 0.29, 0.57, 0.85, 1.00, 0.91, 0.61, 0.23, 0.02, 0] },
       ] },
     { kind: 'prose', heading: 'Joint space or Cartesian space — and why the TCP bows',
       body: 'Cartesian straight-line motion interpolates the pose and runs inverse kinematics at every servo tick, typically 500 Hz–1 kHz: the TCP tracks a straight line to ±0.05 mm, but the configuration is whatever IK returns, so the path can cross a singularity or walk into a joint limit mid-move. Joint-interpolated motion interpolates the angles, so no IK is needed on the fly and no inverse-singularity can occur; the cost is that the TCP bows away from the straight line. On a 400 mm diagonal move with a 45° change at the shoulder, the bow runs 3–8 mm depending on the start posture — fine for a pick-and-place, unacceptable for a weld or a glue bead.\n\n' +

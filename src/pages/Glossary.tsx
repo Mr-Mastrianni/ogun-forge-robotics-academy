@@ -56,7 +56,7 @@ export default function Glossary() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="search terms and definitions…"
-            className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-3.5 py-2 font-body text-[13px] text-white placeholder:text-[#8c82a8] focus:border-[#f5b301]/60 focus:outline-none"
+            className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-3.5 py-2 font-body text-[13px] text-white placeholder:text-k-dim focus:border-k-gold/60 focus:outline-none"
           />
           <div className="flex flex-wrap gap-1.5">
             {tracks.map((t) => (
@@ -65,8 +65,8 @@ export default function Glossary() {
                 onClick={() => setFilter(t)}
                 className={`whitespace-nowrap rounded-lg border px-2.5 py-1.5 font-mono text-[11px] transition-colors ${
                   filter === t
-                    ? 'border-[#f5b301]/60 bg-[#f5b301]/15 text-[#ffe9a8]'
-                    : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                    ? 'border-k-gold/60 bg-k-gold/15 text-k-glint'
+                    : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
                 }`}
               >
                 {TRACK_LABELS[t as TrackId] ?? 'all'}
@@ -74,8 +74,8 @@ export default function Glossary() {
             ))}
           </div>
         </div>
-        <div className="mt-3 text-[12px] text-[#c9bde6]">
-          showing <span className="text-[#ffe9a8]">{terms.length}</span> terms · {studied} already in your flashcard
+        <div className="mt-3 text-[12px] text-k-muted">
+          showing <span className="text-k-glint">{terms.length}</span> terms · {studied} already in your flashcard
           rotation
         </div>
       </Panel>
@@ -84,8 +84,8 @@ export default function Glossary() {
         {grouped.map(([letter, items]) => (
           <div key={letter}>
             <div className="mb-2 flex items-center gap-3">
-              <span className="font-display text-2xl text-[#f5b301]">{letter}</span>
-              <div className="h-px flex-1 bg-gradient-to-r from-[#f5b301]/40 to-transparent" />
+              <span className="font-display text-2xl text-k-gold">{letter}</span>
+              <div className="h-px flex-1 bg-gradient-to-r from-k-gold/40 to-transparent" />
             </div>
             <div className="grid gap-2.5 md:grid-cols-2 xl:grid-cols-3">
               {items.map((t) => {
@@ -99,10 +99,10 @@ export default function Glossary() {
                     tone={isOpen ? 'hot' : 'gold'}
                   >
                     <button className="w-full text-left" onClick={() => setOpenId(isOpen ? null : id)}>
-                      <div className="font-heading text-[13.5px] text-[#ffe9a8]">
+                      <div className="font-heading text-[13.5px] text-k-glint">
                         <MathTex tex={t.term} />
                       </div>
-                      <div className={`mt-1 text-[12.5px] leading-relaxed text-[#ded4f2] ${isOpen ? '' : 'line-clamp-3'}`}>
+                      <div className={`mt-1 text-[12.5px] leading-relaxed text-k-text ${isOpen ? '' : 'line-clamp-3'}`}>
                         {t.definition}
                       </div>
                       <div className="mt-2 flex flex-wrap items-center gap-1.5">
@@ -111,7 +111,7 @@ export default function Glossary() {
                         <Link
                           to={`/lesson/${t.lessonId}`}
                           onClick={(e) => e.stopPropagation()}
-                          className="ml-auto text-[10.5px] text-[#67e8f9] underline"
+                          className="ml-auto text-[10.5px] text-k-light underline"
                         >
                           lesson →
                         </Link>
@@ -123,7 +123,7 @@ export default function Glossary() {
             </div>
           </div>
         ))}
-        {grouped.length === 0 && <Panel className="p-6 text-center text-[#c9bde6]">No term matches that search.</Panel>}
+        {grouped.length === 0 && <Panel className="p-6 text-center text-k-muted">No term matches that search.</Panel>}
       </div>
     </div>
   );

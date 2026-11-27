@@ -101,7 +101,7 @@ export default function ProgressPage() {
                 return (
                   <div key={w.week} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="grid h-7 w-7 place-items-center rounded-lg border border-[#f5b301]/40 font-mono text-[11px] text-[#f5b301]">
+                      <span className="grid h-7 w-7 place-items-center rounded-lg border border-k-gold/40 font-mono text-[11px] text-k-gold">
                         W{w.week}
                       </span>
                       <span className="font-heading text-[13px] text-white">{w.title}</span>
@@ -131,8 +131,8 @@ export default function ProgressPage() {
               {trackStats.map((t) => (
                 <div key={t.track}>
                   <div className="mb-1 flex items-baseline justify-between">
-                    <span className="font-heading text-[12.5px] text-[#ded4f2]">{t.label}</span>
-                    <span className="font-mono text-[10.5px] text-[#c9bde6]">
+                    <span className="font-heading text-[12.5px] text-k-text">{t.label}</span>
+                    <span className="font-mono text-[10.5px] text-k-muted">
                       {t.read}/{t.total} read · {t.mastery}%
                     </span>
                   </div>
@@ -151,13 +151,13 @@ export default function ProgressPage() {
                   title={`${d.day}: ${d.n} quiz attempt${d.n === 1 ? '' : 's'}`}
                   className="h-6 w-6 rounded-md border"
                   style={{
-                    background: d.n === 0 ? 'rgba(255,255,255,0.04)' : d.n < 3 ? 'rgba(245,179,1,0.4)' : 'rgba(110,231,168,0.75)',
-                    borderColor: d.n === 0 ? 'rgba(255,255,255,0.08)' : 'rgba(245,179,1,0.4)',
+                    background: d.n === 0 ? 'rgba(255,255,255,0.04)' : d.n < 3 ? 'rgba(247,199,124,0.4)' : 'rgba(166,235,155,0.75)',
+                    borderColor: d.n === 0 ? 'rgba(255,255,255,0.08)' : 'rgba(247,199,124,0.4)',
                   }}
                 />
               ))}
             </div>
-            <p className="mt-2 text-[12px] text-[#c9bde6]">
+            <p className="mt-2 text-[12px] text-k-muted">
               Each square is a day. Streaks pay +30 XP and, more importantly, they are the only thing that makes
               spaced repetition work.
             </p>
@@ -166,7 +166,7 @@ export default function ProgressPage() {
           <Panel tone="myco" className="p-5">
             <div className="mb-3 font-heading text-sm text-white">Your forge list — saved blueprints</div>
             {s.savedProjects.length === 0 ? (
-              <p className="text-[12.5px] text-[#cfe9dc]">
+              <p className="text-[12.5px] text-k-mint">
                 Nothing saved yet. Browse the Idea Lab and star the builds you want to attempt — saving earns +6 XP each
                 and shapes your capstone.
               </p>
@@ -179,10 +179,10 @@ export default function ProgressPage() {
                     <Link
                       key={id}
                       to={`/ideas/${id}`}
-                      className="rounded-xl border border-[#6ee7a8]/25 bg-[#6ee7a8]/5 p-2.5 text-[12.5px] text-[#cfe9dc] hover:border-[#6ee7a8]/60"
+                      className="rounded-xl border border-k-moss/25 bg-k-moss/5 p-2.5 text-[12.5px] text-k-mint hover:border-k-moss/60"
                     >
                       <div className="font-heading text-[12.5px] text-white">{p.title}</div>
-                      <div className="mt-0.5 font-mono text-[10px] text-[#6ee7a8]">
+                      <div className="mt-0.5 font-mono text-[10px] text-k-moss">
                         {p.category} · {p.buildTime} · {p.costBand}
                       </div>
                     </Link>
@@ -198,12 +198,12 @@ export default function ProgressPage() {
 
         <aside className="space-y-4">
           <Panel className="p-4">
-            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">rank</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">rank</div>
             <div className="mt-2 flex items-center gap-3">
               <span className="text-3xl">{rank.glyph}</span>
               <div>
                 <div className="font-display text-lg text-white">{rank.name}</div>
-                <div className="text-[11.5px] text-[#c9bde6]">{rank.blurb}</div>
+                <div className="text-[11.5px] text-k-muted">{rank.blurb}</div>
               </div>
             </div>
             <div className="mt-3">
@@ -214,7 +214,7 @@ export default function ProgressPage() {
                 <div
                   key={r.id}
                   className={`flex items-center gap-2 text-[11.5px] ${
-                    s.xp >= r.minXp ? 'text-[#ded4f2]' : 'text-[#8c82a8]'
+                    s.xp >= r.minXp ? 'text-k-text' : 'text-k-dim'
                   }`}
                 >
                   <span>{r.glyph}</span>
@@ -226,13 +226,13 @@ export default function ProgressPage() {
           </Panel>
 
           <Panel tone="psy" className="p-4">
-            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5c8ff]">do this next</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-sand">do this next</div>
             <ul className="mt-2 space-y-3">
               {nextLesson && (
                 <li>
                   <Link to={`/lesson/${nextLesson.id}`} className="block">
                     <div className="font-heading text-[13px] text-white">→ Read L{nextLesson.number}: {nextLesson.title}</div>
-                    <div className="text-[11.5px] text-[#e8d8ff]">the next unread lesson in the sequence</div>
+                    <div className="text-[11.5px] text-[#efe3c8]">the next unread lesson in the sequence</div>
                   </Link>
                 </li>
               )}
@@ -240,7 +240,7 @@ export default function ProgressPage() {
                 <li>
                   <Link to="/flashcards" className="block">
                     <div className="font-heading text-[13px] text-white">→ Clear {dueCards} due flashcards</div>
-                    <div className="text-[11.5px] text-[#e8d8ff]">takes about {Math.ceil(dueCards * 0.3)} minutes</div>
+                    <div className="text-[11.5px] text-[#efe3c8]">takes about {Math.ceil(dueCards * 0.3)} minutes</div>
                   </Link>
                 </li>
               )}
@@ -250,7 +250,7 @@ export default function ProgressPage() {
                     <div className="font-heading text-[13px] text-white">
                       → Re-quiz L{weakLessons[0].l.number}: {weakLessons[0].l.title}
                     </div>
-                    <div className="text-[11.5px] text-[#e8d8ff]">
+                    <div className="text-[11.5px] text-[#efe3c8]">
                       your weakest area
                       {weakLessons[0].score
                         ? ` (${weakLessons[0].score.best}/${weakLessons[0].score.total})`
@@ -263,7 +263,7 @@ export default function ProgressPage() {
                 <li>
                   <Link to={`/boss/${nextBoss.week}`} className="block">
                     <div className="font-heading text-[13px] text-white">→ Face {nextBoss.title}</div>
-                    <div className="text-[11.5px] text-[#e8d8ff]">week {nextBoss.week} boss trial, 10 questions</div>
+                    <div className="text-[11.5px] text-[#efe3c8]">week {nextBoss.week} boss trial, 10 questions</div>
                   </Link>
                 </li>
               )}
@@ -276,7 +276,7 @@ export default function ProgressPage() {
                     <div className="font-heading text-[13px] text-white">
                       → Finish the {LABS.filter((l) => (s.labs[l.id]?.length ?? 0) < l.tasks.length)[0].name}
                     </div>
-                    <div className="text-[11.5px] text-[#e8d8ff]">lab challenges still open</div>
+                    <div className="text-[11.5px] text-[#efe3c8]">lab challenges still open</div>
                   </Link>
                 </li>
               )}
@@ -284,16 +284,16 @@ export default function ProgressPage() {
           </Panel>
 
           <Panel className="p-4">
-            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">weakest five</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">weakest five</div>
             <ul className="mt-2 space-y-2">
               {weakLessons.map(({ l, score }) => (
                 <li key={l.id} className="flex items-center gap-2">
-                  <Link to={`/lesson/${l.id}`} className="flex-1 text-[12px] leading-snug text-[#ded4f2] hover:text-[#f5b301]">
+                  <Link to={`/lesson/${l.id}`} className="flex-1 text-[12px] leading-snug text-k-text hover:text-k-gold">
                     L{l.number} · {l.title}
                   </Link>
                   <span
                     className="font-mono text-[10.5px]"
-                    style={{ color: !score ? '#ff6b1a' : score.best / score.total >= 0.7 ? '#f5b301' : '#ff2fb9' }}
+                    style={{ color: !score ? '#f2853a' : score.best / score.total >= 0.7 ? '#f7c77c' : '#ff8a4c' }}
                   >
                     {score ? `${Math.round((score.best / score.total) * 100)}%` : 'new'}
                   </span>
@@ -303,8 +303,8 @@ export default function ProgressPage() {
           </Panel>
 
           <Panel className="p-4">
-            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">content available</div>
-            <div className="mt-2 space-y-1 font-mono text-[11.5px] text-[#c9bde6]">
+            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">content available</div>
+            <div className="mt-2 space-y-1 font-mono text-[11.5px] text-k-muted">
               <div className="flex justify-between">
                 <span>lessons</span>
                 <span>{lessons.length}</span>
@@ -343,7 +343,7 @@ export default function ProgressPage() {
 
           <Panel tone="hot" className="p-4">
             <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#ffd0b0]">danger zone</div>
-            <p className="mt-2 text-[12px] leading-relaxed text-[#f3e9ff]">
+            <p className="mt-2 text-[12px] leading-relaxed text-k-paper">
               Reset clears XP, scores, streaks, flashcard scheduling and saved blueprints. There is no undo.
             </p>
             <button

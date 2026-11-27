@@ -44,8 +44,8 @@ export const lesson: Lesson = {
       chartType: 'line',
       x: [0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000],
       series: [
-        { key: 'geared', label: 'Geared DC, 1:50 (N·m)', color: '#f5b301', data: [2.4, 2.05, 1.7, 1.35, 1.0, 0.65, 0.3, 0.1, 0] },
-        { key: 'hub', label: 'Hub motor, direct (N·m)', color: '#c026d3', data: [28, 26, 23, 20, 16, 12, 7.5, 3, 0] },
+        { key: 'geared', label: 'Geared DC, 1:50 (N·m)', color: '#f7c77c', data: [2.4, 2.05, 1.7, 1.35, 1.0, 0.65, 0.3, 0.1, 0] },
+        { key: 'hub', label: 'Hub motor, direct (N·m)', color: '#e0782f', data: [28, 26, 23, 20, 16, 12, 7.5, 3, 0] },
       ],
       caption:
         'The geared motor trades speed for torque through 50:1 reduction and therefore has a much lower no-load speed. The hub motor makes far more torque directly but at low speed and high current. Neither is better; they are different operating regions.',

@@ -43,8 +43,8 @@ export const lesson: Lesson = {
       chartType: 'line',
       x: [0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0],
       series: [
-        { key: 'stop', label: 'required separation (mm)', color: '#ff6b1a', data: [110, 165, 275, 400, 540, 880, 1290] },
-        { key: 'human', label: 'human approach distance (mm)', color: '#67e8f9', data: [80, 170, 320, 460, 600, 880, 1160] },
+        { key: 'stop', label: 'required separation (mm)', color: '#f2853a', data: [110, 165, 275, 400, 540, 880, 1290] },
+        { key: 'human', label: 'human approach distance (mm)', color: '#81dcd4', data: [80, 170, 320, 460, 600, 880, 1160] },
       ],
       caption:
         'Assumes a 20 kg payload, reaction plus response time of 150 ms, deceleration of 5 m/s squared and a 1.6 m/s human walking speed. At 2 m/s the cell needs well over a metre of clearance, which is precisely why practical cobot cells run slow.',

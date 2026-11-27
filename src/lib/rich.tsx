@@ -104,8 +104,8 @@ export function RichText({ body }: { body: string }): ReactNode {
           return (
             <ul key={ci} className="my-3 space-y-2">
               {lines.map((l, li) => (
-                <li key={li} className="flex gap-2.5 leading-relaxed text-[15px] text-[#ded4f2]">
-                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-[#f5b301] to-[#c026d3]" />
+                <li key={li} className="flex gap-2.5 leading-relaxed text-[15px] text-k-text">
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-k-gold to-k-ember" />
                   <span>
                     <Inline text={l.replace(/^\s*[-•*]\s+/, '')} />
                   </span>
@@ -119,8 +119,8 @@ export function RichText({ body }: { body: string }): ReactNode {
           return (
             <ol key={ci} className="my-3 space-y-2">
               {lines.map((l, li) => (
-                <li key={li} className="flex gap-2.5 leading-relaxed text-[15px] text-[#ded4f2]">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#f5b301]/40 font-mono text-[11px] text-[#f5b301]">
+                <li key={li} className="flex gap-2.5 leading-relaxed text-[15px] text-k-text">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-k-gold/40 font-mono text-[11px] text-k-gold">
                     {li + 1}
                   </span>
                   <span>
@@ -132,7 +132,7 @@ export function RichText({ body }: { body: string }): ReactNode {
           );
         }
         return (
-          <p key={ci} className="my-3 leading-relaxed text-[15px] text-[#ded4f2] md:text-base">
+          <p key={ci} className="my-3 leading-relaxed text-[15px] text-k-text md:text-base">
             <Inline text={chunk} />
           </p>
         );

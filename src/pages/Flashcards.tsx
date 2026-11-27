@@ -113,7 +113,7 @@ export default function Flashcards() {
       {!started && (
         <>
           <Panel className="p-5">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">choose a deck</div>
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">choose a deck</div>
             <div className="flex flex-wrap gap-1.5">
               {(
                 [
@@ -127,8 +127,8 @@ export default function Flashcards() {
                   onClick={() => setDeck(d.k)}
                   className={`rounded-lg border px-3 py-1.5 font-mono text-[11px] transition-colors ${
                     deck === d.k
-                      ? 'border-[#f5b301]/60 bg-[#f5b301]/15 text-[#ffe9a8]'
-                      : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                      ? 'border-k-gold/60 bg-k-gold/15 text-k-glint'
+                      : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
                   }`}
                 >
                   {d.label}
@@ -142,8 +142,8 @@ export default function Flashcards() {
                   onClick={() => setDeck(l.week)}
                   className={`rounded-lg border px-2.5 py-1.5 font-mono text-[10.5px] transition-colors ${
                     deck === l.week
-                      ? 'border-[#c026d3]/60 bg-[#c026d3]/15 text-[#f5c8ff]'
-                      : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                      ? 'border-k-ember/60 bg-k-ember/15 text-k-sand'
+                      : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
                   }`}
                 >
                   WK{l.week}
@@ -154,15 +154,15 @@ export default function Flashcards() {
               <button onClick={start} disabled={deckCards.length === 0} className="btn btn-primary disabled:opacity-40">
                 start session ({Math.min(SESSION_SIZE, deckCards.length)} cards)
               </button>
-              <span className="text-[12px] text-[#c9bde6]">
+              <span className="text-[12px] text-k-muted">
                 {deckCards.length === 0 ? 'Nothing in this deck right now — come back later or pick another.' : ''}
               </span>
             </div>
           </Panel>
 
           <Panel tone="myco" className="p-5">
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#6ee7a8]">how the scheduler works</div>
-            <ul className="space-y-1.5 text-[12.5px] leading-relaxed text-[#cfe9dc]">
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-moss">how the scheduler works</div>
+            <ul className="space-y-1.5 text-[12.5px] leading-relaxed text-k-mint">
               <li>
                 <strong>Again</strong> resets the interval and drops the ease factor — the card returns this session.
               </li>
@@ -183,8 +183,8 @@ export default function Flashcards() {
       {started && current && (
         <div className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="font-mono text-[11px] text-[#c9bde6]">
-              card {idx + 1} / {queue.length} · week {current.week} · <span className="text-[#ffe9a8]">{current.tag}</span>
+            <div className="font-mono text-[11px] text-k-muted">
+              card {idx + 1} / {queue.length} · week {current.week} · <span className="text-k-glint">{current.tag}</span>
             </div>
             <div className="flex items-center gap-2">
               {session && (
@@ -206,7 +206,7 @@ export default function Flashcards() {
           <div className="flip-scene h-[320px] w-full">
             <div className={`flip-inner ${flipped ? 'flipped' : ''}`}>
               <div className="flip-face glass panel-edge items-center justify-center text-center">
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#f5b301]">question</div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-k-gold">question</div>
                 <div className="mt-4 font-heading text-xl font-semibold leading-snug text-white md:text-2xl">
                   {current.front}
                 </div>
@@ -215,9 +215,9 @@ export default function Flashcards() {
                 </button>
               </div>
               <div className="flip-face flip-back glass-hot panel-edge items-center justify-center text-center">
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#f5c8ff]">answer</div>
-                <div className="mt-4 text-[15px] leading-relaxed text-[#f3e9ff] md:text-base">{current.back}</div>
-                <Link to={`/lesson/${current.lessonId}`} className="mt-4 text-[11.5px] text-[#67e8f9] underline">
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-k-sand">answer</div>
+                <div className="mt-4 text-[15px] leading-relaxed text-k-paper md:text-base">{current.back}</div>
+                <Link to={`/lesson/${current.lessonId}`} className="mt-4 text-[11.5px] text-k-light underline">
                   go to the lesson →
                 </Link>
               </div>
@@ -233,10 +233,10 @@ export default function Flashcards() {
               >
                 {(
                   [
-                    { g: 'again', label: 'Again', hint: '1', cls: 'border-[#ff2fb9]/50 hover:bg-[#ff2fb9]/20' },
-                    { g: 'hard', label: 'Hard', hint: '2', cls: 'border-[#ff6b1a]/50 hover:bg-[#ff6b1a]/20' },
-                    { g: 'good', label: 'Good', hint: '3', cls: 'border-[#f5b301]/50 hover:bg-[#f5b301]/20' },
-                    { g: 'easy', label: 'Easy', hint: '4', cls: 'border-[#6ee7a8]/50 hover:bg-[#6ee7a8]/20' },
+                    { g: 'again', label: 'Again', hint: '1', cls: 'border-[#ff8a4c]/50 hover:bg-[#ff8a4c]/20' },
+                    { g: 'hard', label: 'Hard', hint: '2', cls: 'border-k-forge/50 hover:bg-k-forge/20' },
+                    { g: 'good', label: 'Good', hint: '3', cls: 'border-k-gold/50 hover:bg-k-gold/20' },
+                    { g: 'easy', label: 'Easy', hint: '4', cls: 'border-k-moss/50 hover:bg-k-moss/20' },
                   ] as const
                 ).map((b) => (
                   <button
@@ -245,7 +245,7 @@ export default function Flashcards() {
                     className={`rounded-xl border bg-white/[0.03] px-4 py-3 font-heading text-sm text-white transition-colors ${b.cls}`}
                   >
                     {b.label}
-                    <span className="ml-2 font-mono text-[10px] text-[#c9bde6]">{b.hint}</span>
+                    <span className="ml-2 font-mono text-[10px] text-k-muted">{b.hint}</span>
                   </button>
                 ))}
               </motion.div>
@@ -256,11 +256,11 @@ export default function Flashcards() {
 
       {!started && session && (
         <Panel tone="myco" className="p-5 text-center">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#6ee7a8]">session complete</div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-k-moss">session complete</div>
           <h3 className="mt-2 font-heading text-xl text-white">
             {session.good + session.easy} of {session.again + session.hard + session.good + session.easy} recalled cleanly
           </h3>
-          <p className="mt-1 text-[13px] text-[#c9bde6]">
+          <p className="mt-1 text-[13px] text-k-muted">
             {session.again} again · {session.hard} hard · {session.good} good · {session.easy} easy — {totalReviewed} cards
             reviewed all time.
           </p>

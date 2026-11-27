@@ -82,7 +82,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
           className="fixed inset-0 z-[80] flex items-start justify-center px-4 pt-[8vh]"
           onClick={onClose}
         >
-          <div className="absolute inset-0 bg-[#02000a]/80 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-[#050c0a]/80 backdrop-blur-sm" />
           <motion.div
             initial={{ opacity: 0, y: -14, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -91,27 +91,27 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
             className="glass-psy panel-edge relative w-full max-w-2xl overflow-hidden"
           >
             <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3">
-              <span className="text-lg text-[#67e8f9]">⌕</span>
+              <span className="text-lg text-k-light">⌕</span>
               <input
                 ref={inputRef}
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="Search lessons, labs, blueprints, tables, terms…"
-                className="w-full bg-transparent font-body text-[15px] text-white placeholder:text-[#8c82a8] focus:outline-none"
+                className="w-full bg-transparent font-body text-[15px] text-white placeholder:text-k-dim focus:outline-none"
               />
-              <kbd className="rounded border border-white/20 px-1.5 py-0.5 font-mono text-[10px] text-[#c9bde6]">esc</kbd>
+              <kbd className="rounded border border-white/20 px-1.5 py-0.5 font-mono text-[10px] text-k-muted">esc</kbd>
             </div>
 
             <div ref={listRef} className="max-h-[58vh] overflow-y-auto p-2">
               {results.length === 0 && (
-                <div className="px-3 py-8 text-center text-[13px] text-[#c9bde6]">
+                <div className="px-3 py-8 text-center text-[13px] text-k-muted">
                   Nothing matches “{q}”. Try a word like <em>kinematics</em>, <em>mycelium</em>, <em>LiDAR</em> or{' '}
                   <em>PID</em>.
                 </div>
               )}
               {grouped.map(([kind, hits]) => (
                 <div key={kind} className="mb-1.5">
-                  <div className="px-3 py-1 font-mono text-[10px] uppercase tracking-[0.24em] text-[#8c82a8]">
+                  <div className="px-3 py-1 font-mono text-[10px] uppercase tracking-[0.24em] text-k-dim">
                     {KIND_META[kind as keyof typeof KIND_META]?.label ?? kind}
                   </div>
                   {hits.map((hit) => {
@@ -129,7 +129,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
                           onClose();
                         }}
                         className={`flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left transition-colors ${
-                          active ? 'bg-[#67e8f9]/15 shadow-[inset_0_0_0_1px_rgba(103,232,249,0.35)]' : 'hover:bg-white/5'
+                          active ? 'bg-k-light/15 shadow-[inset_0_0_0_1px_rgba(129,220,212,0.35)]' : 'hover:bg-white/5'
                         }`}
                       >
                         <span
@@ -140,9 +140,9 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
                         </span>
                         <span className="min-w-0 flex-1">
                           <span className="block truncate font-heading text-[13.5px] text-white">{hit.title}</span>
-                          <span className="block truncate text-[11.5px] text-[#c9bde6]">{hit.subtitle}</span>
+                          <span className="block truncate text-[11.5px] text-k-muted">{hit.subtitle}</span>
                         </span>
-                        {active && <span className="flex-none font-mono text-[10px] text-[#67e8f9]">↵</span>}
+                        {active && <span className="flex-none font-mono text-[10px] text-k-light">↵</span>}
                       </button>
                     );
                   })}
@@ -150,7 +150,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
               ))}
             </div>
 
-            <div className="flex items-center justify-between border-t border-white/10 px-4 py-2 font-mono text-[10px] text-[#8c82a8]">
+            <div className="flex items-center justify-between border-t border-white/10 px-4 py-2 font-mono text-[10px] text-k-dim">
               <span>↑↓ to move · ↵ to open</span>
               <span>{results.length} results</span>
             </div>

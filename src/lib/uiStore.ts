@@ -9,17 +9,17 @@ export const VIBE_META: Record<Vibe, { label: string; glyph: string; blurb: stri
   calm: {
     label: 'Calm',
     glyph: '◌',
-    blurb: 'Still background, no animation. Best for reading and for motion sensitivity.',
+    blurb: 'A still background with no animation. Best for reading and for motion sensitivity.',
   },
   cosmic: {
-    label: 'Cosmic',
-    glyph: '✧',
-    blurb: 'Slow drifting nebula and starfield. The default: alive, but not distracting.',
+    label: 'Glow',
+    glyph: '✺',
+    blurb: 'Slow drifting sunlight and growing mycelium. The default: alive, but not distracting.',
   },
   psychedelic: {
-    label: 'Vibranium',
-    glyph: '◈',
-    blurb: 'Full kinetic field: plasma, kaleidoscope mandala, living hyphae, grain and scanlines.',
+    label: 'Solar storm',
+    glyph: '☀',
+    blurb: 'The full kinetic field: plasma, a turning solar mandala, living hyphae, grain and scanlines.',
   },
 };
 

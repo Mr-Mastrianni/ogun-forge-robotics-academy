@@ -130,7 +130,7 @@ export default function Charts() {
         <button
           onClick={() => setTab('mine')}
           className={`rounded-lg border px-3 py-1.5 font-mono text-[11px] ${
-            tab === 'mine' ? 'border-[#f5b301]/60 bg-[#f5b301]/15 text-[#ffe9a8]' : 'border-white/10 bg-white/[0.03] text-[#c9bde6]'
+            tab === 'mine' ? 'border-k-gold/60 bg-k-gold/15 text-k-glint' : 'border-white/10 bg-white/[0.03] text-k-muted'
           }`}
         >
           my analytics
@@ -138,7 +138,7 @@ export default function Charts() {
         <button
           onClick={() => setTab('concepts')}
           className={`rounded-lg border px-3 py-1.5 font-mono text-[11px] ${
-            tab === 'concepts' ? 'border-[#c026d3]/60 bg-[#c026d3]/15 text-[#f5c8ff]' : 'border-white/10 bg-white/[0.03] text-[#c9bde6]'
+            tab === 'concepts' ? 'border-k-ember/60 bg-k-ember/15 text-k-sand' : 'border-white/10 bg-white/[0.03] text-k-muted'
           }`}
         >
           concept charts ({conceptCharts.length})
@@ -166,15 +166,15 @@ export default function Charts() {
               <div className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <RadarChart data={radarData} outerRadius="70%">
-                    <PolarGrid stroke="#4a3d7a" />
-                    <PolarAngleAxis dataKey="track" tick={{ fill: '#c9bde6', fontSize: 10 }} />
-                    <PolarRadiusAxis domain={[0, 100]} tick={{ fill: '#8c82a8', fontSize: 9 }} stroke="#4a3d7a" />
-                    <Radar dataKey="mastery" name="mastery %" stroke="#f5b301" fill="#f5b301" fillOpacity={0.3} />
-                    <Tooltip contentStyle={{ background: '#0a0420', border: '1px solid #4a3d7a', fontSize: 11 }} />
+                    <PolarGrid stroke="#3d5444" />
+                    <PolarAngleAxis dataKey="track" tick={{ fill: '#b8c7b6', fontSize: 10 }} />
+                    <PolarRadiusAxis domain={[0, 100]} tick={{ fill: '#8fa08c', fontSize: 9 }} stroke="#3d5444" />
+                    <Radar dataKey="mastery" name="mastery %" stroke="#f7c77c" fill="#f7c77c" fillOpacity={0.3} />
+                    <Tooltip contentStyle={{ background: '#0c1914', border: '1px solid #3d5444', fontSize: 11 }} />
                   </RadarChart>
                 </ResponsiveContainer>
               </div>
-              <p className="mt-1 text-[12px] text-[#c9bde6]">
+              <p className="mt-1 text-[12px] text-k-muted">
                 Each axis is the mean of your best scores across that track's lessons. A spiky radar is normal early —
                 the goal is a full, even ring.
               </p>
@@ -185,17 +185,17 @@ export default function Charts() {
               <div className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={xpCurve}>
-                    <CartesianGrid stroke="#2a1f4d" strokeDasharray="3 5" />
-                    <XAxis dataKey="i" tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                    <YAxis tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                    <Tooltip contentStyle={{ background: '#0a0420', border: '1px solid #4a3d7a', fontSize: 11 }} />
+                    <CartesianGrid stroke="#1f3326" strokeDasharray="3 5" />
+                    <XAxis dataKey="i" tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                    <YAxis tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                    <Tooltip contentStyle={{ background: '#0c1914', border: '1px solid #3d5444', fontSize: 11 }} />
                     <Legend wrapperStyle={{ fontSize: 11 }} />
-                    <Area type="monotone" dataKey="xp" name="cumulative quiz XP" stroke="#6ee7a8" fill="#6ee7a8" fillOpacity={0.25} />
-                    <Area type="monotone" dataKey="accuracy" name="accuracy %" stroke="#c026d3" fill="#c026d3" fillOpacity={0.15} />
+                    <Area type="monotone" dataKey="xp" name="cumulative quiz XP" stroke="#a6eb9b" fill="#a6eb9b" fillOpacity={0.25} />
+                    <Area type="monotone" dataKey="accuracy" name="accuracy %" stroke="#e0782f" fill="#e0782f" fillOpacity={0.15} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
-              <p className="mt-1 text-[12px] text-[#c9bde6]">
+              <p className="mt-1 text-[12px] text-k-muted">
                 The gap between the two curves is the interesting part: rising XP with flat accuracy means you are
                 grinding, not learning. Slow down and re-run the labs.
               </p>
@@ -206,22 +206,22 @@ export default function Charts() {
               <div className="h-[320px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={lessonBars}>
-                    <CartesianGrid stroke="#2a1f4d" strokeDasharray="3 5" />
-                    <XAxis dataKey="name" tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                    <YAxis domain={[0, 100]} tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
+                    <CartesianGrid stroke="#1f3326" strokeDasharray="3 5" />
+                    <XAxis dataKey="name" tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                    <YAxis domain={[0, 100]} tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
                     <Tooltip
-                      contentStyle={{ background: '#0a0420', border: '1px solid #4a3d7a', fontSize: 11 }}
+                      contentStyle={{ background: '#0c1914', border: '1px solid #3d5444', fontSize: 11 }}
                       formatter={(v: number, _n, p) => [`${v}%`, (p.payload as { title: string }).title]}
                     />
                     <Bar dataKey="best" radius={[4, 4, 0, 0]}>
                       {lessonBars.map((b, i) => (
-                        <Cell key={i} fill={b.best >= 85 ? '#6ee7a8' : b.best > 0 ? '#f5b301' : '#312a52'} />
+                        <Cell key={i} fill={b.best >= 85 ? '#a6eb9b' : b.best > 0 ? '#f7c77c' : '#324a3a'} />
                       ))}
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-              <p className="mt-1 text-[12px] text-[#c9bde6]">
+              <p className="mt-1 text-[12px] text-k-muted">
                 Dark bars are lessons you have not quizzed. Green is 85% or better — the threshold where the material
                 is reliably yours.
               </p>
@@ -232,15 +232,15 @@ export default function Charts() {
               <div className="h-[320px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={levelBars} layout="vertical">
-                    <CartesianGrid stroke="#2a1f4d" strokeDasharray="3 5" />
-                    <XAxis type="number" tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                    <YAxis type="category" dataKey="level" tick={{ fill: '#c9bde6', fontSize: 11 }} stroke="#4a3d7a" width={80} />
-                    <Tooltip contentStyle={{ background: '#0a0420', border: '1px solid #4a3d7a', fontSize: 11 }} />
-                    <Bar dataKey="questions" fill="#67e8f9" radius={[0, 4, 4, 0]} />
+                    <CartesianGrid stroke="#1f3326" strokeDasharray="3 5" />
+                    <XAxis type="number" tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                    <YAxis type="category" dataKey="level" tick={{ fill: '#b8c7b6', fontSize: 11 }} stroke="#3d5444" width={80} />
+                    <Tooltip contentStyle={{ background: '#0c1914', border: '1px solid #3d5444', fontSize: 11 }} />
+                    <Bar dataKey="questions" fill="#81dcd4" radius={[0, 4, 4, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-              <p className="mt-1 text-[12px] text-[#c9bde6]">
+              <p className="mt-1 text-[12px] text-k-muted">
                 This grows as you quiz more lessons and shows which cognitive levels you have actually been assessed on
                 — recall through design.
               </p>
@@ -251,19 +251,19 @@ export default function Charts() {
             <div className="mb-3 font-heading text-sm text-white">Study record</div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">cards in rotation</div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">cards in rotation</div>
                 <div className="font-heading text-xl text-white">{Object.keys(useProgress.getState().cards).length}</div>
               </div>
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">cards reviewed</div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">cards reviewed</div>
                 <div className="font-heading text-xl text-white">{useProgress.getState().totalCardsReviewed}</div>
               </div>
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">flashcards authored</div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">flashcards authored</div>
                 <div className="font-heading text-xl text-white">{flashcards.length}</div>
               </div>
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">quiz questions</div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">quiz questions</div>
                 <div className="font-heading text-xl text-white">{allQuizQuestions.length}</div>
               </div>
             </div>
@@ -272,7 +272,7 @@ export default function Charts() {
       ) : (
         <div className="space-y-5">
           <Panel className="p-4">
-            <p className="text-[13px] leading-relaxed text-[#c9bde6]">
+            <p className="text-[13px] leading-relaxed text-k-muted">
               Every chart authored into the sixteen lessons, collected in one place. These are the graphs an engineer
               should be able to sketch from memory — torque–speed curves, step responses, noise spectra, cost of
               transport, error growth and power densities.
@@ -292,15 +292,15 @@ export default function Charts() {
                     <Chip tone="psy">{lesson.track}</Chip>
                   </div>
                   <div className="font-heading text-sm font-semibold text-white">{block.title}</div>
-                  <div className="text-[11.5px] text-[#c9bde6]">{lesson.title}</div>
+                  <div className="text-[11.5px] text-k-muted">{lesson.title}</div>
                   <div className="mt-2 h-[260px]">
                     <ResponsiveContainer width="100%" height="100%">
                       {block.chartType === 'bar' ? (
                         <BarChart data={data}>
-                          <CartesianGrid stroke="#2a1f4d" strokeDasharray="3 5" />
-                          <XAxis dataKey="x" tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                          <YAxis tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                          <Tooltip contentStyle={{ background: '#0a0420', border: '1px solid #4a3d7a', fontSize: 11 }} />
+                          <CartesianGrid stroke="#1f3326" strokeDasharray="3 5" />
+                          <XAxis dataKey="x" tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                          <YAxis tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                          <Tooltip contentStyle={{ background: '#0c1914', border: '1px solid #3d5444', fontSize: 11 }} />
                           <Legend wrapperStyle={{ fontSize: 11 }} />
                           {block.series.map((s) => (
                             <Bar key={s.key} dataKey={s.key} name={s.label} fill={s.color} radius={[4, 4, 0, 0]} />
@@ -308,10 +308,10 @@ export default function Charts() {
                         </BarChart>
                       ) : block.chartType === 'area' ? (
                         <AreaChart data={data}>
-                          <CartesianGrid stroke="#2a1f4d" strokeDasharray="3 5" />
-                          <XAxis dataKey="x" tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                          <YAxis tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                          <Tooltip contentStyle={{ background: '#0a0420', border: '1px solid #4a3d7a', fontSize: 11 }} />
+                          <CartesianGrid stroke="#1f3326" strokeDasharray="3 5" />
+                          <XAxis dataKey="x" tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                          <YAxis tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                          <Tooltip contentStyle={{ background: '#0c1914', border: '1px solid #3d5444', fontSize: 11 }} />
                           <Legend wrapperStyle={{ fontSize: 11 }} />
                           {block.series.map((s) => (
                             <Area key={s.key} dataKey={s.key} name={s.label} stroke={s.color} fill={s.color} fillOpacity={0.25} />
@@ -319,9 +319,9 @@ export default function Charts() {
                         </AreaChart>
                       ) : block.chartType === 'radar' ? (
                         <RadarChart data={data} outerRadius="70%">
-                          <PolarGrid stroke="#4a3d7a" />
-                          <PolarAngleAxis dataKey="x" tick={{ fill: '#c9bde6', fontSize: 10 }} />
-                          <PolarRadiusAxis tick={{ fill: '#8c82a8', fontSize: 9 }} stroke="#4a3d7a" />
+                          <PolarGrid stroke="#3d5444" />
+                          <PolarAngleAxis dataKey="x" tick={{ fill: '#b8c7b6', fontSize: 10 }} />
+                          <PolarRadiusAxis tick={{ fill: '#8fa08c', fontSize: 9 }} stroke="#3d5444" />
                           {block.series.map((s) => (
                             <Radar key={s.key} dataKey={s.key} name={s.label} stroke={s.color} fill={s.color} fillOpacity={0.25} />
                           ))}
@@ -329,10 +329,10 @@ export default function Charts() {
                         </RadarChart>
                       ) : (
                         <LineChart data={data}>
-                          <CartesianGrid stroke="#2a1f4d" strokeDasharray="3 5" />
-                          <XAxis dataKey="x" tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                          <YAxis tick={{ fill: '#c9bde6', fontSize: 10 }} stroke="#4a3d7a" />
-                          <Tooltip contentStyle={{ background: '#0a0420', border: '1px solid #4a3d7a', fontSize: 11 }} />
+                          <CartesianGrid stroke="#1f3326" strokeDasharray="3 5" />
+                          <XAxis dataKey="x" tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                          <YAxis tick={{ fill: '#b8c7b6', fontSize: 10 }} stroke="#3d5444" />
+                          <Tooltip contentStyle={{ background: '#0c1914', border: '1px solid #3d5444', fontSize: 11 }} />
                           <Legend wrapperStyle={{ fontSize: 11 }} />
                           {block.series.map((s) => (
                             <Line key={s.key} type="monotone" dataKey={s.key} name={s.label} stroke={s.color} strokeWidth={2.2} dot={false} />
@@ -341,11 +341,11 @@ export default function Charts() {
                       )}
                     </ResponsiveContainer>
                   </div>
-                  <div className="mt-1 flex justify-between font-mono text-[10px] text-[#8c82a8]">
+                  <div className="mt-1 flex justify-between font-mono text-[10px] text-k-dim">
                     <span>x: {block.xLabel}</span>
                     <span>y: {block.yLabel}</span>
                   </div>
-                  {block.caption && <p className="mt-2 text-[12px] leading-relaxed text-[#c9bde6]">{block.caption}</p>}
+                  {block.caption && <p className="mt-2 text-[12px] leading-relaxed text-k-muted">{block.caption}</p>}
                 </Panel>
               );
             })}

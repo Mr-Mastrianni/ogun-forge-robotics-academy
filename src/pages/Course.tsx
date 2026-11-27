@@ -40,8 +40,8 @@ export default function Course() {
         <StatOrb value={`${Object.values(scores).reduce((a, s) => a + s.attempts, 0)}`} label="quiz attempts" glyph="◎" tone="sirius" />
         <StatOrb value={`${xp}`} label="total XP" glyph="✦" tone="myco" />
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">rank</div>
-          <div className="font-heading text-lg text-[#f5b301]">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">rank</div>
+          <div className="font-heading text-lg text-k-gold">
             {rank.glyph} {rank.name}
           </div>
           <div className="mt-2">
@@ -59,7 +59,7 @@ export default function Course() {
             <FadeIn key={w.week} delay={wi * 0.03}>
               <div className="relative">
                 <div className="mb-3 flex flex-wrap items-center gap-3">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-[#f5b301]/40 bg-gradient-to-br from-[#3a1206] to-[#120a2e] font-display text-lg text-[#f5b301]">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-k-gold/40 bg-gradient-to-br from-[#3a1206] to-k-panel font-display text-lg text-k-gold">
                     {String(w.week).padStart(2, '0')}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -72,7 +72,7 @@ export default function Course() {
                         </Chip>
                       )}
                     </div>
-                    <div className="text-[12.5px] text-[#c9bde6]">{w.theme}</div>
+                    <div className="text-[12.5px] text-k-muted">{w.theme}</div>
                   </div>
                   {boss && (
                     <Link
@@ -94,22 +94,22 @@ export default function Course() {
                         <div className="flex items-start justify-between gap-3">
                           <div>
                             <div className="flex items-center gap-2">
-                              <span className="font-mono text-[10px] uppercase tracking-widest text-[#f5b301]">
+                              <span className="font-mono text-[10px] uppercase tracking-widest text-k-gold">
                                 Lesson {l.number}
                               </span>
                               <Chip tone="dim">{TRACK_LABELS[l.track]}</Chip>
                               {done && <Chip tone="myco">✓</Chip>}
                             </div>
                             <h4 className="mt-1 font-heading text-base font-semibold leading-snug text-white">{l.title}</h4>
-                            <p className="mt-1 text-[12.5px] leading-relaxed text-[#c9bde6]">{l.subtitle}</p>
+                            <p className="mt-1 text-[12.5px] leading-relaxed text-k-muted">{l.subtitle}</p>
                           </div>
                           <div className="shrink-0 text-right">
-                            <div className="font-mono text-[10px] text-[#c9bde6]">{l.duration} min</div>
-                            <div className="font-mono text-[10px] text-[#ffe9a8]">+{l.xp} XP</div>
+                            <div className="font-mono text-[10px] text-k-muted">{l.duration} min</div>
+                            <div className="font-mono text-[10px] text-k-glint">+{l.xp} XP</div>
                           </div>
                         </div>
 
-                        <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] text-[#c9bde6]">
+                        <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] text-k-muted">
                           <DifficultyPips level={l.difficulty} />
                           <span className="capitalize">{l.difficulty}</span>
                           <span>·</span>
@@ -130,7 +130,7 @@ export default function Course() {
                           ))}
                         </div>
 
-                        <p className="mt-3 border-l-2 border-[#c026d3]/50 pl-3 text-[12.5px] italic leading-snug text-[#ded4f2]">
+                        <p className="mt-3 border-l-2 border-k-ember/50 pl-3 text-[12.5px] italic leading-snug text-k-text">
                           {l.hook}
                         </p>
 
@@ -142,7 +142,7 @@ export default function Course() {
                             quiz
                           </Link>
                           {score && (
-                            <span className="ml-auto font-mono text-[11px] text-[#c9bde6]">
+                            <span className="ml-auto font-mono text-[11px] text-k-muted">
                               best {score.best}/{score.total}
                             </span>
                           )}
@@ -158,9 +158,9 @@ export default function Course() {
       </div>
 
       <Panel className="p-6 text-center">
-        <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#f5b301]">after week 8</div>
+        <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-k-gold">after week 8</div>
         <h3 className="mt-2 font-heading text-xl text-white">The Idea Lab is where the syllabus ends</h3>
-        <p className="mx-auto mt-2 max-w-2xl text-[13px] leading-relaxed text-[#c9bde6]">
+        <p className="mx-auto mt-2 max-w-2xl text-[13px] leading-relaxed text-k-muted">
           Twenty-four heritage entries, seventy-plus blueprints and ten labs feed a capstone in which you design a
           machine that has never existed. Nothing in the course is decoration.
         </p>

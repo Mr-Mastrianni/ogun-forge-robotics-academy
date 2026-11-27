@@ -97,8 +97,8 @@ export const lesson: Lesson = {
       yLabel: 'Tool position error (mm)',
       x: [1, 2, 5, 8, 12, 16],
       series: [
-        { key: 'r05', label: 'Reach 0.5 m', color: '#f59e0b', data: [0.145, 0.291, 0.727, 1.164, 1.745, 2.327] },
-        { key: 'r10', label: 'Reach 1.0 m', color: '#38bdf8', data: [0.291, 0.582, 1.455, 2.327, 3.491, 4.654] },
+        { key: 'r05', label: 'Reach 0.5 m', color: '#e9a64e', data: [0.145, 0.291, 0.727, 1.164, 1.745, 2.327] },
+        { key: 'r10', label: 'Reach 1.0 m', color: '#5cc8c0', data: [0.291, 0.582, 1.455, 2.327, 3.491, 4.654] },
       ],
     },
     {

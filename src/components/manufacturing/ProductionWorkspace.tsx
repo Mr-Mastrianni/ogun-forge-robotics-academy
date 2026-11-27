@@ -29,17 +29,17 @@ export default function ProductionWorkspace({ project: p }: { project: Productio
     patch({ records: { ...p.records, [gate.id]: { ...r, ...changes } } });
   return (
     <div className="space-y-5">
-      <Link to="/manufacturing" className="text-sm text-[#67e8f9]">
+      <Link to="/manufacturing" className="text-sm text-k-light">
         ← Manufacturing Forge
       </Link>
       <header className="flex flex-wrap justify-between gap-4">
         <div>
-          <div className="font-mono text-xs uppercase tracking-widest text-[#f5b301]">
+          <div className="font-mono text-xs uppercase tracking-widest text-k-gold">
             Production project · USD scenario
           </div>
           <h1 className="font-heading text-3xl text-white mt-1">{p.title}</h1>
           {p.blueprintId && (
-            <Link className="text-sm text-[#6ee7a8]" to={`/ideas/${p.blueprintId}`}>
+            <Link className="text-sm text-k-moss" to={`/ideas/${p.blueprintId}`}>
               View source blueprint ↗
             </Link>
           )}
@@ -64,7 +64,7 @@ export default function ProductionWorkspace({ project: p }: { project: Productio
       </header>
       <Panel className="p-4">
         <Progress value={cleared / gates.length} label={`${cleared}/8 gates cleared in sequence`} />
-        <p className="mt-2 text-sm text-[#c9bde6]">
+        <p className="mt-2 text-sm text-k-muted">
           {cleared < gates.length
             ? `Next decision: ${gates[cleared].title}.`
             : 'All gates documented. Review evidence before any real release.'}{' '}
@@ -131,13 +131,13 @@ export default function ProductionWorkspace({ project: p }: { project: Productio
               {gates.map((g, i) => (
                 <button
                   key={g.id}
-                  className={`w-full rounded-xl border p-3 text-left text-sm ${gateIndex === i ? 'border-[#f5b301] bg-[#f5b301]/10' : 'border-white/15 bg-black/20'}`}
+                  className={`w-full rounded-xl border p-3 text-left text-sm ${gateIndex === i ? 'border-k-gold bg-k-gold/10' : 'border-white/15 bg-black/20'}`}
                   onClick={() => setGateIndex(i)}
                   aria-pressed={gateIndex === i}
                 >
-                  <span className="text-[#f5b301] mr-2">{i < cleared ? '✓' : i === cleared ? '◉' : '○'}</span>
+                  <span className="text-k-gold mr-2">{i < cleared ? '✓' : i === cleared ? '◉' : '○'}</span>
                   {i + 1}. {g.title}
-                  <span className="block text-xs mt-1 ml-6 text-[#c9bde6]">
+                  <span className="block text-xs mt-1 ml-6 text-k-muted">
                     {i < cleared
                       ? 'Cleared'
                       : gateReady(p, g)
@@ -156,13 +156,13 @@ export default function ProductionWorkspace({ project: p }: { project: Productio
                   {gateIndex < cleared ? 'Gate cleared' : 'Not cleared'}
                 </Chip>
               </div>
-              <p className="text-sm text-[#c9bde6]">
+              <p className="text-sm text-k-muted">
                 Prepare any gate in advance. Clearance requires every earlier gate, all checks, an evidence
                 record, reviewer and date. These are your recorded decisions, not independent approvals.
               </p>
               <div className="space-y-3">
                 {gate.checks.map((k, i) => (
-                  <label key={k} className="flex gap-3 items-start text-[#ded4f2]">
+                  <label key={k} className="flex gap-3 items-start text-k-text">
                     <input
                       type="checkbox"
                       className="mt-1"
@@ -198,7 +198,7 @@ export default function ProductionWorkspace({ project: p }: { project: Productio
                 />
               </div>
               {gate.id === 'sourcing' && (
-                <p className="text-sm text-[#f5b301]">
+                <p className="text-sm text-k-gold">
                   This gate also needs a selected supplier with name, qualification evidence and quote
                   inclusions recorded in Suppliers.
                 </p>
@@ -218,7 +218,7 @@ export default function ProductionWorkspace({ project: p }: { project: Productio
       {tab === 'suppliers' && <Suppliers project={p} patch={patch} />}
       {tab === 'costs' && <CostEditor project={p} patch={patch} />}
       {tab === 'payments' && <Payments project={p} patch={patch} />}
-      <p className="text-xs text-[#c9bde6]">
+      <p className="text-xs text-k-muted">
         Auto-saved in this browser · export a backup for portability. Keep sensitive contracts and CAD in your
         own document system; use references here. No bank or supplier connection is active.
       </p>
@@ -247,7 +247,7 @@ function Suppliers({
         <div className="flex flex-wrap gap-3 items-center justify-between">
           <div>
             <h2 className="font-heading text-xl text-white">Supplier comparison</h2>
-            <p className="text-sm text-[#c9bde6] mt-1">
+            <p className="text-sm text-k-muted mt-1">
               Quotes must share quantity, revision, currency and delivery scope to be comparable. All amounts
               here are USD.
             </p>
@@ -275,7 +275,7 @@ function Suppliers({
           </button>
         </div>
         {!p.suppliers.length ? (
-          <p className="mt-5 text-[#c9bde6]">
+          <p className="mt-5 text-k-muted">
             Build a shortlist, then request equivalent quotes. No sample suppliers are presented as vetted
             partners.
           </p>
@@ -387,7 +387,7 @@ function Suppliers({
             />
           </div>
           {p.costs.quantity < supplier.moq && (
-            <p className="text-[#f5b301]">
+            <p className="text-k-gold">
               Current scenario ({p.costs.quantity} units) is below this supplier’s MOQ ({supplier.moq}).
               Negotiate and document revised terms before treating the quote as viable.
             </p>
@@ -422,7 +422,7 @@ function Suppliers({
             </button>
           </div>
           {notice && (
-            <p role="status" className="text-sm text-[#6ee7a8]">
+            <p role="status" className="text-sm text-k-moss">
               {notice}
             </p>
           )}
@@ -451,7 +451,7 @@ function Suppliers({
       )}
       <Panel tone="myco" className="p-5">
         <h3 className="font-heading text-white">Negotiate a workable trial</h3>
-        <p className="mt-2 text-sm text-[#cfe9dc]">
+        <p className="mt-2 text-sm text-k-mint">
           Compare a setup fee, standard components and fewer variants before increasing order size. Preserve
           quality specifications, document tooling ownership, agree change control and tie payment releases to
           evidence.
@@ -496,11 +496,11 @@ function CostEditor({
     <div className="space-y-4">
       <Panel className="p-5">
         <h2 className="font-heading text-xl text-white">Landed-cost & margin bench</h2>
-        <p className="mt-2 text-sm text-[#c9bde6]">
+        <p className="mt-2 text-sm text-k-muted">
           USD planning estimate. Add only costs outside the quoted goods price. For DDP, confirm inclusions
           before adding freight or duty. Tooling and testing are allocated to this first run in full.
         </p>
-        <p className="mt-2 text-sm text-[#f5b301]">Quote basis: {p.quoteBasis}</p>
+        <p className="mt-2 text-sm text-k-gold">Quote basis: {p.quoteBasis}</p>
         <div className="grid gap-4 mt-5 md:grid-cols-2 lg:grid-cols-3">
           {costFields.map(({ key, ...f }) => (
             <NumberField
@@ -544,25 +544,25 @@ function CostEditor({
               ].map(([label, value]) => (
                 <tr key={label}>
                   <th scope="row">{label}</th>
-                  <td className="font-mono text-[#ffe9a8]">{value}</td>
+                  <td className="font-mono text-k-glint">{value}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-sm text-[#c9bde6]">
+        <p className="mt-3 text-sm text-k-muted">
           Repeat landed = quoted goods + additional packaging + transport + duties + batch fees ÷ units.
           Contribution subtracts variable selling costs; it excludes fixed overhead and income tax. Recovery
           units cover tooling/testing only, not the entire inventory cash commitment.
         </p>
         {(!c.unitPrice || !c.retail || !c.dutyBasis.trim()) && (
-          <p className="mt-3 text-[#f5b301]" role="status">
+          <p className="mt-3 text-k-gold" role="status">
             Estimate incomplete: confirm goods price, selling price and duty/inclusion evidence before relying
             on these figures.
           </p>
         )}
         {v.contribution <= 0 && (
-          <p className="mt-3 text-[#f5b301]">
+          <p className="mt-3 text-k-gold">
             No positive contribution in this scenario. Revisit price, costs or the product before ordering.
           </p>
         )}
@@ -589,7 +589,7 @@ function Payments({
     <div className="space-y-4">
       <Panel className="p-5">
         <h2 className="font-heading text-xl text-white">Milestone payment plan</h2>
-        <p className="mt-2 text-sm text-[#c9bde6]">
+        <p className="mt-2 text-sm text-k-muted">
           Percentages apply to the quoted goods invoice ({usd(v.goods)}). Setup, testing and additional
           logistics need separate funding. “Paid” is your record only; this workspace cannot transfer money.
         </p>
@@ -616,7 +616,7 @@ function Payments({
             </button>
           ))}
         </div>
-        <p className={`mt-3 ${valid ? 'text-[#6ee7a8]' : 'text-[#f5b301]'}`} role="status">
+        <p className={`mt-3 ${valid ? 'text-k-moss' : 'text-k-gold'}`} role="status">
           Allocation: {totalPercent.toFixed(1)}% {valid ? '✓' : '— must total 100%; payment marking disabled'}
         </p>
       </Panel>
@@ -676,11 +676,11 @@ function Payments({
       })}
       <Panel tone="myco" className="p-5">
         <h3 className="font-heading text-white">Cash timing snapshot</h3>
-        <p className="mt-2 text-[#cfe9dc]">
+        <p className="mt-2 text-k-mint">
           Recorded goods payments: {usd(paid)} · remaining on goods invoice:{' '}
           {valid ? usd(v.goods - paid) : 'Fix allocation first'}
         </p>
-        <p className="mt-2 text-sm text-[#cfe9dc]">
+        <p className="mt-2 text-sm text-k-mint">
           Other modeled first-run costs: {usd(v.total - v.goods)} before contingency. Deferred terms and
           SINOSURE eligibility must be confirmed in writing. This plan contains no assumed sales receipts or
           credit approvals.

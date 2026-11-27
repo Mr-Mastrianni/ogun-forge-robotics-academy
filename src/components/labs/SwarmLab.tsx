@@ -201,12 +201,12 @@ function Flock({
       </instancedMesh>
       {showLinks && (
         <lineSegments ref={lineRef} geometry={lineGeom}>
-          <lineBasicMaterial color="#c026d3" transparent opacity={0.35} />
+          <lineBasicMaterial color="#e0782f" transparent opacity={0.35} />
         </lineSegments>
       )}
       <mesh>
         <sphereGeometry args={[BOUND, 26, 18]} />
-        <meshBasicMaterial color="#4338ca" wireframe transparent opacity={0.09} />
+        <meshBasicMaterial color="#2f6b5f" wireframe transparent opacity={0.09} />
       </mesh>
     </group>
   );
@@ -256,11 +256,11 @@ export default function SwarmLab({ tasks }: LabProps) {
       }
       readouts={
         <>
-          <Readout label="agents" value="90" tone="#f5c8ff" />
+          <Readout label="agents" value="90" tone="#f7dcb8" />
           <Readout label="mean speed" value={metrics.speed.toFixed(2) + ' m/s'} />
           <Readout label="mean spread" value={metrics.spread.toFixed(2) + ' m'} />
-          <Readout label="order parameter" value={order.toFixed(3)} tone={order > 0.7 ? '#6ee7a8' : '#f5b301'} />
-          <div className="pt-1 text-[11px] leading-snug text-[#c9bde6]">
+          <Readout label="order parameter" value={order.toFixed(3)} tone={order > 0.7 ? '#a6eb9b' : '#f7c77c'} />
+          <div className="pt-1 text-[11px] leading-snug text-k-muted">
             The order parameter is the mean alignment of headings with +Z: near 1 means the flock is polarised like a
             bird murmuration, near 0 means it is gas-like. Try raising alignment with separation at zero — the flock
             collapses into a single clump. Real drone swarms add collision cones and geofences on top of these rules
@@ -270,10 +270,10 @@ export default function SwarmLab({ tasks }: LabProps) {
       }
     >
       <Canvas camera={{ position: [14, 10, 16], fov: 45 }} dpr={[1, 1.7]}>
-        <color attach="background" args={['#0a0420']} />
+        <color attach="background" args={['#0c1914']} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[8, 14, 6]} intensity={1.2} />
-        <pointLight position={[-8, 4, -8]} color="#c026d3" intensity={2} distance={28} />
+        <pointLight position={[-8, 4, -8]} color="#e0782f" intensity={2} distance={28} />
         <Flock
           params={{ sep, ali, coh, speed, perception, sepRadius }}
           running={running}

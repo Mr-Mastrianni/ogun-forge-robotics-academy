@@ -21,7 +21,7 @@ export function Field({
     maxLength,
   };
   return (
-    <label className="block space-y-1 text-sm text-[#c9bde6]">
+    <label className="block space-y-1 text-sm text-k-muted">
       <span>{label}</span>
       {multiline ? <textarea {...props} rows={4} /> : <input {...props} type={type} />}
     </label>
@@ -43,7 +43,7 @@ export function NumberField({
   integer?: boolean;
 }) {
   return (
-    <label className="block space-y-1 text-sm text-[#c9bde6]">
+    <label className="block space-y-1 text-sm text-k-muted">
       <span>{label}</span>
       <input
         className="forge-input"
@@ -73,7 +73,7 @@ export function SelectField({
   children: ReactNode;
 }) {
   return (
-    <label className="block space-y-1 text-sm text-[#c9bde6]">
+    <label className="block space-y-1 text-sm text-k-muted">
       <span>{label}</span>
       <select className="forge-input" value={value} onChange={(e) => onChange(e.target.value)}>
         {children}

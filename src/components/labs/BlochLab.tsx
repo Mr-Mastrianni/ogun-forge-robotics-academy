@@ -100,20 +100,20 @@ function BlochSphere({ theta, phi, arc }: { theta: number; phi: number; arc: num
     <group>
       <mesh>
         <sphereGeometry args={[1, 32, 24]} />
-        <meshStandardMaterial color="#4c1d95" transparent opacity={0.13} roughness={0.4} metalness={0.4} />
+        <meshStandardMaterial color="#8c4f26" transparent opacity={0.13} roughness={0.4} metalness={0.4} />
       </mesh>
       {circles.map((pts, i) => (
-        <Line key={i} points={pts} color="#6d5bb8" lineWidth={0.7} transparent opacity={0.42} />
+        <Line key={i} points={pts} color="#6ea580" lineWidth={0.7} transparent opacity={0.42} />
       ))}
-      <Line points={[new THREE.Vector3(-1.35, 0, 0), new THREE.Vector3(1.35, 0, 0)]} color="#67e8f9" lineWidth={1} transparent opacity={0.6} />
-      <Line points={[new THREE.Vector3(0, -1.35, 0), new THREE.Vector3(0, 1.35, 0)]} color="#67e8f9" lineWidth={1} transparent opacity={0.6} />
-      <Line points={[new THREE.Vector3(0, 0, -1.35), new THREE.Vector3(0, 0, 1.35)]} color="#67e8f9" lineWidth={1} transparent opacity={0.6} />
+      <Line points={[new THREE.Vector3(-1.35, 0, 0), new THREE.Vector3(1.35, 0, 0)]} color="#81dcd4" lineWidth={1} transparent opacity={0.6} />
+      <Line points={[new THREE.Vector3(0, -1.35, 0), new THREE.Vector3(0, 1.35, 0)]} color="#81dcd4" lineWidth={1} transparent opacity={0.6} />
+      <Line points={[new THREE.Vector3(0, 0, -1.35), new THREE.Vector3(0, 0, 1.35)]} color="#81dcd4" lineWidth={1} transparent opacity={0.6} />
 
       {/* state vector */}
-      <Line points={[new THREE.Vector3(0, 0, 0), vec]} color="#f5b301" lineWidth={4} />
+      <Line points={[new THREE.Vector3(0, 0, 0), vec]} color="#f7c77c" lineWidth={4} />
       <mesh position={vec}>
         <sphereGeometry args={[0.085, 18, 18]} />
-        <meshStandardMaterial color="#ff2fb9" emissive="#c026d3" emissiveIntensity={1.8} />
+        <meshStandardMaterial color="#ff8a4c" emissive="#e0782f" emissiveIntensity={1.8} />
       </mesh>
 
       {/* precession arc near the equator showing the phase */}
@@ -123,17 +123,17 @@ function BlochSphere({ theta, phi, arc }: { theta: number; phi: number; arc: num
           const r = Math.sin(theta) || 0.001;
           return new THREE.Vector3(r * Math.cos(a), Math.cos(theta), r * Math.sin(a));
         })}
-        color="#6ee7a8"
+        color="#a6eb9b"
         lineWidth={2}
       />
 
       <mesh position={[0, 1.16, 0]}>
         <sphereGeometry args={[0.05, 10, 10]} />
-        <meshBasicMaterial color="#e0f2fe" />
+        <meshBasicMaterial color="#dff3ef" />
       </mesh>
       <mesh position={[0, -1.16, 0]}>
         <sphereGeometry args={[0.05, 10, 10]} />
-        <meshBasicMaterial color="#ff6b1a" />
+        <meshBasicMaterial color="#f2853a" />
       </mesh>
 
       {/* faint trail of the last rotation */}
@@ -143,7 +143,7 @@ function BlochSphere({ theta, phi, arc }: { theta: number; phi: number; arc: num
           const th = theta * (1 - u) + arc * u;
           return new THREE.Vector3(Math.sin(th) * Math.cos(phi), Math.cos(th), Math.sin(th) * Math.sin(phi));
         })}
-        color="#c026d3"
+        color="#e0782f"
         lineWidth={1.4}
         transparent
         opacity={0.55}
@@ -259,31 +259,31 @@ export default function BlochLab({ tasks }: LabProps) {
         <>
           <Readout label="α (|0⟩ amplitude)" value={`${state[0].re.toFixed(3)} ${state[0].im >= 0 ? '+' : '−'} ${Math.abs(state[0].im).toFixed(3)}i`} />
           <Readout label="β (|1⟩ amplitude)" value={`${state[1].re.toFixed(3)} ${state[1].im >= 0 ? '+' : '−'} ${Math.abs(state[1].im).toFixed(3)}i`} />
-          <Readout label="P(0) = |α|²" value={(p0 / (norm * norm)).toFixed(4)} tone="#67e8f9" />
-          <Readout label="P(1) = |β|²" value={(p1 / (norm * norm)).toFixed(4)} tone="#ff6b1a" />
+          <Readout label="P(0) = |α|²" value={(p0 / (norm * norm)).toFixed(4)} tone="#81dcd4" />
+          <Readout label="P(1) = |β|²" value={(p1 / (norm * norm)).toFixed(4)} tone="#f2853a" />
           <Readout label="θ (polar)" value={((theta * 180) / Math.PI).toFixed(1) + '°'} />
           <Readout label="φ (azimuth)" value={((phi * 180) / Math.PI).toFixed(1) + '°'} />
-          <Readout label="Bloch vector" value={`(${bloch.x.toFixed(2)}, ${bloch.y.toFixed(2)}, ${bloch.z.toFixed(2)})`} tone="#f5c8ff" />
+          <Readout label="Bloch vector" value={`(${bloch.x.toFixed(2)}, ${bloch.y.toFixed(2)}, ${bloch.z.toFixed(2)})`} tone="#f7dcb8" />
           {hist.length > 0 && (
-            <div className="rounded-xl border border-[#c026d3]/25 bg-black/30 p-2">
-              <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[#f5c8ff]">
+            <div className="rounded-xl border border-k-ember/25 bg-black/30 p-2">
+              <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-k-sand">
                 measurement histogram
               </div>
               <div className="h-[100px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={hist}>
-                    <CartesianGrid stroke="#3b1d52" strokeDasharray="2 4" />
-                    <XAxis dataKey="label" tick={{ fill: '#f5c8ff', fontSize: 10 }} stroke="#5b2d7a" />
-                    <YAxis tick={{ fill: '#f5c8ff', fontSize: 9 }} stroke="#5b2d7a" width={34} />
-                    <Tooltip contentStyle={{ background: '#160726', border: '1px solid #5b2d7a', fontSize: 11 }} />
-                    <Bar dataKey="count" fill="#c026d3" radius={[4, 4, 0, 0]} />
+                    <CartesianGrid stroke="#284732" strokeDasharray="2 4" />
+                    <XAxis dataKey="label" tick={{ fill: '#f7dcb8', fontSize: 10 }} stroke="#3c6b4c" />
+                    <YAxis tick={{ fill: '#f7dcb8', fontSize: 9 }} stroke="#3c6b4c" width={34} />
+                    <Tooltip contentStyle={{ background: '#0e2118', border: '1px solid #3c6b4c', fontSize: 11 }} />
+                    <Bar dataKey="count" fill="#e0782f" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
           )}
-          <div className="pt-1 text-[11px] leading-snug text-[#c9bde6]">{lastGate}</div>
-          <div className="text-[11px] leading-snug text-[#c9bde6]">
+          <div className="pt-1 text-[11px] leading-snug text-k-muted">{lastGate}</div>
+          <div className="text-[11px] leading-snug text-k-muted">
             Apply Z twice in a row after H: you return exactly to where you started — that is a global phase you can
             never measure. This is why the sphere is a sphere and not a ball of arrows.
           </div>
@@ -291,14 +291,14 @@ export default function BlochLab({ tasks }: LabProps) {
       }
     >
       <Canvas camera={{ position: [2.6, 1.9, 2.9], fov: 42 }} dpr={[1, 1.8]}>
-        <color attach="background" args={['#0b0318']} />
+        <color attach="background" args={['#0b1712']} />
         <ambientLight intensity={0.7} />
-        <pointLight position={[3, 3, 3]} color="#c026d3" intensity={2.6} distance={14} />
-        <pointLight position={[-3, -2, -2]} color="#67e8f9" intensity={1.6} distance={12} />
+        <pointLight position={[3, 3, 3]} color="#e0782f" intensity={2.6} distance={14} />
+        <pointLight position={[-3, -2, -2]} color="#81dcd4" intensity={1.6} distance={12} />
         <BlochSphere theta={theta} phi={phi} arc={theta * 0.5} />
         <OrbitControls enablePan={false} minDistance={2.4} maxDistance={9} autoRotate autoRotateSpeed={0.5} />
       </Canvas>
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-[#c026d3]/20 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-[#f5c8ff]">
+      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-k-ember/20 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-k-sand">
         |0⟩ = north pole (white) · |1⟩ = south pole (orange)
       </div>
     </LabFrame>

@@ -138,9 +138,9 @@ export default function MyceliumHub() {
   return (
     <div className="space-y-8">
       {/* ------------------------------- hero ------------------------------- */}
-      <section className="relative overflow-hidden rounded-3xl border border-[#6ee7a8]/30 bg-gradient-to-br from-[#04160f] via-[#071c33] to-[#05010f] p-6 md:p-9">
-        <div className="pointer-events-none absolute -right-20 -top-24 h-[360px] w-[360px] rounded-full bg-[#6ee7a8]/20 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-28 -left-16 h-[300px] w-[300px] rounded-full bg-[#67e8f9]/15 blur-3xl" />
+      <section className="relative overflow-hidden rounded-3xl border border-k-moss/30 bg-gradient-to-br from-[#04160f] via-[#0b2f2c] to-k-ink p-6 md:p-9">
+        <div className="pointer-events-none absolute -right-20 -top-24 h-[360px] w-[360px] rounded-full bg-k-moss/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-28 -left-16 h-[300px] w-[300px] rounded-full bg-k-light/15 blur-3xl" />
         <div className="relative grid gap-7 lg:grid-cols-[1.3fr_1fr]">
           <div>
             <div className="mb-3 flex flex-wrap items-center gap-2">
@@ -153,15 +153,15 @@ export default function MyceliumHub() {
               <br />
               <span className="text-afro">ROBO-TECH</span>
             </h1>
-            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[#ded4f2]">
+            <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-k-text">
               The most advanced idea in this course is also the oldest technology on Earth. A fungal network grows its own
               structure, senses chemistry, routes nutrients, repairs itself and composts at end of life. You cannot
               machine it into a servo, and that is the point: it is a different kind of material, and it asks a
               different kind of engineering.
             </p>
-            <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-[#9fd9bb]">
-              Everything below is split into <strong className="text-[#6ee7a8]">what has been measured</strong> and{' '}
-              <strong className="text-[#ff8fd6]">what is still story</strong>. Build the measured half first — that is
+            <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-[#a9d4a2]">
+              Everything below is split into <strong className="text-k-moss">what has been measured</strong> and{' '}
+              <strong className="text-[#ffb27a]">what is still story</strong>. Build the measured half first — that is
               where the real capability lives.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -186,16 +186,16 @@ export default function MyceliumHub() {
             </div>
             <Panel tone="myco" className="p-4">
               <div className="holo-kicker">Three numbers to remember</div>
-              <ul className="mt-2 space-y-2 text-[13px] leading-relaxed text-[#cfe9dc]">
+              <ul className="mt-2 space-y-2 text-[13px] leading-relaxed text-k-mint">
                 <li>
-                  <strong className="text-[#b8f5d0]">10–21 days</strong> to grow a structural block from spawn.
+                  <strong className="text-[#c4f0bb]">10–21 days</strong> to grow a structural block from spawn.
                 </li>
                 <li>
-                  <strong className="text-[#b8f5d0]">0.05–2 mV</strong> is the size of the electrical spikes you will be
+                  <strong className="text-[#c4f0bb]">0.05–2 mV</strong> is the size of the electrical spikes you will be
                   measuring. Your wiring matters more than your organism.
                 </li>
                 <li>
-                  <strong className="text-[#b8f5d0]">10–200 mW/m²</strong> is what a microbial fuel cell realistically
+                  <strong className="text-[#c4f0bb]">10–200 mW/m²</strong> is what a microbial fuel cell realistically
                   delivers. Sensors, never motors.
                 </li>
               </ul>
@@ -220,7 +220,7 @@ export default function MyceliumHub() {
               </div>
               <ul className="mt-3 space-y-2.5">
                 {col.items.map((it, i) => (
-                  <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-[#ded4f2]">
+                  <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-k-text">
                     <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-60" />
                     {it}
                   </li>
@@ -243,19 +243,19 @@ export default function MyceliumHub() {
             <FadeIn key={s.step} delay={i * 0.06}>
               <Panel tone="myco" className="flex h-full flex-col p-5">
                 <div className="flex items-center justify-between">
-                  <span className="font-display text-3xl text-[#6ee7a8]">{s.step}</span>
+                  <span className="font-display text-3xl text-k-moss">{s.step}</span>
                   <Chip tone="myco">⏱ {s.time}</Chip>
                 </div>
                 <h3 className="mt-2 font-heading text-lg text-white">
                   {s.glyph} {s.title}
                 </h3>
-                <p className="mt-2 flex-1 text-[13.5px] leading-relaxed text-[#ded4f2]">{s.body}</p>
-                <div className="mt-4 rounded-xl border border-[#6ee7a8]/25 bg-[#6ee7a8]/5 p-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#6ee7a8]">go / no-go</div>
+                <p className="mt-2 flex-1 text-[13.5px] leading-relaxed text-k-text">{s.body}</p>
+                <div className="mt-4 rounded-xl border border-k-moss/25 bg-k-moss/5 p-3">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-k-moss">go / no-go</div>
                   <ul className="mt-1.5 space-y-1">
                     {s.checks.map((c, ci) => (
-                      <li key={ci} className="flex gap-2 text-[12.5px] leading-relaxed text-[#cfe9dc]">
-                        <span className="text-[#6ee7a8]">✓</span>
+                      <li key={ci} className="flex gap-2 text-[12.5px] leading-relaxed text-k-mint">
+                        <span className="text-k-moss">✓</span>
                         {c}
                       </li>
                     ))}
@@ -294,7 +294,7 @@ export default function MyceliumHub() {
                     <Term term={c.term}>{c.term}</Term>
                   </h3>
                 </div>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#ded4f2]">{c.body}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-k-text">{c.body}</p>
               </Panel>
             </FadeIn>
           ))}
@@ -315,8 +315,8 @@ export default function MyceliumHub() {
                   onClick={() => setDiff(d)}
                   className={`rounded-lg border px-2.5 py-1 font-mono text-[10.5px] capitalize transition-colors ${
                     diff === d
-                      ? 'border-[#6ee7a8]/60 bg-[#6ee7a8]/15 text-[#b8f5d0]'
-                      : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                      ? 'border-k-moss/60 bg-k-moss/15 text-[#c4f0bb]'
+                      : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
                   }`}
                 >
                   {d}
@@ -339,14 +339,14 @@ export default function MyceliumHub() {
                   <button
                     onClick={() => toggleProject(p.id)}
                     className={`shrink-0 rounded-lg border px-2 py-1 text-[11.5px] transition-colors ${
-                      isSaved ? 'border-[#6ee7a8]/60 bg-[#6ee7a8]/20 text-[#b8f5d0]' : 'border-white/15 text-[#c9bde6] hover:text-white'
+                      isSaved ? 'border-k-moss/60 bg-k-moss/20 text-[#c4f0bb]' : 'border-white/15 text-k-muted hover:text-white'
                     }`}
                   >
                     {isSaved ? '★' : '☆'}
                   </button>
                 </div>
                 <h3 className="mt-2 font-heading text-[15px] font-semibold leading-snug text-white">{p.title}</h3>
-                <p className="mt-1 flex-1 text-[12.5px] leading-relaxed text-[#ded4f2]">{p.summary}</p>
+                <p className="mt-1 flex-1 text-[12.5px] leading-relaxed text-k-text">{p.summary}</p>
                 <div className="mt-3 space-y-2">
                   <Meter label="Wakanda index" value={p.wakandaIndex} tone="psy" />
                   <Meter label="DIY feasibility" value={p.diyFeasibility} tone="myco" />
@@ -373,7 +373,7 @@ export default function MyceliumHub() {
             <Panel key={t!.id} className="overflow-hidden">
               <div className="border-b border-white/10 px-4 py-3">
                 <div className="font-heading text-sm font-semibold text-white">{t!.title}</div>
-                <div className="text-[12px] text-[#c9bde6]">{t!.intro}</div>
+                <div className="text-[12px] text-k-muted">{t!.intro}</div>
               </div>
               <div className="max-h-[460px] overflow-auto">
                 <table className="forge-table">
@@ -395,8 +395,8 @@ export default function MyceliumHub() {
                   </tbody>
                 </table>
               </div>
-              <div className="border-t border-[#6ee7a8]/20 bg-[#6ee7a8]/5 px-4 py-2.5 text-[12.5px] leading-relaxed text-[#cfe9dc]">
-                <strong className="text-[#6ee7a8]">How to choose:</strong> {t!.insight}
+              <div className="border-t border-k-moss/20 bg-k-moss/5 px-4 py-2.5 text-[12.5px] leading-relaxed text-k-mint">
+                <strong className="text-k-moss">How to choose:</strong> {t!.insight}
               </div>
             </Panel>
           ))}
@@ -413,8 +413,8 @@ export default function MyceliumHub() {
         <Panel tone="hot" className="p-5">
           <ul className="grid gap-3 md:grid-cols-2">
             {BIOSAFETY.map((b, i) => (
-              <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-[#f3e9ff]">
-                <span className="text-[#ff8fd6]">▸</span>
+              <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-k-paper">
+                <span className="text-[#ffb27a]">▸</span>
                 {b}
               </li>
             ))}
@@ -428,17 +428,17 @@ export default function MyceliumHub() {
           <div className="holo-kicker">Learn the theory</div>
           <ul className="mt-2 space-y-2 text-[13px]">
             <li>
-              <Link to="/lesson/w2l3" className="text-[#ded4f2] hover:text-[#67e8f9]">
+              <Link to="/lesson/w2l3" className="text-k-text hover:text-k-light">
                 L3 · Proprioception — measuring millivolt signals without noise
               </Link>
             </li>
             <li>
-              <Link to="/lesson/w8l16" className="text-[#ded4f2] hover:text-[#67e8f9]">
+              <Link to="/lesson/w8l16" className="text-k-text hover:text-k-light">
                 L16 · Capstone and living machines
               </Link>
             </li>
             <li>
-              <Link to="/lesson/w7l14" className="text-[#ded4f2] hover:text-[#67e8f9]">
+              <Link to="/lesson/w7l14" className="text-k-text hover:text-k-light">
                 L14 · Safety, standards and ethics of living systems
               </Link>
             </li>
@@ -448,17 +448,17 @@ export default function MyceliumHub() {
           <div className="holo-kicker">Practise the maths</div>
           <ul className="mt-2 space-y-2 text-[13px]">
             <li>
-              <Link to="/labs/mycelium" className="text-[#cfe9dc] hover:text-[#6ee7a8]">
+              <Link to="/labs/mycelium" className="text-k-mint hover:text-k-moss">
                 ⚡ Living-circuit lab — grow, inject, measure
               </Link>
             </li>
             <li>
-              <Link to="/labs/kalman" className="text-[#cfe9dc] hover:text-[#6ee7a8]">
+              <Link to="/labs/kalman" className="text-k-mint hover:text-k-moss">
                 ∿ Sensor fusion — extracting signal from a noisy living sensor
               </Link>
             </li>
             <li>
-              <Link to="/flashcards" className="text-[#cfe9dc] hover:text-[#6ee7a8]">
+              <Link to="/flashcards" className="text-k-mint hover:text-k-moss">
                 ✦ Drill the living-materials cards
               </Link>
             </li>
@@ -466,7 +466,7 @@ export default function MyceliumHub() {
         </Panel>
         <Panel tone="psy" className="p-5">
           <div className="holo-kicker">Make it a capstone</div>
-          <p className="mt-2 text-[13px] leading-relaxed text-[#f3e9ff]">
+          <p className="mt-2 text-[13px] leading-relaxed text-k-paper">
             Pick one blueprint, write its primary success metric with units before you build, and treat the grow time as
             schedule risk rather than a weekend. Living projects fail on the calendar, not on the electronics.
           </p>

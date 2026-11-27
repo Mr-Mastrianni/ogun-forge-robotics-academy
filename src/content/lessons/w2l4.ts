@@ -56,7 +56,7 @@ export const lesson: Lesson = {
       caption: 'Assumes 0.25 px disparity noise (subpixel block matching). Radar loses angular resolution where stereo loses depth.',
       chartType: 'line', xLabel: 'Range z (m)', yLabel: 'Depth error σz (m)',
       x: [1, 2, 3, 5, 8, 12, 16],
-      series: [{ key: 'sz', label: 'Stereo σz at σd = 0.25 px', color: '#22d3ee', data: [0.002, 0.010, 0.021, 0.060, 0.152, 0.343, 0.610] }] },
+      series: [{ key: 'sz', label: 'Stereo σz at σd = 0.25 px', color: '#5fd0c6', data: [0.002, 0.010, 0.021, 0.060, 0.152, 0.343, 0.610] }] },
     { kind: 'code', title: 'Pinhole projection and back-projection', language: 'python',
       note: 'Run without numpy: this is the arithmetic a driver performs. Distortion and extrinsics are the next two matrices in the chain.',
       code: 'fx, fy, cx, cy = 615.0, 615.0, 320.0, 240.0   # 640x480, ~60 deg HFOV\n' +

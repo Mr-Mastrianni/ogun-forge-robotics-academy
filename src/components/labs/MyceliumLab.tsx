@@ -153,7 +153,7 @@ function MyceliumScene({
     const segs: number[] = [];
     const colors: number[] = [];
     const c1 = new THREE.Color('#3f7f5c');
-    const c2 = new THREE.Color('#6ee7a8');
+    const c2 = new THREE.Color('#a6eb9b');
     edges.forEach((e) => {
       const a = nodes[e.a].p;
       const b = nodes[e.b].p;
@@ -225,11 +225,11 @@ function MyceliumScene({
       <group position={nodes[electrode]?.p ?? new THREE.Vector3()}>
         <mesh>
           <cylinderGeometry args={[0.045, 0.045, 1.1, 8]} />
-          <meshStandardMaterial color="#e0f2fe" metalness={0.9} roughness={0.2} />
+          <meshStandardMaterial color="#dff3ef" metalness={0.9} roughness={0.2} />
         </mesh>
         <mesh position={[0, 0.62, 0]}>
           <sphereGeometry args={[0.1, 12, 12]} />
-          <meshStandardMaterial color="#67e8f9" emissive="#0891b2" emissiveIntensity={1.4} />
+          <meshStandardMaterial color="#81dcd4" emissive="#2f8f86" emissiveIntensity={1.4} />
         </mesh>
       </group>
 
@@ -249,7 +249,7 @@ function BreathLight() {
   useFrame(({ clock }) => {
     if (ref.current) ref.current.intensity = 1.6 + Math.sin(clock.elapsedTime * 0.7) * 0.8;
   });
-  return <pointLight ref={ref} position={[-4, 3, -4]} color="#67e8f9" intensity={2} distance={20} />;
+  return <pointLight ref={ref} position={[-4, 3, -4]} color="#81dcd4" intensity={2} distance={20} />;
 }
 
 function Spores({ count = 260, radius = 6 }: { count?: number; radius?: number }) {
@@ -304,19 +304,19 @@ function HyperGrid() {
       {[1.2, 2.4, 3.6, 4.8, 5.8].map((r) => (
         <mesh key={r} rotation={[-Math.PI / 2, 0, 0]}>
           <torusGeometry args={[r, 0.008, 6, 96]} />
-          <meshBasicMaterial color="#6ee7a8" transparent opacity={0.22} />
+          <meshBasicMaterial color="#a6eb9b" transparent opacity={0.22} />
         </mesh>
       ))}
       <mesh ref={scan} rotation={[-Math.PI / 2, 0, 0]}>
         <torusGeometry args={[1, 0.02, 6, 96]} />
-        <meshBasicMaterial color="#67e8f9" transparent opacity={0.3} />
+        <meshBasicMaterial color="#81dcd4" transparent opacity={0.3} />
       </mesh>
       {Array.from({ length: 12 }).map((_, i) => {
         const a = (i / 12) * Math.PI * 2;
         return (
           <mesh key={i} rotation={[0, -a, 0]}>
             <boxGeometry args={[0.006, 0.006, 11.6]} />
-            <meshBasicMaterial color="#8b5cf6" transparent opacity={0.16} />
+            <meshBasicMaterial color="#c9a46d" transparent opacity={0.16} />
           </mesh>
         );
       })}
@@ -445,43 +445,43 @@ export default function MyceliumLab({ tasks }: LabProps) {
             onChange={setSpeed}
             format={(v) => v.toFixed(1) + ' mm/s'}
           />
-          <div className="text-[11px] leading-snug text-[#9fd9bb]">
+          <div className="text-[11px] leading-snug text-[#a9d4a2]">
             Click any glowing tip in the 3D view to inject there and re-measure.
           </div>
         </div>
       }
       readouts={
         <>
-          <Readout label="hyphal nodes" value={String(nodes.length)} tone="#6ee7a8" />
-          <Readout label="edge segments" value={String(edges.length)} tone="#6ee7a8" />
+          <Readout label="hyphal nodes" value={String(nodes.length)} tone="#a6eb9b" />
+          <Readout label="edge segments" value={String(edges.length)} tone="#a6eb9b" />
           <Readout label="total hyphal length" value={totalLength.toFixed(1) + ' cm'} />
           <Readout label="furthest reach" value={maxDist.toFixed(2) + ' cm'} />
           <Readout
             label="delay to electrode"
             value={isFinite(delay) ? delay.toFixed(1) + ' s' : 'not connected'}
-            tone={isFinite(delay) ? '#ffe9a8' : '#ff6b1a'}
+            tone={isFinite(delay) ? '#ffe6b0' : '#f2853a'}
           />
           <Readout label="sim clock (20x)" value={tNow.toFixed(1) + ' s'} />
-          <div className="rounded-xl border border-[#6ee7a8]/25 bg-black/30 p-2">
-            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[#6ee7a8]">
+          <div className="rounded-xl border border-k-moss/25 bg-black/30 p-2">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-k-moss">
               electrode potential (mV, model)
             </div>
             <div className="h-[110px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={trace}>
                   <CartesianGrid stroke="#1f4d3a" strokeDasharray="2 4" />
-                  <XAxis dataKey="t" tick={{ fill: '#9fd9bb', fontSize: 9 }} stroke="#2f6b52" />
-                  <YAxis domain={[-0.2, 1.4]} tick={{ fill: '#9fd9bb', fontSize: 9 }} stroke="#2f6b52" width={26} />
+                  <XAxis dataKey="t" tick={{ fill: '#a9d4a2', fontSize: 9 }} stroke="#2f6b52" />
+                  <YAxis domain={[-0.2, 1.4]} tick={{ fill: '#a9d4a2', fontSize: 9 }} stroke="#2f6b52" width={26} />
                   <Tooltip
                     contentStyle={{ background: '#08201a', border: '1px solid #2f6b52', fontSize: 11 }}
-                    labelStyle={{ color: '#9fd9bb' }}
+                    labelStyle={{ color: '#a9d4a2' }}
                   />
-                  <RLine type="monotone" dataKey="mv" stroke="#6ee7a8" strokeWidth={2} dot={false} />
+                  <RLine type="monotone" dataKey="mv" stroke="#a6eb9b" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="pt-1 text-[11px] leading-snug text-[#c9bde6]">
+          <div className="pt-1 text-[11px] leading-snug text-k-muted">
             Spike shape is a difference of exponentials peaking at ~1.2 mV — inside the range reported for
             <em> Pleurotus</em> and <em>Ganoderma</em> mycelium, but simplified. Increasing temperature raises
             real conduction velocity until proteins denature (roughly above 35 °C).
@@ -494,14 +494,14 @@ export default function MyceliumLab({ tasks }: LabProps) {
         <fog attach="fog" args={['#04120d', 10, 26]} />
         <ambientLight intensity={0.55} />
         <BreathLight />
-        <pointLight position={[3, 6, 3]} color="#6ee7a8" intensity={2.4} distance={18} />
+        <pointLight position={[3, 6, 3]} color="#a6eb9b" intensity={2.4} distance={18} />
         <pointLight position={[-4, 2, -3]} color="#a3e635" intensity={1.2} distance={16} />
         <MyceliumScene nodes={nodes} edges={edges} times={t} tNow={tNow} electrode={electrode} showSignals={showSignals} />
         <Spores />
         <HyperGrid />
         <OrbitControls enablePan target={[0, 1.2, 0]} minDistance={3} maxDistance={22} />
       </Canvas>
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-[#6ee7a8]/20 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-[#9fd9bb]">
+      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-k-moss/20 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-[#a9d4a2]">
         click a lime tip to inject · drag to orbit
       </div>
     </LabFrame>

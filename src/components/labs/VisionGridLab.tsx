@@ -31,14 +31,14 @@ const L_FREE = -0.38; // traversed-cell update (log-odds)
 const G = 9.81;
 
 const C = {
-  bg: '#05010f',
-  deep: '#0a0420',
-  gold: '#f5b301',
-  green: '#6ee7a8',
-  magenta: '#c026d3',
-  cyan: '#67e8f9',
-  text: '#c9bde6',
-  orange: '#ff6b1a',
+  bg: '#081310',
+  deep: '#0c1914',
+  gold: '#f7c77c',
+  green: '#a6eb9b',
+  magenta: '#e0782f',
+  cyan: '#81dcd4',
+  text: '#b8c7b6',
+  orange: '#f2853a',
 };
 
 interface Seg {
@@ -641,7 +641,7 @@ export default function VisionGridLab({ tasks }: LabProps) {
         const m = mk(p);
         ctx.save();
         ctx.globalAlpha = alpha;
-        ctx.strokeStyle = '#8b7bb8';
+        ctx.strokeStyle = '#87ac93';
         ctx.lineWidth = 2;
         for (const s of WALLS) {
           ctx.beginPath();
@@ -649,16 +649,16 @@ export default function VisionGridLab({ tasks }: LabProps) {
           ctx.lineTo(m.sx(s.x2), m.sy(s.y2));
           ctx.stroke();
         }
-        ctx.fillStyle = '#3b2a6b';
+        ctx.fillStyle = '#375e44';
         ctx.beginPath();
         ctx.arc(m.sx(PILLAR.x), m.sy(PILLAR.y), PILLAR.r * m.s, 0, TAU);
         ctx.fill();
         if (withDiscs) {
-          ctx.fillStyle = 'rgba(245,179,1,0.55)';
+          ctx.fillStyle = 'rgba(247,199,124,0.55)';
           ctx.beginPath();
           ctx.arc(m.sx(o1.x), m.sy(o1.y), o1.r * m.s, 0, TAU);
           ctx.fill();
-          ctx.fillStyle = 'rgba(120,120,140,0.75)';
+          ctx.fillStyle = 'rgba(124,136,128,0.75)';
           ctx.beginPath();
           ctx.arc(m.sx(o2.x), m.sy(o2.y), o2.r * m.s, 0, TAU);
           ctx.fill();
@@ -698,20 +698,20 @@ export default function VisionGridLab({ tasks }: LabProps) {
 
       /* ---- panel 1: ground truth ---- */
       const p0 = panel(0);
-      frameBox(p0, 'rgba(110,231,168,0.35)');
+      frameBox(p0, 'rgba(166,235,155,0.35)');
       title(p0, 'ground truth world', C.green);
       drawWorld(p0, 1, true);
-      trail(p0, S.truthTrail, '#6ee7a8', []);
-      if (P.drift) trail(p0, S.drTrail, '#c026d3', [4, 3]);
-      robot(p0, truth.x, truth.y, truth.th, '#6ee7a8', 5);
-      if (P.drift) robot(p0, S.dr.x, S.dr.y, S.dr.th, '#c026d3', 4);
+      trail(p0, S.truthTrail, '#a6eb9b', []);
+      if (P.drift) trail(p0, S.drTrail, '#e0782f', [4, 3]);
+      robot(p0, truth.x, truth.y, truth.th, '#a6eb9b', 5);
+      if (P.drift) robot(p0, S.dr.x, S.dr.y, S.dr.th, '#e0782f', 4);
       ctx.font = '9px ui-monospace, monospace';
       ctx.fillStyle = P.drift ? C.magenta : C.text;
       ctx.fillText(P.drift ? 'solid green = truth · dashed pink = dead reckoning' : 'odometry drift off', p0.x + 3, p0.y + p0.h - 12);
 
       /* ---- panel 2: sensor view ---- */
       const p1 = panel(1);
-      frameBox(p1, 'rgba(103,232,249,0.35)');
+      frameBox(p1, 'rgba(129,220,212,0.35)');
       title(p1, `sensor view · ${P.halfAngle.toFixed(0)}° half-angle`, C.cyan);
       if (P.showTruth) drawWorld(p1, 0.4, true);
       if (P.showRays) {
@@ -729,17 +729,17 @@ export default function VisionGridLab({ tasks }: LabProps) {
           const ex = m.sx(S.rayOx[i] + Math.cos(a) * rr);
           const ey = m.sy(S.rayOy[i] + Math.sin(a) * rr);
           if (half > 0.08) {
-            ctx.fillStyle = kind === K_NONE || kind === K_DROP ? `rgba(120,120,160,${0.05 * fade})` : `rgba(103,232,249,${0.07 * fade})`;
+            ctx.fillStyle = kind === K_NONE || kind === K_DROP ? `rgba(128,152,136,${0.05 * fade})` : `rgba(129,220,212,${0.07 * fade})`;
             ctx.beginPath();
             ctx.moveTo(ox, oy);
             ctx.arc(ox, oy, rr * m.s, a - half, a + half);
             ctx.closePath();
             ctx.fill();
           }
-          let stroke = `rgba(200,200,230,${0.35 * fade})`;
-          if (kind === K_WALL) stroke = `rgba(103,232,249,${0.9 * fade})`;
-          else if (kind === K_PILLAR) stroke = `rgba(192,38,211,${0.9 * fade})`;
-          else if (kind === K_OBST) stroke = `rgba(245,179,1,${0.9 * fade})`;
+          let stroke = `rgba(214,220,210,${0.35 * fade})`;
+          if (kind === K_WALL) stroke = `rgba(129,220,212,${0.9 * fade})`;
+          else if (kind === K_PILLAR) stroke = `rgba(224,120,47,${0.9 * fade})`;
+          else if (kind === K_OBST) stroke = `rgba(247,199,124,${0.9 * fade})`;
           else if (kind === K_DARK) stroke = `rgba(150,150,165,${0.8 * fade})`;
           ctx.strokeStyle = stroke;
           ctx.lineWidth = 1;
@@ -760,7 +760,7 @@ export default function VisionGridLab({ tasks }: LabProps) {
 
       /* ---- panel 3: occupancy grid ---- */
       const p2 = panel(2);
-      frameBox(p2, 'rgba(245,179,1,0.35)');
+      frameBox(p2, 'rgba(247,199,124,0.35)');
       title(p2, `occupancy grid · ${P.res.toFixed(2)} m cells`, C.gold);
       if (S.img && offCtx) {
         const px = S.img.data;
@@ -778,7 +778,7 @@ export default function VisionGridLab({ tasks }: LabProps) {
         ctx.save();
         ctx.globalAlpha = 0.5;
         ctx.setLineDash([3, 3]);
-        ctx.strokeStyle = '#ded4f2';
+        ctx.strokeStyle = '#d6e0cf';
         ctx.lineWidth = 1;
         for (const s of WALLS) {
           ctx.beginPath();
@@ -791,7 +791,7 @@ export default function VisionGridLab({ tasks }: LabProps) {
         ctx.stroke();
         ctx.restore();
       }
-      robot(p2, S.dr.x, S.dr.y, S.dr.th, '#f5b301', 4);
+      robot(p2, S.dr.x, S.dr.y, S.dr.th, '#f7c77c', 4);
       ctx.font = '9px ui-monospace, monospace';
       ctx.fillStyle = C.text;
       ctx.fillText(`known ${S.lastKnown.toFixed(0)}% · error ${S.lastErr.toFixed(1)}% · ${rot.toFixed(2)} Hz`, p2.x + 3, p2.y + p2.h - 12);
@@ -846,7 +846,7 @@ export default function VisionGridLab({ tasks }: LabProps) {
               clear map
             </LabButton>
           </div>
-          <div className="pt-1 font-mono text-[10px] uppercase tracking-widest text-[#67e8f9]">stereo depth error model</div>
+          <div className="pt-1 font-mono text-[10px] uppercase tracking-widest text-k-light">stereo depth error model</div>
           <Slider label="focal length f" value={focal} min={300} max={2000} step={10} onChange={setFocal} format={(v) => v.toFixed(0) + ' px'} />
           <Slider label="baseline B" value={baseline} min={0.05} max={0.6} step={0.01} onChange={setBaseline} format={(v) => v.toFixed(2) + ' m'} />
           <Slider label="disparity resolution Δd" value={disparity} min={0.05} max={1} step={0.01} onChange={setDisparity} format={(v) => v.toFixed(2) + ' px'} />
@@ -854,65 +854,65 @@ export default function VisionGridLab({ tasks }: LabProps) {
       }
       readouts={
         <>
-          <Readout label="ray count" value={rays + ' rays/rev'} tone="#67e8f9" />
-          <Readout label="hits per sweep" value={`${stats.hits} / ${stats.shots || rays}`} tone="#6ee7a8" />
+          <Readout label="ray count" value={rays + ' rays/rev'} tone="#81dcd4" />
+          <Readout label="hits per sweep" value={`${stats.hits} / ${stats.shots || rays}`} tone="#a6eb9b" />
           <Readout label="cells known" value={stats.known.toFixed(1) + ' %'} />
-          <Readout label="map error vs truth" value={stats.err.toFixed(1) + ' %'} tone={stats.err < 15 ? '#6ee7a8' : stats.err < 35 ? '#f5b301' : '#ff6b1a'} />
+          <Readout label="map error vs truth" value={stats.err.toFixed(1) + ' %'} tone={stats.err < 15 ? '#a6eb9b' : stats.err < 35 ? '#f7c77c' : '#f2853a'} />
           <Readout label="sweep rate" value={stats.hz.toFixed(2) + ' Hz'} />
-          <Readout label="grid cells" value={`${sim.current.cols}×${sim.current.rows}`} tone="#c9bde6" />
-          <div className="rounded-xl border border-[#67e8f9]/25 bg-black/30 p-2">
-            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[#67e8f9]">
+          <Readout label="grid cells" value={`${sim.current.cols}×${sim.current.rows}`} tone="#b8c7b6" />
+          <div className="rounded-xl border border-k-light/25 bg-black/30 p-2">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-k-light">
               stereo depth error — z_err = z²Δd /(f·B)
             </div>
             <div className="h-[104px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={depth} margin={{ top: 4, right: 8, bottom: 10, left: 0 }}>
-                  <CartesianGrid stroke="#1d3b4a" strokeDasharray="2 4" />
+                  <CartesianGrid stroke="#214643" strokeDasharray="2 4" />
                   <XAxis
                     dataKey="z"
                     type="number"
                     domain={[0.5, 20]}
-                    tick={{ fill: '#9fd9e8', fontSize: 8 }}
-                    stroke="#2f5f70"
+                    tick={{ fill: '#a6e1dd', fontSize: 8 }}
+                    stroke="#366a66"
                     height={22}
-                    label={{ value: 'range z (m)', position: 'insideBottom', offset: -4, fill: '#9fd9e8', fontSize: 8 }}
+                    label={{ value: 'range z (m)', position: 'insideBottom', offset: -4, fill: '#a6e1dd', fontSize: 8 }}
                   />
                   <YAxis
-                    tick={{ fill: '#9fd9e8', fontSize: 8 }}
-                    stroke="#2f5f70"
+                    tick={{ fill: '#a6e1dd', fontSize: 8 }}
+                    stroke="#366a66"
                     width={30}
-                    label={{ value: 'error (m)', angle: -90, position: 'insideLeft', offset: 8, fill: '#9fd9e8', fontSize: 8 }}
+                    label={{ value: 'error (m)', angle: -90, position: 'insideLeft', offset: 8, fill: '#a6e1dd', fontSize: 8 }}
                   />
-                  <Tooltip contentStyle={{ background: '#04202a', border: '1px solid #2f5f70', fontSize: 11 }} />
-                  <ReferenceLine x={maxRange} stroke="#c026d3" strokeDasharray="3 3" />
-                  <Line type="monotone" dataKey="err" stroke="#f5b301" strokeWidth={2} dot={false} />
+                  <Tooltip contentStyle={{ background: '#082624', border: '1px solid #366a66', fontSize: 11 }} />
+                  <ReferenceLine x={maxRange} stroke="#e0782f" strokeDasharray="3 3" />
+                  <Line type="monotone" dataKey="err" stroke="#f7c77c" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <div className="mt-1 text-[10px] leading-snug text-[#8fb8c4]">
+            <div className="mt-1 text-[10px] leading-snug text-[#94bfbc]">
               At z = 5 m with f = 700 px, B = 0.12 m and Δd = 0.25 px the error is{' '}
               {(((5 * 5 * disparity) / (focal * baseline)) * 100).toFixed(1)} cm — quadratic, so doubling range
               quadruples error. Dashed line = current sensor max range.
             </div>
           </div>
-          <div className="rounded-xl border border-[#6ee7a8]/25 bg-black/30 p-2">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-[#6ee7a8]">why sonar and LiDAR fail differently</div>
-            <p className="mt-1 text-[11px] leading-snug text-[#c9bde6]">
+          <div className="rounded-xl border border-k-moss/25 bg-black/30 p-2">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-k-moss">why sonar and LiDAR fail differently</div>
+            <p className="mt-1 text-[11px] leading-snug text-k-muted">
               Ultrasound and light fail on almost disjoint sets of surfaces, because one is a pressure wave at 40 kHz and
-              the other a near-IR pulse at 905 nm. <span className="text-[#f5b301]">Specular reflection</span> wrecks
+              the other a near-IR pulse at 905 nm. <span className="text-k-gold">Specular reflection</span> wrecks
               both but differently: a smooth wall struck at a grazing angle mirrors the pulse away from the receiver, so
               LiDAR loses the return exactly where the geometry is most useful, while sonar (whose wavelength is
               comparable to wall texture) scatters broadly but its 30–60° cone sees the nearest object in that whole
-              wedge — the reason sonar maps show rounded corners and phantom arcs. <span className="text-[#f5b301]">
+              wedge — the reason sonar maps show rounded corners and phantom arcs. <span className="text-k-gold">
               Glass</span> is nearly a mirror to IR: many LiDARs report the frame or nothing at all and see straight
               through the pane, while sonar reflects off it strongly and then rings, so a robot can be certain about a
-              window it will happily drive through. <span className="text-[#f5b301]">Black or dark matte surfaces</span>{' '}
+              window it will happily drive through. <span className="text-k-gold">Black or dark matte surfaces</span>{' '}
               are the opposite failure: they absorb 905 nm almost perfectly (hence the near-zero return intensity that
               kills dark-clothing and dark-crate detections) but are acoustically ordinary, so sonar sees a black wall
-              that LiDAR misses. <span className="text-[#f5b301]">Crosstalk</span> is a timing problem: several sonars
+              that LiDAR misses. <span className="text-k-gold">Crosstalk</span> is a timing problem: several sonars
               chirping at once, or a second robot's echoes arriving late, produce confident ghost ranges, and a spinning
               LiDAR can be blinded by another scanner on the same wavelength; time-multiplexing or coded pulses are the
-              cure. <span className="text-[#f5b301]">Sunlight</span> floods a 905 nm detector with broadband IR (and
+              cure. <span className="text-k-gold">Sunlight</span> floods a 905 nm detector with broadband IR (and
               retro-reflectors glare), which is why outdoor scanners move to 1550 nm or use narrow-band filtering —
               sonar is immune to light but bends with temperature, since the speed of sound is 331.3 + 0.606·T m/s, so a
               hot floor or a stiff breeze shifts every range. Finally the budgets differ by orders of magnitude: sonar
@@ -928,10 +928,10 @@ export default function VisionGridLab({ tasks }: LabProps) {
       <div ref={wrapRef} className="absolute inset-0">
         <canvas ref={canvasRef} className="block h-full w-full" />
       </div>
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/55 px-2.5 py-1.5 font-mono text-[10px] leading-relaxed text-[#c9bde6]">
+      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/55 px-2.5 py-1.5 font-mono text-[10px] leading-relaxed text-k-muted">
         <div>
-          <span className="text-[#6ee7a8]">■</span> truth · <span className="text-[#c026d3]">■</span> dead reckoning ·{' '}
-          <span className="text-[#f5b301]">■</span> occupancy estimate
+          <span className="text-k-moss">■</span> truth · <span className="text-k-ember">■</span> dead reckoning ·{' '}
+          <span className="text-k-gold">■</span> occupancy estimate
         </div>
         <div>unknown = near-black · free = dark blue · occupied = pink→gold · grey = no return</div>
       </div>

@@ -42,7 +42,7 @@ export const lesson: Lesson = {
       x: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
       series: [
         { key: 'imu', label: 'IMU + wheel dead reckoning', color: '#ef4444', data: [0.02, 0.18, 0.70, 1.58, 2.80, 4.38, 6.30, 8.58, 11.20, 14.18, 17.50, 21.18, 25.20] },
-        { key: 'gnss', label: 'Raw GNSS', color: '#f59e0b', data: [2.4, 1.8, 3.1, 2.2, 1.5, 2.9, 3.6, 2.0, 1.7, 2.6, 3.3, 2.1, 2.8] },
+        { key: 'gnss', label: 'Raw GNSS', color: '#e9a64e', data: [2.4, 1.8, 3.1, 2.2, 1.5, 2.9, 3.6, 2.0, 1.7, 2.6, 3.3, 2.1, 2.8] },
         { key: 'fused', label: 'Fused (EKF)', color: '#22c55e', data: [0.50, 0.34, 0.29, 0.27, 0.39, 0.31, 0.26, 0.30, 0.37, 0.28, 0.25, 0.32, 0.31] },
       ] },
     { kind: 'table', title: 'State-estimation methods: cost against assumptions',

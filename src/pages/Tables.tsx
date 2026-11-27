@@ -82,7 +82,7 @@ export default function Tables() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="search parts, protocols, substrates, standards…"
-            className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-3.5 py-2 font-body text-[13px] text-white placeholder:text-[#8c82a8] focus:border-[#f5b301]/60 focus:outline-none"
+            className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-3.5 py-2 font-body text-[13px] text-white placeholder:text-k-dim focus:border-k-gold/60 focus:outline-none"
           />
           <div className="flex flex-wrap gap-1.5">
             {cats.map((c) => (
@@ -91,8 +91,8 @@ export default function Tables() {
                 onClick={() => setCat(c)}
                 className={`whitespace-nowrap rounded-lg border px-2.5 py-1.5 font-mono text-[11px] transition-colors ${
                   cat === c
-                    ? 'border-[#f5b301]/60 bg-[#f5b301]/15 text-[#ffe9a8]'
-                    : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                    ? 'border-k-gold/60 bg-k-gold/15 text-k-glint'
+                    : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
                 }`}
               >
                 {CAT_LABELS[c] ?? 'all'}
@@ -112,10 +112,10 @@ export default function Tables() {
               <span className="text-lg">{CAT_LABELS[t.category]?.split(' ')[0] ?? '▦'}</span>
               <div className="min-w-0 flex-1">
                 <div className="font-heading text-sm font-semibold text-white">{t.title}</div>
-                <div className="text-[12px] text-[#c9bde6]">{t.intro}</div>
+                <div className="text-[12px] text-k-muted">{t.intro}</div>
               </div>
               <Chip tone="dim">{t.rows.length} rows</Chip>
-              <span className="font-mono text-[11px] text-[#f5b301]">{open === t.id ? '−' : '+'}</span>
+              <span className="font-mono text-[11px] text-k-gold">{open === t.id ? '−' : '+'}</span>
             </button>
 
             {(open === t.id || filtered.length <= 2) && (
@@ -142,15 +142,15 @@ export default function Tables() {
                     </tbody>
                   </table>
                 </div>
-                <div className="border-t border-[#6ee7a8]/20 bg-[#6ee7a8]/5 px-4 py-2.5 text-[12.5px] leading-relaxed text-[#cfe9dc]">
-                  <strong className="text-[#6ee7a8]">How to choose:</strong> {t.insight}
+                <div className="border-t border-k-moss/20 bg-k-moss/5 px-4 py-2.5 text-[12.5px] leading-relaxed text-k-mint">
+                  <strong className="text-k-moss">How to choose:</strong> {t.insight}
                 </div>
               </>
             )}
           </Panel>
         ))}
         {filtered.length === 0 && (
-          <Panel className="p-6 text-center text-[#c9bde6]">No reference table matches that search.</Panel>
+          <Panel className="p-6 text-center text-k-muted">No reference table matches that search.</Panel>
         )}
       </div>
 
@@ -168,7 +168,7 @@ export default function Tables() {
                 <Chip tone="psy">{lesson.track}</Chip>
               </div>
               <div className="mt-1 font-heading text-sm font-semibold text-white">{block.title}</div>
-              <div className="text-[11.5px] text-[#c9bde6]">{lesson.title}</div>
+              <div className="text-[11.5px] text-k-muted">{lesson.title}</div>
             </div>
             <div className="max-h-[380px] overflow-auto">
               <table className="forge-table">
@@ -192,7 +192,7 @@ export default function Tables() {
                 </tbody>
               </table>
             </div>
-            {block.caption && <p className="border-t border-white/5 px-4 py-2 text-[12px] text-[#c9bde6]">{block.caption}</p>}
+            {block.caption && <p className="border-t border-white/5 px-4 py-2 text-[12px] text-k-muted">{block.caption}</p>}
           </Panel>
         ))}
       </div>

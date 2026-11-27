@@ -90,20 +90,20 @@ export default function Ideas() {
               <Link
                 key={p.id}
                 to={`/ideas/${p.id}`}
-                className="rounded-xl border border-[#6ee7a8]/25 bg-[#6ee7a8]/5 p-3 hover:border-[#6ee7a8]/60"
+                className="rounded-xl border border-k-moss/25 bg-k-moss/5 p-3 hover:border-k-moss/60"
               >
                 <div className="font-heading text-[13px] text-white">{p.title}</div>
-                <div className="mt-0.5 font-mono text-[10px] text-[#6ee7a8]">
+                <div className="mt-0.5 font-mono text-[10px] text-k-moss">
                   {p.category} · {p.costBand} · {p.buildTime}
                 </div>
               </Link>
             ))}
           <Link
             to="/mycelium"
-            className="rounded-xl border border-[#67e8f9]/30 bg-[#67e8f9]/5 p-3 hover:border-[#67e8f9]/70"
+            className="rounded-xl border border-k-light/30 bg-k-light/5 p-3 hover:border-k-light/70"
           >
             <div className="font-heading text-[13px] text-white">🍄 Mycelium Tech hub</div>
-            <div className="mt-0.5 font-mono text-[10px] text-[#67e8f9]">
+            <div className="mt-0.5 font-mono text-[10px] text-k-light">
               grow protocol · substrate data · biosafety
             </div>
           </Link>
@@ -115,7 +115,7 @@ export default function Ideas() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="search blueprints, materials, mechanisms…"
-            className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-3.5 py-2 font-body text-[13px] text-white placeholder:text-[#8c82a8] focus:border-[#6ee7a8]/60 focus:outline-none"
+            className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-3.5 py-2 font-body text-[13px] text-white placeholder:text-k-dim focus:border-k-moss/60 focus:outline-none"
           />
           <div className="flex flex-wrap gap-1.5">
             {CATS.map((c) => (
@@ -124,8 +124,8 @@ export default function Ideas() {
                 onClick={() => setCat(c.id)}
                 className={`rounded-lg border px-2.5 py-1.5 font-mono text-[11px] transition-colors ${
                   cat === c.id
-                    ? 'border-[#6ee7a8]/60 bg-[#6ee7a8]/15 text-[#b8f5d0]'
-                    : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                    ? 'border-k-moss/60 bg-k-moss/15 text-[#c4f0bb]'
+                    : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
                 }`}
               >
                 {c.glyph} {c.label}
@@ -140,8 +140,8 @@ export default function Ideas() {
                   onClick={() => setDiff(d)}
                   className={`rounded-lg border px-2.5 py-1 font-mono text-[10.5px] capitalize transition-colors ${
                     diff === d
-                      ? 'border-[#c026d3]/60 bg-[#c026d3]/15 text-[#f5c8ff]'
-                      : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                      ? 'border-k-ember/60 bg-k-ember/15 text-k-sand'
+                      : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
                   }`}
                 >
                   {d}
@@ -149,11 +149,11 @@ export default function Ideas() {
               ))}
             </div>
             <div className="ml-auto flex items-center gap-2">
-              <span className="font-mono text-[10.5px] uppercase tracking-widest text-[#c9bde6]">sort</span>
+              <span className="font-mono text-[10.5px] uppercase tracking-widest text-k-muted">sort</span>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as typeof sort)}
-                className="rounded-lg border border-white/15 bg-[#0a0420] px-2 py-1 font-mono text-[11px] text-[#ded4f2] focus:outline-none"
+                className="rounded-lg border border-white/15 bg-k-deep px-2 py-1 font-mono text-[11px] text-k-text focus:outline-none"
               >
                 <option value="wakanda">Wakanda index</option>
                 <option value="diy">DIY feasibility</option>
@@ -183,7 +183,7 @@ export default function Ideas() {
                     onClick={() => toggleProject(p.id)}
                     title={isSaved ? 'remove from your forge list' : 'save to your forge list'}
                     className={`shrink-0 rounded-lg border px-2 py-1 text-[12px] transition-colors ${
-                      isSaved ? 'border-[#f5b301]/60 bg-[#f5b301]/20 text-[#ffe9a8]' : 'border-white/15 text-[#c9bde6] hover:text-white'
+                      isSaved ? 'border-k-gold/60 bg-k-gold/20 text-k-glint' : 'border-white/15 text-k-muted hover:text-white'
                     }`}
                   >
                     {isSaved ? '★ saved' : '☆ save'}
@@ -191,8 +191,8 @@ export default function Ideas() {
                 </div>
 
                 <h3 className="mt-2 font-heading text-base font-semibold leading-snug text-white">{p.title}</h3>
-                <p className="text-[12px] italic text-[#c9bde6]">{p.tagline}</p>
-                <p className="mt-2 flex-1 text-[12.5px] leading-relaxed text-[#ded4f2]">{p.summary}</p>
+                <p className="text-[12px] italic text-k-muted">{p.tagline}</p>
+                <p className="mt-2 flex-1 text-[12.5px] leading-relaxed text-k-text">{p.summary}</p>
 
                 <div className="mt-3 space-y-2">
                   <Meter label="Wakanda index" value={p.wakandaIndex} tone="psy" />
@@ -200,7 +200,7 @@ export default function Ideas() {
                   <Meter label="scientific grounding" value={p.scienceGrounding} tone="sirius" />
                 </div>
 
-                <div className="mt-3 flex flex-wrap items-center gap-2 font-mono text-[10.5px] text-[#c9bde6]">
+                <div className="mt-3 flex flex-wrap items-center gap-2 font-mono text-[10.5px] text-k-muted">
                   <span>⏱ {p.buildTime}</span>
                   <span>·</span>
                   <span>{p.costBand}</span>
@@ -218,35 +218,35 @@ export default function Ideas() {
       </div>
 
       {filtered.length === 0 && (
-        <Panel className="p-6 text-center text-[#c9bde6]">No blueprint matches those filters — widen the search.</Panel>
+        <Panel className="p-6 text-center text-k-muted">No blueprint matches those filters — widen the search.</Panel>
       )}
 
       <Panel className="p-5">
-        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">how the scores work</div>
+        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">how the scores work</div>
         <div className="mt-2 grid gap-3 md:grid-cols-3">
           <div>
-            <div className="font-heading text-[13px] text-[#f5c8ff]">◈ Wakanda index</div>
-            <p className="mt-1 text-[12.5px] leading-relaxed text-[#c9bde6]">
+            <div className="font-heading text-[13px] text-k-sand">◈ Wakanda index</div>
+            <p className="mt-1 text-[12.5px] leading-relaxed text-k-muted">
               How far past a normal maker project this sits — ambition, elegance and system-level thinking. High is not
               the same as easy.
             </p>
           </div>
           <div>
-            <div className="font-heading text-[13px] text-[#6ee7a8]">🔧 DIY feasibility</div>
-            <p className="mt-1 text-[12.5px] leading-relaxed text-[#c9bde6]">
+            <div className="font-heading text-[13px] text-k-moss">🔧 DIY feasibility</div>
+            <p className="mt-1 text-[12.5px] leading-relaxed text-k-muted">
               How realistically a determined person with a workbench, a modest budget and a 3D printer can build it
               this year.
             </p>
           </div>
           <div>
-            <div className="font-heading text-[13px] text-[#67e8f9]">📄 Scientific grounding</div>
-            <p className="mt-1 text-[12.5px] leading-relaxed text-[#c9bde6]">
+            <div className="font-heading text-[13px] text-k-light">📄 Scientific grounding</div>
+            <p className="mt-1 text-[12.5px] leading-relaxed text-k-muted">
               How much of the mechanism is measured and peer-reviewed versus modelled, extrapolated or speculative.
             </p>
           </div>
         </div>
-        <p className="mt-3 text-[12.5px] leading-relaxed text-[#ded4f2]">
-          Each blueprint also carries a <strong className="text-[#ffe9a8]">reality split</strong>: the part that is
+        <p className="mt-3 text-[12.5px] leading-relaxed text-k-text">
+          Each blueprint also carries a <strong className="text-k-glint">reality split</strong>: the part that is
           genuine engineering you can measure, and the part that is cultural framing or narrative. The course never
           blurs the two — a Jyotish scheduling layer is a beautiful interface, not a physics principle; a mycelium
           chassis is a real material, not a conscious machine.

@@ -41,10 +41,10 @@ export const lesson: Lesson = {
       chartType: 'area',
       x: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8'],
       series: [
-        { key: 'design', label: 'design and interfaces', color: '#67e8f9', data: [14, 10, 4, 2, 2, 2, 2, 1] },
-        { key: 'build', label: 'build and integrate', color: '#f5b301', data: [2, 8, 14, 14, 10, 6, 4, 2] },
-        { key: 'test', label: 'test, measure, document', color: '#6ee7a8', data: [1, 2, 3, 5, 9, 13, 12, 8] },
-        { key: 'demo', label: 'demo and defence', color: '#c026d3', data: [0, 0, 0, 0, 0, 2, 6, 12] },
+        { key: 'design', label: 'design and interfaces', color: '#81dcd4', data: [14, 10, 4, 2, 2, 2, 2, 1] },
+        { key: 'build', label: 'build and integrate', color: '#f7c77c', data: [2, 8, 14, 14, 10, 6, 4, 2] },
+        { key: 'test', label: 'test, measure, document', color: '#a6eb9b', data: [1, 2, 3, 5, 9, 13, 12, 8] },
+        { key: 'demo', label: 'demo and defence', color: '#e0782f', data: [0, 0, 0, 0, 0, 2, 6, 12] },
       ],
       caption:
         'Front-load design and interfaces, keep test running from week three, and reserve the final week for defence rather than for debugging. Projects that start testing in week seven do not finish.',
