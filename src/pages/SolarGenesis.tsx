@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useUi } from '@/lib/uiStore';
 import SolarCore from '@/components/kamitron/SolarCore';
 import LiquidWordmark from '@/components/kamitron/LiquidWordmark';
 import { Glyph, GlyphFrieze, type GlyphKind } from '@/components/kamitron/Glyphs';
-import '@fontsource/unbounded/latin-800.css';
-import '@/styles/solar-genesis.css';
-import '@/styles/solar-genesis-living.css';
 
 const divisions = [
   { n:'01', name:'The Forge of Ogun', type:'Robotics & physical engineering', text:'Study motion, control, sensors and fabrication. Take an idea from the engineering bench to the manufacturing workspace.', path:'/academy', glyph:'forge', action:'Enter the academy', color:'#ffc36e' },
@@ -67,25 +64,8 @@ function SolarIllustration() {
 
 export default function SolarGenesis() {
   const motion = useUi(s=>s.motion);
-  const toggleMotion=useUi(s=>s.toggleMotion);
-  const [menu,setMenu]=useState(false);
-  useEffect(()=>{
-    const previous=document.title;
-    document.title='KAMITRON | Ancient Roots. Living Intelligence. Future Technology.';
-    if (!window.location.hash) window.scrollTo(0,0);
-    return ()=>{document.title=previous;};
-  },[]);
-  return <div className="sg" data-sg-motion={motion?'on':'off'}>
-    <a className="sg-skip" href="#sg-main">Skip to content</a>
-    <header className="sg-header">
-      <Link to="/" className="sg-brand" aria-label="Kamitron home"><span className="sg-brand-mark"><Glyph kind="sun" lit/></span>KAMITRON</Link>
-      <button className="sg-menu" type="button" aria-expanded={menu} aria-controls="sg-nav" onClick={()=>setMenu(!menu)}>{menu?'Close':'Menu'}</button>
-      <nav id="sg-nav" className={menu?'sg-nav sg-nav-open':'sg-nav'} aria-label="Primary">
-        <a href="#divisions" onClick={()=>setMenu(false)}>Research</a><Link to="/academy">Academy</Link><Link to="/vault">Vault</Link><Link to="/about">About</Link><Link to="/contact">Collaborate</Link>
-      </nav>
-      <button type="button" className="sg-motion" onClick={toggleMotion} aria-pressed={!motion}>{motion?'Pause motion':'Resume motion'}</button>
-    </header>
-    <main id="sg-main">
+  useEffect(()=>{ document.title='KAMITRON | Ancient Roots. Living Intelligence. Future Technology.'; },[]);
+  return <>
       <section className="sg-hero" aria-labelledby="sg-title">
         <div className="sg-grid" aria-hidden="true"/>
         <SolarCore className="sg-solar" animate={motion} fallback={<div className="sg-hero-art"><SolarIllustration/></div>}/>
@@ -114,7 +94,5 @@ export default function SolarGenesis() {
       </section>
       <section className="sg-section sg-method"><p className="sg-kicker">Our research standard</p><h2>Wonder without confusion.</h2><ul className="sg-principles"><li>Learn from nature</li><li>Build with evidence</li><li>Imagine responsibly</li></ul><p>Established science, engineering simulations, experimental concepts, traditional knowledge and speculative storytelling belong in conversation. They do not belong under the same evidence label.</p><Link className="sg-secondary" to="/atlas">Explore the knowledge atlas ↗</Link></section>
       <section className="sg-section sg-invite"><p className="sg-kicker">Build with us</p><h2>The next horizon<br/><em>is a collective work.</em></h2><div className="sg-actions"><Link className="sg-cta" to="/contact">Start a collaboration ↗</Link><Link className="sg-secondary" to="/community">Join the Hive</Link></div></section>
-    </main>
-    <footer className="sg-footer"><Link to="/" className="sg-brand">KAMITRON</Link><span>Nature · intelligence · technology</span><Link to="/services">Services</Link><Link to="/contact">Contact</Link><Link to="/kamitron">Original factory</Link></footer>
-  </div>;
+  </>;
 }
