@@ -56,7 +56,7 @@ function ChartBlockView({ block }: { block: Extract<Block, { kind: 'chart' }> })
     <Panel className="my-5 p-4">
       <div className="mb-2 flex items-center gap-2">
         <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">data</span>
-        <h4 className="font-heading text-sm font-semibold text-white">{block.title}</h4>
+        <h3 className="font-heading text-sm font-semibold text-white">{block.title}</h3>
       </div>
       <div className="h-[280px]">
         <ResponsiveContainer width="100%" height="100%">
@@ -118,9 +118,9 @@ export function BlockView({ block }: { block: Block }) {
       return (
         <div className="my-5">
           {block.heading && (
-            <h3 className="mb-2 font-heading text-xl font-bold text-k-gold">
+            <h2 className="mb-2 font-heading text-xl font-bold text-k-gold">
               <Inline text={block.heading} />
-            </h3>
+            </h2>
           )}
           <RichText body={block.body} />
         </div>

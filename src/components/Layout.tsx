@@ -7,7 +7,10 @@ import { Glyph } from '@/components/kamitron/Glyphs';
 import { CommandPalette } from './CommandPalette';
 import { BADGES, levelFromXp, nextRank, rankFor, rankProgress } from '@/lib/progression';
 import { useProgress } from '@/lib/store';
-import { allProjects } from '@/content';
+import { allProjects, bossQuizzes, lessonById, projectById } from '@/content';
+import { LAB_MAP } from '@/components/labs';
+import { manufacturingModules } from '@/content/manufacturing';
+import { setPageMeta } from '@/lib/pageMeta';
 import { VIBE_META, VIBE_ORDER, applyUiToDom, systemPrefersReducedMotion, useUi } from '@/lib/uiStore';
 import { Progress } from './ui';
 
@@ -99,6 +102,44 @@ function sectionLabel(pathname: string): string {
   if (pathname.startsWith('/boss')) return 'Boss trial';
   if (pathname.startsWith('/ideas/')) return 'Blueprint';
   return 'Ogun Forge Academy';
+}
+
+/** Browser-tab title and search description for each academy page. */
+function academyMeta(pathname: string): { title: string; description: string } {
+  const suffix = ' · Ogun Forge Academy';
+  const parts = pathname.split('/').filter(Boolean);
+  const [section, id] = parts;
+  if (section === 'lesson' && id && lessonById[id]) {
+    const l = lessonById[id];
+    return { title: `${l.title}${suffix}`, description: `Lesson ${l.number}, week ${l.week}: ${l.subtitle}. ${l.hook}` };
+  }
+  if (section === 'quiz' && id && lessonById[id]) {
+    const l = lessonById[id];
+    return { title: `Quiz: ${l.title}${suffix}`, description: `Seven questions on ${l.title}, with the reasoning behind every answer.` };
+  }
+  if (section === 'boss' && id) {
+    const b = bossQuizzes.find((q) => String(q.week) === id);
+    if (b) return { title: `${b.title}${suffix}`, description: `Week ${b.week} boss trial: ${b.subtitle}` };
+  }
+  if (section === 'labs' && id && LAB_MAP[id]) {
+    const lab = LAB_MAP[id];
+    return { title: `${lab.name}${suffix}`, description: lab.blurb };
+  }
+  if (section === 'manufacturing' && parts[1] === 'learn' && parts[2]) {
+    const mod = manufacturingModules.find((m) => m.id === parts[2]);
+    if (mod) return { title: `${mod.title}${suffix}`, description: mod.summary };
+  }
+  if (section === 'ideas' && id && projectById[id]) {
+    const p = projectById[id];
+    return { title: `${p.title}${suffix}`, description: p.tagline };
+  }
+  const item = ALL_ITEMS.filter((i) => i.to !== '/').sort((a, b) => b.to.length - a.to.length)
+    .find((i) => pathname === i.to || pathname.startsWith(`${i.to}/`));
+  if (pathname === '/academy') {
+    return { title: 'Ogun Forge Robotics Academy · Kamitron', description: 'A self-paced robotics engineering course: 16 lessons across eight weeks, ten interactive 3D labs, quizzes, flashcards and 88 build blueprints.' };
+  }
+  if (item) return { title: `${item.label}${suffix}`, description: `${item.hint}. Part of the Ogun Forge Robotics Academy by Kamitron.` };
+  return { title: `Ogun Forge Academy · Kamitron`, description: 'The Ogun Forge Robotics Academy by Kamitron.' };
 }
 
 /* ------------------------------------------------------------------ */
@@ -262,6 +303,7 @@ export function Layout() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
     setSheet(false);
+    setPageMeta({ ...academyMeta(loc.pathname), path: loc.pathname });
   }, [loc.pathname]);
 
   useEffect(() => {

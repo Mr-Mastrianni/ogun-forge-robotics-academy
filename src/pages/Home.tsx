@@ -120,7 +120,7 @@ export default function Home() {
         <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <div className="mb-4 flex flex-wrap items-center gap-2">
-              <Chip tone="psy">◈ LIVE ONLINE COURSE</Chip>
+              <Chip tone="psy">◈ SELF-PACED ONLINE COURSE</Chip>
               <Chip>8 WEEKS · 16 LESSONS</Chip>
               <Chip tone="myco">LIVING MACHINES</Chip>
             </div>
@@ -157,19 +157,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* instructor + a quick legend */}
+          {/* what the course covers + a quick legend */}
           <div className="space-y-4">
             <Panel className="p-5">
-              <div className="holo-kicker">Instructor</div>
-              <div className="mt-2 flex items-center gap-3">
-                <div className="grid h-14 w-14 place-items-center rounded-2xl border border-k-light/40 bg-gradient-to-br from-[#153224] to-k-ink text-2xl">
-                  🔥
-                </div>
-                <div>
-                  <div className="font-display text-lg text-white">BHANU KUSHWAHA</div>
-                  <div className="text-[12px] text-k-muted">Lead Robotics Engineer, OXA</div>
-                </div>
-              </div>
+              <div className="holo-kicker">What you will learn</div>
               <p className="mt-3 text-[13px] leading-relaxed text-k-text">
                 Hands-on builds, simulation, sensors, control systems, AI and perception, IoT, safety, industry insights,
                 teamwork, problem solving, automation, embedded systems, prototyping, real-world impact and future skills.

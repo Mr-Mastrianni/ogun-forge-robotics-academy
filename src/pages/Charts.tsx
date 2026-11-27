@@ -120,7 +120,7 @@ export default function Charts() {
 
   return (
     <div className="space-y-6">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="data"
         title="Charts & Analytics"
         sub="Two kinds of graph matter in this course: the physics you must be able to read at a glance, and your own learning curve so you can see exactly where the iron is still cold."

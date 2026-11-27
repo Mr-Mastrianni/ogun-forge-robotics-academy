@@ -1,16 +1,19 @@
-import type { ComponentType } from 'react';
+import { Suspense, lazy, type ComponentType } from 'react';
 import type { LabId } from '@/content/types';
 import type { LabProps } from './LabFrame';
-import RobotArmLab from './RobotArmLab';
-import PidDroneLab from './PidDroneLab';
-import SwarmLab from './SwarmLab';
-import KalmanLab from './KalmanLab';
-import MyceliumLab from './MyceliumLab';
-import BlochLab from './BlochLab';
-import GearTrainLab from './GearTrainLab';
-import EnergyFieldLab from './EnergyFieldLab';
-import VisionGridLab from './VisionGridLab';
-import GaitLab from './GaitLab';
+
+// Each lab loads only when it is opened, so the lab list and the rest of the
+// academy never download three.js and all ten simulators up front.
+const RobotArmLab = lazy(() => import('./RobotArmLab'));
+const PidDroneLab = lazy(() => import('./PidDroneLab'));
+const SwarmLab = lazy(() => import('./SwarmLab'));
+const KalmanLab = lazy(() => import('./KalmanLab'));
+const MyceliumLab = lazy(() => import('./MyceliumLab'));
+const BlochLab = lazy(() => import('./BlochLab'));
+const GearTrainLab = lazy(() => import('./GearTrainLab'));
+const EnergyFieldLab = lazy(() => import('./EnergyFieldLab'));
+const VisionGridLab = lazy(() => import('./VisionGridLab'));
+const GaitLab = lazy(() => import('./GaitLab'));
 
 export interface LabMeta {
   id: LabId;
@@ -184,5 +187,9 @@ export function LabRenderer({ labId, tasks }: { labId: LabId; tasks?: string[] }
   const meta = LAB_MAP[labId];
   if (!meta) return null;
   const C = meta.Component;
-  return <C tasks={tasks && tasks.length ? tasks : meta.tasks} />;
+  return (
+    <Suspense fallback={<div className="grid min-h-[360px] place-items-center rounded-xl border border-k-line/60 text-sm text-k-muted" role="status">Loading the {meta.name}…</div>}>
+      <C tasks={tasks && tasks.length ? tasks : meta.tasks} />
+    </Suspense>
+  );
 }

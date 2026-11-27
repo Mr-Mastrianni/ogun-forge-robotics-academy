@@ -1,7 +1,7 @@
 # Ọ̀GÚN'S FORGE — Robotics Engineering Academy
 
 An interactive, gamified robotics engineering course in an **Afrocentric galactic psychedelic robotic** theme.
-Built from the **8 weeks / 16 lessons / live online** course outline, then pushed far past it: real solvers,
+Built from an **8 weeks / 16 lessons** course outline, then pushed far past it: real solvers,
 real 3D labs, and a large blueprint library fusing robotics with mycelium, biomimicry, Jyotish cultural
 computing, exotic energy, quantum sensing and Afrofuturist systems.
 
@@ -117,8 +117,7 @@ are validated by review — the schema is enforced by `tsc`.
 
 ## Credits
 
-Course outline and instructor credit: **Bhanu Kushwaha, Lead Robotics Engineer, OXA** — 8 weeks, 16 lessons,
-hands-on builds, simulation, sensors, control systems, AI and perception, IoT, safety, industry insights,
+Course outline: 8 weeks, 16 lessons, hands-on builds, simulation, sensors, control systems, AI and perception, IoT, safety, industry insights,
 teamwork, problem solving, automation, embedded systems, prototyping, real-world impact, future skills.
 
 ---

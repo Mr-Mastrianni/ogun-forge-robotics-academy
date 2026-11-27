@@ -96,7 +96,7 @@ export default function Flashcards() {
 
   return (
     <div className="space-y-6">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="spaced repetition"
         title="Flashcard Forge"
         sub="A Leitner/SM-2 style scheduler. Every card you grade updates its ease factor and interval, so the deck keeps surfacing exactly the terms you are about to forget. Keyboard: space to flip, 1–4 to grade."

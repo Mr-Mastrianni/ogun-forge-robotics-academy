@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useUi } from '@/lib/uiStore';
+import { setPageMeta } from '@/lib/pageMeta';
 import SolarCore from '@/components/kamitron/SolarCore';
 import LiquidWordmark from '@/components/kamitron/LiquidWordmark';
 import { Glyph, GlyphFrieze, type GlyphKind } from '@/components/kamitron/Glyphs';
@@ -64,7 +65,7 @@ function SolarIllustration() {
 
 export default function SolarGenesis() {
   const motion = useUi(s=>s.motion);
-  useEffect(()=>{ document.title='KAMITRON | Ancient Roots. Living Intelligence. Future Technology.'; },[]);
+  useEffect(()=>{ setPageMeta({ path: '/' }); },[]);
   return <>
       <section className="sg-hero" aria-labelledby="sg-title">
         <div className="sg-grid" aria-hidden="true"/>

@@ -63,6 +63,8 @@
 .kp-head p { margin: 14px 0 0; color: var(--muted); font-size: 1.04rem; }
 .kp h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(1.15rem, 1.5vw, 1.45rem); letter-spacing: -.03em; line-height: 1.2; color: #f6edda; margin: 0 0 10px; }
 .kp p { margin: 0 0 12px; }
+.sg .kp .kp-h { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(1.15rem, 1.5vw, 1.45rem); letter-spacing: -.03em; line-height: 1.2; margin: 0 0 10px; }
+.kp-privacy { margin: 10px 0 0; font-size: .85rem; color: #9fb39b; }
 .kp a:not(.sg-cta):not(.sg-secondary) { color: var(--gold); text-underline-offset: 3px; }
 
 .kp-grid { display: grid; gap: 1px; background: #8caa842e; border: 1px solid #8caa842e; }

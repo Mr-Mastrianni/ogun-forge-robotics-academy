@@ -70,7 +70,7 @@ export default function Tables() {
 
   return (
     <div className="space-y-6">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="reference"
         title="Engineering Tables"
         sub="Twelve curated comparison tables plus every table authored inside the lessons. Real part numbers, real ranges and units, and an honest note on when to choose what."

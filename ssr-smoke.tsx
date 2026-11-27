@@ -12,6 +12,8 @@ import { StaticRouter } from 'react-router-dom/server';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import KamitronShell from '@/components/kamitron/KamitronShell';
+import NotFound from '@/pages/NotFound';
+import Privacy from '@/pages/Privacy';
 import ProductionWorkspace from '@/components/manufacturing/ProductionWorkspace';
 import Manufacturing from '@/pages/Manufacturing';
 import ManufacturingLearn from '@/pages/ManufacturingLearn';
@@ -47,6 +49,8 @@ const ROUTES: [string, string][] = [
   ['/about', 'Our journey'],
   ['/community', 'Heal One Creek'],
   ['/contact', 'message-form'],
+  ['/privacy', 'Privacy policy'],
+  ['/no-such-page', 'not on the map'],
   ['/vault', 'Hyalos GX-8'],
   ...SPECIMENS.map(s => [`/vault?lab=${s.lab.id}&specimen=${s.id}`, s.name] as [string, string]),
   ['/manufacturing', 'Manufacturing Forge'],
@@ -100,6 +104,8 @@ function App() {
         <Route path="/kamitron" element={<Kamitron />} />
         <Route path="/vault" element={<SpecimenVault />} />
         {['services', 'about', 'community', 'contact'].map(path => <Route key={path} path={`/${path}`} element={<Kamitron />} />)}
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
       <Route element={<Layout />}>
         <Route path="/academy" element={<Home />} />
