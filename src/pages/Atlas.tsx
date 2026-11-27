@@ -55,7 +55,7 @@ export default function Atlas() {
 
   return (
     <div className="space-y-6">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="heritage"
         title="The Heritage Atlas"
         sub="Iron smelting, binary divination systems, mortarless stone engineering, fractal design, star tracking, manuscript astronomy — the technological lineage this course stands on, mapped to the modern engineering idea inside each one."

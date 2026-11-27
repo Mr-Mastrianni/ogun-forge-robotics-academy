@@ -45,6 +45,7 @@ export default function QuizArena() {
           <span className="text-k-gold">Lesson {lesson.number}</span>
         </div>
         <QuizRunner
+          pageHeading
           key={lesson.id}
           questions={lesson.quiz}
           title={`Lesson ${lesson.number}: ${lesson.title}`}
@@ -85,6 +86,7 @@ export default function QuizArena() {
           <span className="text-k-gold">{drill === 'mixed' ? 'mixed drill' : 'weak-spot drill'}</span>
         </div>
         <QuizRunner
+          pageHeading
           key={drill}
           questions={qs.map(({ lessonId: _l, lessonTitle: _t, week: _w, ...q }) => q)}
           title={drill === 'mixed' ? 'Mixed Drill — ten questions from the whole course' : 'Weak-Spot Drill'}
@@ -113,7 +115,7 @@ export default function QuizArena() {
 
   return (
     <div className="space-y-7">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="gamified assessment"
         title="The Quiz Arena"
         sub="Seven questions per lesson, ten per weekly boss trial. Combos multiply your streak, the timer keeps you honest, and every wrong answer comes with the reasoning."

@@ -18,7 +18,7 @@ export default function Course() {
 
   return (
     <div className="space-y-8">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="the roadmap"
         title="Robotics Engineering — 8 weeks, 16 lessons"
         sub={`${Math.round(totalMinutes / 60)} hours of guided study, ${flashcards.length} flashcards, ${lessons.reduce((a, l) => a + l.quiz.length, 0)} quiz questions and ${Object.keys(LAB_MAP).length} interactive labs. Work in order; each week's boss trial assumes both lessons.`}

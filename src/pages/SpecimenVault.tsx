@@ -3,6 +3,7 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { KAMITRON_LABS, KAMITRON_PAGES, SPECIMENS, TIERS, BUILD_XP, RANK_XP } from '@/content/kamitron';
 import { useProgress } from '@/lib/store';
 import { PageHero } from '@/components/kamitron/KamitronShell';
+import { setPageMeta } from '@/lib/pageMeta';
 const SpecimenViewer = lazy(() => import('@/components/kamitron/SpecimenViewer'));
 
 const HERO = KAMITRON_PAGES.find(p => p.key === 'vault')!;
@@ -25,7 +26,7 @@ export default function SpecimenVault() {
   const [file, setFile] = useState<File | null>(null);
   const location = useLocation();
   const preview = location.hash === '#owner';
-  useEffect(() => { document.title = 'Specimen Vault · Kamitron'; }, []);
+  useEffect(() => { setPageMeta({ title: 'Specimen Vault · Kamitron', description: HERO.lead, path: '/vault' }); }, []);
   const rank = RANK_XP.reduce((r, threshold, i) => xp >= threshold ? i : r, 0);
   const isSaved = saved.includes(`kamitron:${selected.id}`);
 

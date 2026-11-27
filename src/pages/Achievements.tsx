@@ -38,7 +38,7 @@ export default function Achievements() {
 
   return (
     <div className="space-y-7">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="trophy room"
         title="Adinkra Badges & the Ladder of Ranks"
         sub="Fourteen Adinkra symbols, each earned by demonstrating something. Below them, ten ranks trace the ascent from raw curiosity to cosmic knower."

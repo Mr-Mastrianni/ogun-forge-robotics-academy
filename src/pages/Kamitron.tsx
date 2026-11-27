@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type MouseEvent, type FormEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PageHero } from '@/components/kamitron/KamitronShell';
+import { setPageMeta } from '@/lib/pageMeta';
 import { KAMITRON_PAGES } from '@/content/kamitron';
 import factory from '@/content/kamitron/factory.html?raw';
 import about from '@/content/kamitron/about.html?raw';
@@ -18,7 +19,7 @@ export default function Kamitron() {
   const [copyStatus, setCopyStatus] = useState('');
 
   useEffect(() => {
-    document.title = `${page.title} · Kamitron`;
+    setPageMeta({ title: `${page.title} · Kamitron`, description: page.lead, path: page.path });
     const service = new URLSearchParams(location.search).get('service');
     const select = container.current?.querySelector<HTMLSelectElement>('#serviceType');
     if (service && select) select.value = service;

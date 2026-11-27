@@ -11,8 +11,8 @@ export default function ManufacturingLearn() {
   const learned = useManufacturing((s) => s.learned);
   return (
     <div className="space-y-6">
-      <SectionTitle
-        eyebrow="Ọ̀gún’s Forge · from blueprint to batch"
+      <SectionTitle level={moduleId ? 2 : 1}
+        eyebrow="Ogun Forge Academy · from blueprint to batch"
         title="Manufacturing Academy"
         sub="Learn the commercial and production skills that turn a working device into a repeatable product."
         right={

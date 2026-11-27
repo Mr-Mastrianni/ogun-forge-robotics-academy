@@ -22,7 +22,9 @@ const FOOTER = [
   { heading: 'Studio', links: [['/services', 'Services'], ['/community', 'The Hive'], ['/about', 'About'], ['/contact', 'Contact']] },
 ] as const;
 
-const STUDIO_PATHS = new Set(['/kamitron', '/vault', '/services', '/community', '/about', '/contact']);
+const ACADEMY_PREFIXES = ['/academy', '/course', '/lesson', '/labs', '/quiz', '/boss', '/flashcards', '/charts', '/tables',
+  '/ideas', '/atlas', '/achievements', '/progress', '/glossary', '/beyond', '/manufacturing', '/mycelium'];
+const isAcademyPath = (p: string) => ACADEMY_PREFIXES.some(a => p === a || p.startsWith(a + '/'));
 
 /** Scroll to the hash target once the (possibly lazy) page has rendered it. */
 function useRouteScroll() {
@@ -49,7 +51,7 @@ export function SiteHeader() {
   const [menu, setMenu] = useState(false);
   const location = useLocation();
   useEffect(() => { setMenu(false); }, [location.pathname, location.hash]);
-  const academy = location.pathname !== '/' && !STUDIO_PATHS.has(location.pathname);
+  const academy = isAcademyPath(location.pathname);
   return (
     <header className="sg-header">
       <Link to="/" className="sg-brand" aria-label="Kamitron home"><span className="sg-brand-mark"><Glyph kind="sun" lit /></span>KAMITRON</Link>
@@ -84,7 +86,7 @@ export function SiteFooter() {
         <a href="https://caake.org" target="_blank" rel="noopener">CAAKE</a>
         <p>Healthcare and enterprise technology, AI consulting and automation.</p>
       </div>
-      <p className="kf-base">© {new Date().getFullYear()} Kamitron · <a href="mailto:hello@kamitron.com">hello@kamitron.com</a></p>
+      <p className="kf-base">© {new Date().getFullYear()} Kamitron · <a href="mailto:hello@kamitron.com">hello@kamitron.com</a> · <Link to="/privacy">Privacy policy</Link></p>
     </footer>
   );
 }

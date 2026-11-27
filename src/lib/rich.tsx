@@ -1,5 +1,6 @@
 import katex from 'katex';
 import { useMemo, type ReactNode } from 'react';
+import 'katex/dist/katex.min.css'; // only pages that render math load it
 
 /* ------------------------------------------------------------------ */
 /* KaTeX                                                               */

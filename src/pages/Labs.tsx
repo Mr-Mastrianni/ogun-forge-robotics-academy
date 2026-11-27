@@ -105,7 +105,7 @@ export default function Labs() {
 
   return (
     <div className="space-y-6">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="interactive"
         title="Ten labs, real solvers"
         sub="Each lab runs actual mathematics — damped-least-squares inverse kinematics, a four-state Kalman filter, space-colonisation growth, qubit gate algebra, thermoelectric models. Push the sliders, break the system, then explain the break."

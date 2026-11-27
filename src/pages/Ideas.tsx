@@ -50,7 +50,7 @@ export default function Ideas() {
 
   return (
     <div className="space-y-6">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="beyond the syllabus"
         title={`Idea Lab — ${allProjects.length} buildable blueprints`}
         sub="Living chassis, fungal signalling rigs, panchang schedulers over real agronomy, geothermal probes, NV-centre magnetometry, auxetic vibranium bumpers, CubeSat ADCS. Every blueprint separates the engineering from the myth, lists a bill of materials, and names real safety controls."

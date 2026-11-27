@@ -44,19 +44,23 @@ export function SectionTitle({
   title,
   sub,
   right,
+  level = 2,
 }: {
   eyebrow?: string;
   title: string;
   sub?: string;
   right?: ReactNode;
+  /** 1 when this is the page's main heading */
+  level?: 1 | 2;
 }) {
+  const Heading = level === 1 ? 'h1' : 'h2';
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
       <div>
         {eyebrow && (
           <div className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-k-gold/80">{eyebrow}</div>
         )}
-        <h2 className="font-heading text-2xl font-bold text-white md:text-3xl">{title}</h2>
+        <Heading className="font-heading text-2xl font-bold text-white md:text-3xl">{title}</Heading>
         {sub && <p className="mt-1 max-w-2xl text-sm text-k-muted">{sub}</p>}
       </div>
       {right}

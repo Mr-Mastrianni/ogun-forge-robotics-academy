@@ -63,7 +63,7 @@ export default function ProgressPage() {
 
   return (
     <div className="space-y-7">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="your run"
         title="Progress & Next Moves"
         sub="Everything the app has recorded about your ascent, plus exactly what to do next — the single most useful page when you sit down to study."

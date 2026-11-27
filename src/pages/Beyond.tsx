@@ -171,7 +171,7 @@ const UPGRADES: Upgrade[] = [
     impact: 76,
     effort: 58,
     summary:
-      'For OXA cohorts: per-student mastery heat maps, question-level discrimination indices, drop-off points inside lessons, and an auto-generated "teach this again" list for the next live session.',
+      'For cohorts: per-student mastery heat maps, question-level discrimination indices, drop-off points inside lessons, and an auto-generated "teach this again" list for the next live session.',
     how: [
       'Emit anonymous telemetry events (lesson opened, block reached, quiz item result) to a small analytics table.',
       'Compute item difficulty and discrimination to retire bad questions automatically.',
@@ -255,7 +255,7 @@ export default function Beyond() {
 
   return (
     <div className="space-y-7">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="brainstorm"
         title="What would make this course even better"
         sub="Fifteen concrete upgrades, each with an honest impact and effort estimate and a stated implementation path. The app you are using is the current version; this is the forge list for the next one."

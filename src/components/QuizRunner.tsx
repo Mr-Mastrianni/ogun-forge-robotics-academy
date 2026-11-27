@@ -27,7 +27,10 @@ export function QuizRunner({
   bossMode = false,
   onSubmit,
   onDone,
+  pageHeading = false,
 }: {
+  /** true when the quiz title is the page's main heading */
+  pageHeading?: boolean;
   questions: QuizQuestion[];
   title: string;
   subtitle?: string;
@@ -36,6 +39,7 @@ export function QuizRunner({
   onSubmit: (correct: number, total: number) => number;
   onDone?: () => void;
 }) {
+  const TitleTag = pageHeading ? 'h1' : 'h2';
   const sfx = useSfx();
   const [idx, setIdx] = useState(0);
   const [chosen, setChosen] = useState<number | null>(null);
@@ -210,7 +214,7 @@ export function QuizRunner({
           <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">
             {bossMode ? 'boss trial' : 'lesson quiz'}
           </div>
-          <div className="font-heading text-base text-white">{title}</div>
+          <TitleTag className="font-heading text-base font-normal text-white">{title}</TitleTag>
           {subtitle && <div className="text-[12px] text-k-muted">{subtitle}</div>}
         </div>
         <div className="flex items-center gap-2">

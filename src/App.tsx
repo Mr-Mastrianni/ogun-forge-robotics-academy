@@ -1,9 +1,12 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { Layout } from '@/components/Layout';
 import KamitronShell from '@/components/kamitron/KamitronShell';
 
+// The academy shell carries search over the whole course, so it loads only on academy pages.
+const Layout = lazy(() => import('@/components/Layout').then(m => ({ default: m.Layout })));
 const Kamitron = lazy(() => import('@/pages/Kamitron'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
+const Privacy = lazy(() => import('@/pages/Privacy'));
 const SpecimenVault = lazy(() => import('@/pages/SpecimenVault'));
 
 const Manufacturing = lazy(() => import('@/pages/Manufacturing'));
@@ -56,6 +59,8 @@ export default function App() {
           <Route path="/kamitron" element={<Kamitron />} />
           <Route path="/vault" element={<SpecimenVault />} />
           {['services', 'about', 'community', 'contact'].map(path => <Route key={path} path={`/${path}`} element={<Kamitron />} />)}
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
         <Route element={<Layout />}>
           <Route path="/academy" element={<Home />} />
@@ -83,7 +88,6 @@ export default function App() {
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/glossary" element={<Glossary />} />
           <Route path="/beyond" element={<Beyond />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </Suspense>

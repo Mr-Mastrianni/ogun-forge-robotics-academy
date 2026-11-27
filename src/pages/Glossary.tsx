@@ -44,7 +44,7 @@ export default function Glossary() {
 
   return (
     <div className="space-y-6">
-      <SectionTitle
+      <SectionTitle level={1}
         eyebrow="reference"
         title={`Glossary — ${allKeyTerms.length} terms`}
         sub="Every key term from all sixteen lessons, alphabetised, searchable and linked back to the lesson that teaches it."
