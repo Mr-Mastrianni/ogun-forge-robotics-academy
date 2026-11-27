@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState, type MouseEvent, type FormEvent } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { KamitronNav } from '@/components/kamitron/KamitronNav';
-import { Chip, Panel } from '@/components/ui';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { PageHero } from '@/components/kamitron/KamitronShell';
 import { KAMITRON_PAGES } from '@/content/kamitron';
 import factory from '@/content/kamitron/factory.html?raw';
 import about from '@/content/kamitron/about.html?raw';
 import services from '@/content/kamitron/services.html?raw';
 import community from '@/content/kamitron/community.html?raw';
 import contact from '@/content/kamitron/contact.html?raw';
-import '@/styles/kamitron.css';
 
 const CONTENT: Record<string, string> = { factory, about, services, community, contact };
 
@@ -20,15 +18,10 @@ export default function Kamitron() {
   const [copyStatus, setCopyStatus] = useState('');
 
   useEffect(() => {
-    document.title = `${page.title} · Ọ̀gún’s Forge`;
+    document.title = `${page.title} · Kamitron`;
     const service = new URLSearchParams(location.search).get('service');
     const select = container.current?.querySelector<HTMLSelectElement>('#serviceType');
     if (service && select) select.value = service;
-    if (location.hash) requestAnimationFrame(() => {
-      container.current?.querySelectorAll('[id]').forEach(el => {
-        if (el.id === decodeURIComponent(location.hash.slice(1))) el.scrollIntoView({ block: 'start' });
-      });
-    });
   }, [page, location.search, location.hash]);
 
   async function click(event: MouseEvent<HTMLDivElement>) {
@@ -69,11 +62,12 @@ export default function Kamitron() {
     finally { if (button) button.disabled = false; }
   }
 
-  return <div>
-    <Panel className="mb-6 p-5"><Chip>Ọ̀gún’s Forge · Living Technology</Chip><p className="mt-3 text-sm text-[#c9bde6]">Kamitron brings nature-inspired engineering, creative technology and community into the Forge.</p></Panel>
-    <KamitronNav />
-    <p role="status" className="text-sm text-[#f5b301]">{copyStatus}</p>
+  return <>
+    <PageHero glyph={page.glyph} kicker={page.kicker} title={page.heading} lead={page.lead}>
+      {page.actions.map(([href, label], i) => <Link key={href} className={i === 0 ? 'sg-cta' : 'sg-secondary'} to={href.startsWith('#') ? page.path + href : href}>{label}</Link>)}
+    </PageHero>
+    <p role="status" className="kp-copy-status">{copyStatus}</p>
     {/* Static, reviewed repository content; scripts, event attributes and source styles were removed during migration. */}
-    <div key={page.key} ref={container} className="kamitron-content" onClick={click} onSubmit={submit} dangerouslySetInnerHTML={{ __html: CONTENT[page.key] }} />
-  </div>;
+    <div key={page.key} ref={container} className="kp" onClick={click} onSubmit={submit} dangerouslySetInnerHTML={{ __html: CONTENT[page.key] }} />
+  </>;
 }

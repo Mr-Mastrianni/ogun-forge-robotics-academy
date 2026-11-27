@@ -11,6 +11,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
+import KamitronShell from '@/components/kamitron/KamitronShell';
 import ProductionWorkspace from '@/components/manufacturing/ProductionWorkspace';
 import Manufacturing from '@/pages/Manufacturing';
 import ManufacturingLearn from '@/pages/ManufacturingLearn';
@@ -41,7 +42,8 @@ const ROUTES: [string, string][] = [
   ['/', 'KAMITRON'],
   ['/academy', 'ROBOTICS'],
   ['/kamitron', 'Inner Kingdom'],
-  ['/services', 'AI Consulting'],
+  ['/services', 'Research collaborations'],
+  ['/services#ai-consulting', 'caake.org'],
   ['/about', 'Our journey'],
   ['/community', 'Heal One Creek'],
   ['/contact', 'message-form'],
@@ -93,7 +95,12 @@ const ROUTES: [string, string][] = [
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<SolarGenesis />} />
+      <Route element={<KamitronShell />}>
+        <Route path="/" element={<SolarGenesis />} />
+        <Route path="/kamitron" element={<Kamitron />} />
+        <Route path="/vault" element={<SpecimenVault />} />
+        {['services', 'about', 'community', 'contact'].map(path => <Route key={path} path={`/${path}`} element={<Kamitron />} />)}
+      </Route>
       <Route element={<Layout />}>
         <Route path="/academy" element={<Home />} />
         <Route path="/manufacturing" element={<Manufacturing />} />
@@ -101,9 +108,6 @@ function App() {
         <Route path="/manufacturing/project/:productionId" element={<Manufacturing />} />
         <Route path="/manufacturing/learn" element={<ManufacturingLearn />} />
         <Route path="/manufacturing/learn/:moduleId" element={<ManufacturingLearn />} />
-        <Route path="/kamitron" element={<Kamitron />} />
-        <Route path="/vault" element={<SpecimenVault />} />
-        {['services', 'about', 'community', 'contact'].map(path => <Route key={path} path={`/${path}`} element={<Kamitron />} />)}
         <Route path="/course" element={<Course />} />
         <Route path="/mycelium" element={<MyceliumHub />} />
         <Route path="/lesson/:lessonId" element={<LessonPage />} />

@@ -117,8 +117,8 @@
 }
 
 /* ---------- glyphs ---------- */
-.gl { overflow: visible; --gw: 1.6px; }
-.gl path { fill: none; stroke: currentColor; stroke-width: var(--gw); stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.gl { overflow: visible; --gw: 2.4px; } /* stroke width in glyph units (viewBox 100) */
+.gl path { fill: none; stroke: currentColor; stroke-width: var(--gw); stroke-linecap: round; stroke-linejoin: round; }
 .gl-trace path {
   stroke-dasharray: 1 1;
   stroke-dashoffset: 1;
@@ -142,9 +142,9 @@
 }
 .gl.is-lit .gl-nodes circle { transform: scale(1); }
 
-.sg-brand-mark .gl { --gw: 1.4px; }
+.sg-brand-mark .gl { --gw: 3.6px; }
 .sg-glyph .gl { --gw: 1.7px; }
-.sg-feature-visual .gl { --gw: 2.2px; }
+.sg-feature-visual .gl { --gw: .7px; }
 
 /* charge runs through a card's glyph while it is hovered or focused */
 .sg-division:hover .gl-charge path,

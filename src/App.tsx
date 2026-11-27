@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
+import KamitronShell from '@/components/kamitron/KamitronShell';
 
 const Kamitron = lazy(() => import('@/pages/Kamitron'));
 const SpecimenVault = lazy(() => import('@/pages/SpecimenVault'));
@@ -50,16 +51,18 @@ export default function App() {
   return (
     <Suspense fallback={<Forging />}>
       <Routes>
-        <Route path="/" element={<SolarGenesis />} />
+        <Route element={<KamitronShell />}>
+          <Route path="/" element={<SolarGenesis />} />
+          <Route path="/kamitron" element={<Kamitron />} />
+          <Route path="/vault" element={<SpecimenVault />} />
+          {['services', 'about', 'community', 'contact'].map(path => <Route key={path} path={`/${path}`} element={<Kamitron />} />)}
+        </Route>
         <Route element={<Layout />}>
           <Route path="/academy" element={<Home />} />
           <Route path="/manufacturing" element={<Manufacturing />} />
           <Route path="/manufacturing/project/:productionId" element={<Manufacturing />} />
           <Route path="/manufacturing/learn" element={<ManufacturingLearn />} />
           <Route path="/manufacturing/learn/:moduleId" element={<ManufacturingLearn />} />
-          <Route path="/kamitron" element={<Kamitron />} />
-          <Route path="/vault" element={<SpecimenVault />} />
-          {['services', 'about', 'community', 'contact'].map(path => <Route key={path} path={`/${path}`} element={<Kamitron />} />)}
           {['vault', 'services', 'about', 'community', 'contact'].map(path => <Route key={`${path}-legacy`} path={`/${path}.html`} element={<LegacyKamitron to={`/${path}`} />} />)}
           <Route path="/course" element={<Course />} />
           <Route path="/mycelium" element={<MyceliumHub />} />

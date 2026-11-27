@@ -39,14 +39,14 @@ const NAV_GROUPS: { label: string; items: NavEntry[] }[] = [
     ],
   },
   {
-    label: 'Living Technology',
+    label: 'Kamitron studio',
     items: [
-      { to: '/kamitron', label: 'Kamitron', glyph: '✺', hint: 'Nature-inspired engineering and Inner Kingdom' },
+      { to: '/kamitron', label: 'Living labs', glyph: '✺', hint: 'Nature-inspired engineering and Inner Kingdom' },
       { to: '/vault', label: 'Specimen Vault', glyph: '⬡', hint: '35 builds across seven living labs' },
-      { to: '/services', label: 'Services', glyph: '⚒', hint: 'AI, automation and immersive development' },
+      { to: '/services', label: 'Services', glyph: '⚒', hint: 'Research collaborations, immersive builds, workshops' },
       { to: '/community', label: 'The Hive', glyph: '❖', hint: 'Community, events and workshops' },
       { to: '/about', label: 'Our story', glyph: '✵', hint: 'Kamitron vision, values and journey' },
-      { to: '/contact', label: 'Contact', glyph: '✉', hint: 'Start a project or partnership' },
+      { to: '/contact', label: 'Contact', glyph: '✉', hint: 'Start a collaboration or partnership' },
     ],
   },
   {
@@ -434,7 +434,7 @@ export function Layout() {
               </div>
               {[
                 { title: 'Learn', items: [...NAV_GROUPS[0].items, ...NAV_GROUPS[1].items] },
-                { title: 'Living technology', items: NAV_GROUPS.find(g => g.label === 'Living Technology')!.items },
+                { title: 'Kamitron studio', items: NAV_GROUPS.find(g => g.label === 'Kamitron studio')!.items },
                 { title: 'Practise, reference & build', items: NAV_GROUPS.filter(g => ['Practise', 'Reference', 'Build'].includes(g.label)).flatMap(g => g.items) },
               ].map((col) => (
                 <div key={col.title}>
