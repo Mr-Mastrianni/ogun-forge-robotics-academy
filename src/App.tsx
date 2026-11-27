@@ -8,6 +8,7 @@ const SpecimenVault = lazy(() => import('@/pages/SpecimenVault'));
 const Manufacturing = lazy(() => import('@/pages/Manufacturing'));
 const ManufacturingLearn = lazy(() => import('@/pages/ManufacturingLearn'));
 
+const SolarGenesis = lazy(() => import('@/pages/SolarGenesis'));
 const Home = lazy(() => import('@/pages/Home'));
 const Course = lazy(() => import('@/pages/Course'));
 const MyceliumHub = lazy(() => import('@/pages/MyceliumHub'));
@@ -49,8 +50,9 @@ export default function App() {
   return (
     <Suspense fallback={<Forging />}>
       <Routes>
+        <Route path="/" element={<SolarGenesis />} />
         <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/academy" element={<Home />} />
           <Route path="/manufacturing" element={<Manufacturing />} />
           <Route path="/manufacturing/project/:productionId" element={<Manufacturing />} />
           <Route path="/manufacturing/learn" element={<ManufacturingLearn />} />

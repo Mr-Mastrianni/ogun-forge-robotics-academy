@@ -16,6 +16,7 @@ import Manufacturing from '@/pages/Manufacturing';
 import ManufacturingLearn from '@/pages/ManufacturingLearn';
 import { newProject } from '@/lib/manufacturing';
 import Home from '@/pages/Home';
+import SolarGenesis from '@/pages/SolarGenesis';
 import Course from '@/pages/Course';
 import MyceliumHub from '@/pages/MyceliumHub';
 import LessonPage from '@/pages/LessonPage';
@@ -37,7 +38,8 @@ import { allProjects, bossQuizzes, flashcards, lessons, referenceTables, heritag
 const testProject = newProject('Smoke production project');
 testProject.id = 'smoke-project';
 const ROUTES: [string, string][] = [
-  ['/', 'ROBOTICS'],
+  ['/', 'KAMITRON'],
+  ['/academy', 'ROBOTICS'],
   ['/kamitron', 'Inner Kingdom'],
   ['/services', 'AI Consulting'],
   ['/about', 'Our journey'],
@@ -91,8 +93,9 @@ const ROUTES: [string, string][] = [
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<SolarGenesis />} />
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/academy" element={<Home />} />
         <Route path="/manufacturing" element={<Manufacturing />} />
         <Route path="/manufacturing/project/smoke-project" element={<ProductionWorkspace project={testProject} />} />
         <Route path="/manufacturing/project/:productionId" element={<Manufacturing />} />

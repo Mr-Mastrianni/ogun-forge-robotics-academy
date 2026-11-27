@@ -24,7 +24,8 @@ const NAV_GROUPS: { label: string; items: NavEntry[] }[] = [
   {
     label: 'Start here',
     items: [
-      { to: '/', label: 'Home', glyph: '◉', hint: 'The guided 4-step path' },
+      { to: '/', label: 'Kamitron home', glyph: '◉', hint: 'Return to the research studio' },
+      { to: '/academy', label: 'Academy home', glyph: '⌘', hint: 'The guided 4-step path' },
       { to: '/course', label: 'Course roadmap', glyph: '⌘', hint: '16 lessons across 8 weeks' },
     ],
   },
@@ -78,7 +79,7 @@ const NAV_GROUPS: { label: string; items: NavEntry[] }[] = [
 const ALL_ITEMS = NAV_GROUPS.flatMap((g) => g.items);
 
 const MOBILE_TABS: NavEntry[] = [
-  { to: '/', label: 'Home', glyph: '◉', hint: '' },
+  { to: '/academy', label: 'Academy', glyph: '◉', hint: '' },
   { to: '/course', label: 'Course', glyph: '⌘', hint: '' },
   { to: '/labs', label: 'Labs', glyph: '⚙', hint: '' },
   { to: '/ideas', label: 'Ideas', glyph: '🧬', hint: '' },
@@ -86,7 +87,7 @@ const MOBILE_TABS: NavEntry[] = [
 ];
 
 function sectionLabel(pathname: string): string {
-  if (pathname === '/') return 'Home';
+  if (pathname === '/academy') return 'Academy home';
   const hit = [...ALL_ITEMS]
     .filter((i) => i.to !== '/')
     .sort((a, b) => b.to.length - a.to.length)
@@ -210,7 +211,7 @@ function FieldControls({ compact = false }: { compact?: boolean }) {
 
 function Brand({ small = false }: { small?: boolean }) {
   return (
-    <NavLink to="/" className="flex items-center gap-2.5">
+    <NavLink to="/academy" className="flex items-center gap-2.5">
       <span className="relative grid h-10 w-10 place-items-center rounded-xl border border-[#67e8f9]/50 bg-gradient-to-br from-[#1b0a3a] to-[#05010f] text-lg shadow-[0_0_18px_rgba(103,232,249,0.35)]">
         🔥
         <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-[#6ee7a8] shadow-[0_0_10px_rgba(110,231,168,0.9)]" />
