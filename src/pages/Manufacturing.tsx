@@ -24,7 +24,7 @@ export default function Manufacturing() {
     ) : (
       <Panel className="p-6">
         <h1 className="text-xl text-white">Project not found on this device</h1>
-        <p className="my-3 text-[#c9bde6]">Import its backup or open a project saved in this browser.</p>
+        <p className="my-3 text-k-muted">Import its backup or open a project saved in this browser.</p>
         <Link className="btn btn-primary" to="/manufacturing">
           Back to Manufacturing Forge
         </Link>
@@ -43,11 +43,11 @@ export default function Manufacturing() {
         }
       />
       <Panel tone="myco" className="p-6">
-        <div className="font-mono text-xs uppercase tracking-widest text-[#6ee7a8]">
+        <div className="font-mono text-xs uppercase tracking-widest text-k-moss">
           Learn · document · verify · release
         </div>
         <h1 className="font-heading text-2xl text-white mt-2">Build the evidence before the inventory.</h1>
-        <p className="mt-3 max-w-3xl text-[#cfe9dc]">
+        <p className="mt-3 max-w-3xl text-k-mint">
           Create a product project or start from any Idea Lab blueprint. Compare suppliers, test your
           economics, and work through eight evidence gates. Simulation and a completed checklist do not
           certify a product.
@@ -112,17 +112,17 @@ export default function Manufacturing() {
         </label>
       </div>
       {message && (
-        <p role="status" className="rounded-lg border border-white/20 p-3 text-[#ffe9a8]">
+        <p role="status" className="rounded-lg border border-white/20 p-3 text-k-glint">
           {message}
         </p>
       )}
       {!projects.length ? (
         <Panel className="p-8 text-center">
           <div className="text-4xl">⚒</div>
-          <p className="mt-3 text-[#c9bde6]">
+          <p className="mt-3 text-k-muted">
             Your first production run begins with a question worth solving.
           </p>
-          <p className="mt-2 text-sm text-[#c9bde6]">
+          <p className="mt-2 text-sm text-k-muted">
             Create a project above, or bring a blueprint from the Idea Lab.
           </p>
         </Panel>
@@ -185,7 +185,7 @@ export default function Manufacturing() {
           })}
         </div>
       )}
-      <p className="text-sm text-[#c9bde6]">
+      <p className="text-sm text-k-muted">
         Saved automatically in this browser on this device. Export backups to keep your records or move them
         to another device. No supplier messages, purchases or payments are sent by this workspace.
       </p>

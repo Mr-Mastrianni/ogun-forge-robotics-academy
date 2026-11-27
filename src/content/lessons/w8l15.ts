@@ -54,8 +54,8 @@ export const lesson: Lesson = {
       chartType: 'line', xLabel: 'Annual production volume (parts)', yLabel: 'Unit cost (USD)',
       x: [100, 1000, 10000, 100000, 1000000],
       series: [
-        { key: 'tool50k', label: 'Mould USD 50,000', color: '#f59e0b', data: [505, 55, 10, 5.5, 5.05] },
-        { key: 'tool10k', label: 'Mould USD 10,000', color: '#38bdf8', data: [105, 15, 6, 5.1, 5.01] },
+        { key: 'tool50k', label: 'Mould USD 50,000', color: '#e9a64e', data: [505, 55, 10, 5.5, 5.05] },
+        { key: 'tool10k', label: 'Mould USD 10,000', color: '#5cc8c0', data: [105, 15, 6, 5.1, 5.01] },
         { key: 'cnc', label: 'CNC milling (no tooling)', color: '#a3e635', data: [12, 12, 12, 12, 12] },
       ] },
     { kind: 'table', title: 'Design for the machine: the details that fail in the field',

@@ -32,11 +32,11 @@ function Forging() {
   return (
     <div className="grid min-h-[60vh] place-items-center">
       <div className="text-center">
-        <div className="mx-auto mb-4 grid h-16 w-16 animate-spinSlow place-items-center rounded-2xl border border-[#f5b301]/40 bg-gradient-to-br from-[#3a1206] to-[#120a2e] text-2xl shadow-gold">
+        <div className="mx-auto mb-4 grid h-16 w-16 animate-spinSlow place-items-center rounded-2xl border border-k-gold/40 bg-gradient-to-br from-[#3a1206] to-k-panel text-2xl shadow-gold">
           🔥
         </div>
-        <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#f5b301]">heating the iron</div>
-        <div className="mt-1 text-[12.5px] text-[#c9bde6]">loading the forge…</div>
+        <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-k-gold">heating the iron</div>
+        <div className="mt-1 text-[12.5px] text-k-muted">loading the forge…</div>
       </div>
     </div>
   );

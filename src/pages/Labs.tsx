@@ -26,12 +26,12 @@ export default function Labs() {
     const done = labs[meta.id]?.length ?? 0;
     return (
       <div className="space-y-6">
-        <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#c9bde6]">
-          <Link to="/labs" className="hover:text-[#f5b301]">
+        <div className="flex flex-wrap items-center gap-2 text-[12px] text-k-muted">
+          <Link to="/labs" className="hover:text-k-gold">
             ← all labs
           </Link>
           <span>/</span>
-          <span className="text-[#f5b301]">{meta.name}</span>
+          <span className="text-k-gold">{meta.name}</span>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[1fr_300px]">
@@ -44,7 +44,7 @@ export default function Labs() {
                 <span className="text-2xl">{meta.glyph}</span>
                 <h1 className="font-heading text-lg font-bold text-white">{meta.name}</h1>
               </div>
-              <p className="mt-2 text-[13px] leading-relaxed text-[#c9bde6]">{meta.blurb}</p>
+              <p className="mt-2 text-[13px] leading-relaxed text-k-muted">{meta.blurb}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 <Chip>{meta.track}</Chip>
                 {meta.threeD && <Chip tone="psy">three.js</Chip>}
@@ -56,13 +56,13 @@ export default function Labs() {
 
             {related.length > 0 && (
               <Panel tone="psy" className="p-4">
-                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5c8ff]">
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-sand">
                   taught in
                 </div>
                 <ul className="space-y-2">
                   {related.map((l) => (
                     <li key={l.id}>
-                      <Link to={`/lesson/${l.id}`} className="text-[12.5px] text-[#ded4f2] hover:text-[#f5b301]">
+                      <Link to={`/lesson/${l.id}`} className="text-[12.5px] text-k-text hover:text-k-gold">
                         L{l.number} · {l.title}
                       </Link>
                     </li>
@@ -72,10 +72,10 @@ export default function Labs() {
             )}
 
             <Panel tone="myco" className="p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#6ee7a8]">
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-moss">
                 how to use this lab
               </div>
-              <ol className="space-y-1.5 text-[12.5px] leading-relaxed text-[#cfe9dc]">
+              <ol className="space-y-1.5 text-[12.5px] leading-relaxed text-k-mint">
                 <li>1. Move one control at a time and predict the result before you look.</li>
                 <li>2. Break it deliberately — find the failure boundary.</li>
                 <li>3. Write the number down. An intuition you cannot quantify is a guess.</li>
@@ -84,13 +84,13 @@ export default function Labs() {
             </Panel>
 
             <Panel className="p-4">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">other labs</div>
+              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">other labs</div>
               <div className="grid grid-cols-2 gap-1.5">
                 {LABS.filter((l) => l.id !== meta.id).map((l) => (
                   <Link
                     key={l.id}
                     to={`/labs/${l.id}`}
-                    className="rounded-lg border border-white/10 bg-white/[0.03] px-2 py-1.5 text-center font-mono text-[10.5px] text-[#c9bde6] hover:border-[#f5b301]/50 hover:text-[#f5b301]"
+                    className="rounded-lg border border-white/10 bg-white/[0.03] px-2 py-1.5 text-center font-mono text-[10.5px] text-k-muted hover:border-k-gold/50 hover:text-k-gold"
                   >
                     {l.glyph} {l.name.split(':')[0].split(' ')[0]}
                   </Link>
@@ -118,8 +118,8 @@ export default function Labs() {
             onClick={() => setFilter(t)}
             className={`rounded-lg border px-3 py-1.5 font-mono text-[11px] capitalize transition-colors ${
               filter === t
-                ? 'border-[#f5b301]/60 bg-[#f5b301]/15 text-[#ffe9a8]'
-                : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                ? 'border-k-gold/60 bg-k-gold/15 text-k-glint'
+                : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
             }`}
           >
             {t}
@@ -136,15 +136,15 @@ export default function Labs() {
                 <div className="flex items-start justify-between">
                   <span className="text-3xl">{l.glyph}</span>
                   <div className="text-right">
-                    <div className="font-mono text-[10px] text-[#c9bde6]">{l.track}</div>
+                    <div className="font-mono text-[10px] text-k-muted">{l.track}</div>
                     {l.threeD && <Chip tone="psy">3D</Chip>}
                   </div>
                 </div>
                 <h3 className="mt-2 font-heading text-base font-semibold text-white">{l.name}</h3>
-                <p className="mt-1.5 flex-1 text-[12.5px] leading-relaxed text-[#c9bde6]">{l.blurb}</p>
+                <p className="mt-1.5 flex-1 text-[12.5px] leading-relaxed text-k-muted">{l.blurb}</p>
                 <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-[#6ee7a8] to-[#f5b301]"
+                    className="h-full rounded-full bg-gradient-to-r from-k-moss to-k-gold"
                     style={{ width: `${(done / l.tasks.length) * 100}%` }}
                   />
                 </div>

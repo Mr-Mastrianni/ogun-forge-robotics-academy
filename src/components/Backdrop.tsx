@@ -44,7 +44,7 @@ function makeHyphae(w: number, h: number, count: number): Hypha[] {
       pts,
       offset: Math.random(),
       speed: 0.02 + Math.random() * 0.05,
-      hue: 150 + Math.random() * 60,
+      hue: 80 + Math.random() * 95, // moss through living-light teal
       width: 0.6 + Math.random() * 1.6,
     });
   }
@@ -88,11 +88,11 @@ function TripField() {
     };
 
     const PALETTE = [
-      [139, 92, 246],
-      [103, 232, 249],
-      [192, 38, 211],
-      [110, 231, 168],
-      [245, 179, 1],
+      [247, 199, 124], // solar gold
+      [129, 220, 212], // living light
+      [224, 120, 47], // ember
+      [166, 235, 155], // moss
+      [40, 64, 42], // forest
     ];
 
     const drawPlasma = (time: number) => {
@@ -126,9 +126,9 @@ function TripField() {
         ctx.rotate((k / folds) * Math.PI * 2);
         const wob = Math.sin(time * 0.6 + k) * 0.09;
         const grad = ctx.createLinearGradient(0, 0, base * 0.9, 0);
-        grad.addColorStop(0, `rgba(103,232,249,${0.16 * density})`);
-        grad.addColorStop(0.55, `rgba(139,92,246,${0.12 * density})`);
-        grad.addColorStop(1, `rgba(192,38,211,${0.05 * density})`);
+        grad.addColorStop(0, `rgba(129,220,212,${0.16 * density})`);
+        grad.addColorStop(0.55, `rgba(201,164,109,${0.12 * density})`);
+        grad.addColorStop(1, `rgba(224,120,47,${0.05 * density})`);
         ctx.strokeStyle = grad;
         ctx.beginPath();
         ctx.moveTo(0, 0);
@@ -136,7 +136,7 @@ function TripField() {
         ctx.stroke();
         ctx.beginPath();
         ctx.arc(0, 0, base * (0.42 + 0.05 * Math.sin(time * 0.4 + k)), 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(139,92,246,${0.06 * density})`;
+        ctx.strokeStyle = `rgba(201,164,109,${0.06 * density})`;
         ctx.stroke();
         ctx.restore();
       }
@@ -158,7 +158,7 @@ function TripField() {
         // travelling signal pulse at the growing tip
         const tip = hy.pts[upto - 1];
         const pulse = ctx.createRadialGradient(tip.x, tip.y, 0, tip.x, tip.y, 16);
-        pulse.addColorStop(0, `hsla(${hy.hue + 40}, 100%, 75%, ${0.5 * density})`);
+        pulse.addColorStop(0, `hsla(${hy.hue - 40}, 95%, 78%, ${0.5 * density})`);
         pulse.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = pulse;
         ctx.beginPath();
@@ -176,7 +176,7 @@ function TripField() {
 
       // fade the previous frame so movement leaves soft trails
       ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = 'rgba(5,1,15,0.16)';
+      ctx.fillStyle = 'rgba(8,19,16,0.16)';
       ctx.fillRect(0, 0, w, h);
 
       ctx.globalCompositeOperation = 'lighter';
@@ -246,7 +246,7 @@ export function Backdrop() {
 
       <div className="pointer-events-none fixed inset-0 -z-[2] overflow-hidden" aria-hidden>
         <svg className="absolute -right-24 top-20 h-[520px] w-[520px] opacity-[0.16]" viewBox="0 0 200 200">
-          <g className="glyph-ring" fill="none" stroke="#f5b301" strokeWidth="0.6">
+          <g className="glyph-ring" fill="none" stroke="#f7c77c" strokeWidth="0.6">
             <circle cx="100" cy="100" r="92" />
             <circle cx="100" cy="100" r="74" strokeDasharray="3 5" />
             <circle cx="100" cy="100" r="56" />
@@ -257,13 +257,13 @@ export function Backdrop() {
                 y1="100"
                 x2={100 + 92 * Math.cos((i * Math.PI) / 6)}
                 y2={100 + 92 * Math.sin((i * Math.PI) / 6)}
-                stroke="#c026d3"
+                stroke="#e0782f"
               />
             ))}
           </g>
         </svg>
         <svg className="absolute -left-28 bottom-10 h-[420px] w-[420px] opacity-[0.14]" viewBox="0 0 200 200">
-          <g fill="none" stroke="#6ee7a8" strokeWidth="0.7">
+          <g fill="none" stroke="#a6eb9b" strokeWidth="0.7">
             {Array.from({ length: 7 }).map((_, i) => (
               <rect
                 key={i}

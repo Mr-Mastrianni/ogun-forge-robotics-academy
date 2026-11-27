@@ -29,7 +29,7 @@ export const lesson: Lesson = {
       caption: 'Measured stage costs on a Jetson Orin with a GigE camera; sum 32 ms against a 33.3 ms period budget.',
       chartType: 'bar', xLabel: 'Pipeline stage', yLabel: 'Latency (ms)',
       x: ['Exposure', 'Link', 'Inference', 'DDS', 'Planning', 'Control', 'Actuation'],
-      series: [{ key: 'lat', label: 'Stage latency', color: '#f59e0b', data: [6, 3, 14, 2, 4, 1, 2] }] },
+      series: [{ key: 'lat', label: 'Stage latency', color: '#e9a64e', data: [6, 3, 14, 2, 4, 1, 2] }] },
     { kind: 'prose', heading: 'The stack you actually install',
       body: '**ros2_control** splits hardware interfaces (position, velocity, effort) from controllers and runs a real-time update loop; **nav2** supplies behaviour trees, costmaps, planners and controllers for mobile bases; **moveit2** does planning, collision checking and inverse kinematics for arms. **micro-ROS** runs an rclc client on a Cortex-M MCU and bridges to DDS through an agent over serial or UDP, so an STM32F4 or ESP32 publishes a topic without Linux. **ament** is the build system and **colcon** walks a workspace of packages. Robot description lives in **URDF** (ROS-native, one fixed tree) or **SDF** (simulation-native, worlds and many models), with **xacro** macros generating both from parameters. **TF2** owns the timestamped transform tree `map` to `odom` to `base_link` to sensors; a duplicate parent, a cycle or a stale transform is the most common cause of a robot that looks right in rviz and drives wrong.' },
     { kind: 'table', title: 'Comms protocols for a robot fleet',

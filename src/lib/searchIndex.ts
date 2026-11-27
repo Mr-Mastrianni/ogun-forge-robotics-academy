@@ -17,14 +17,14 @@ export interface SearchHit {
 }
 
 export const KIND_META: Record<HitKind, { label: string; glyph: string; color: string }> = {
-  page: { label: 'Page', glyph: '◎', color: '#c9bde6' },
-  lesson: { label: 'Lesson', glyph: '⌘', color: '#f5b301' },
-  lab: { label: 'Lab', glyph: '⚙', color: '#67e8f9' },
-  project: { label: 'Blueprint', glyph: '🍄', color: '#6ee7a8' },
-  table: { label: 'Table', glyph: '▦', color: '#f5b301' },
-  term: { label: 'Term', glyph: '✎', color: '#c026d3' },
-  atlas: { label: 'Heritage', glyph: '✵', color: '#8b5cf6' },
-  boss: { label: 'Boss trial', glyph: '⚔', color: '#ff6b1a' },
+  page: { label: 'Page', glyph: '◎', color: '#b8c7b6' },
+  lesson: { label: 'Lesson', glyph: '⌘', color: '#f7c77c' },
+  lab: { label: 'Lab', glyph: '⚙', color: '#81dcd4' },
+  project: { label: 'Blueprint', glyph: '🍄', color: '#a6eb9b' },
+  table: { label: 'Table', glyph: '▦', color: '#f7c77c' },
+  term: { label: 'Term', glyph: '✎', color: '#e0782f' },
+  atlas: { label: 'Heritage', glyph: '✵', color: '#c9a46d' },
+  boss: { label: 'Boss trial', glyph: '⚔', color: '#f2853a' },
 };
 
 export const PAGES: SearchHit[] = [

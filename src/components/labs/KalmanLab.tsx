@@ -266,29 +266,29 @@ export default function KalmanLab({ tasks }: LabProps) {
       }
       readouts={
         <>
-          <Readout label="mean |GNSS error|" value={(latest?.measErr ?? 0).toFixed(3) + ' m'} tone="#c9bde6" />
-          <Readout label="mean |DR error|" value={(latest?.drErr ?? 0).toFixed(3) + ' m'} tone="#ff6b1a" />
-          <Readout label="mean |KF error|" value={(latest?.kfErr ?? 0).toFixed(3) + ' m'} tone="#6ee7a8" />
-          <div className="rounded-xl border border-[#67e8f9]/25 bg-black/30 p-2">
-            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[#67e8f9]">
+          <Readout label="mean |GNSS error|" value={(latest?.measErr ?? 0).toFixed(3) + ' m'} tone="#b8c7b6" />
+          <Readout label="mean |DR error|" value={(latest?.drErr ?? 0).toFixed(3) + ' m'} tone="#f2853a" />
+          <Readout label="mean |KF error|" value={(latest?.kfErr ?? 0).toFixed(3) + ' m'} tone="#a6eb9b" />
+          <div className="rounded-xl border border-k-light/25 bg-black/30 p-2">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-k-light">
               cumulative mean error (m)
             </div>
             <div className="h-[120px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chart}>
-                  <CartesianGrid stroke="#1b3a52" strokeDasharray="2 4" />
-                  <XAxis dataKey="t" tick={{ fill: '#9ec9e0', fontSize: 9 }} stroke="#2b5a7a" />
-                  <YAxis tick={{ fill: '#9ec9e0', fontSize: 9 }} stroke="#2b5a7a" width={30} />
-                  <Tooltip contentStyle={{ background: '#04141f', border: '1px solid #2b5a7a', fontSize: 11 }} />
+                  <CartesianGrid stroke="#204d4a" strokeDasharray="2 4" />
+                  <XAxis dataKey="t" tick={{ fill: '#a5d9d6', fontSize: 9 }} stroke="#33726e" />
+                  <YAxis tick={{ fill: '#a5d9d6', fontSize: 9 }} stroke="#33726e" width={30} />
+                  <Tooltip contentStyle={{ background: '#071c1b', border: '1px solid #33726e', fontSize: 11 }} />
                   <Legend wrapperStyle={{ fontSize: 10 }} />
-                  <RLine type="monotone" dataKey="measErr" name="GNSS" stroke="#8c82a8" dot={false} strokeWidth={1.6} />
-                  <RLine type="monotone" dataKey="drErr" name="dead reckoning" stroke="#ff6b1a" dot={false} strokeWidth={1.8} />
-                  <RLine type="monotone" dataKey="kfErr" name="Kalman" stroke="#6ee7a8" dot={false} strokeWidth={2.2} />
+                  <RLine type="monotone" dataKey="measErr" name="GNSS" stroke="#8fa08c" dot={false} strokeWidth={1.6} />
+                  <RLine type="monotone" dataKey="drErr" name="dead reckoning" stroke="#f2853a" dot={false} strokeWidth={1.8} />
+                  <RLine type="monotone" dataKey="kfErr" name="Kalman" stroke="#a6eb9b" dot={false} strokeWidth={2.2} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="pt-1 text-[11px] leading-snug text-[#c9bde6]">
+          <div className="pt-1 text-[11px] leading-snug text-k-muted">
             Dead-reckoning error grows without bound because a constant bias integrates into a quadratic position
             error. The filter wins not by better sensors but by refusing to trust any single one completely — the
             Kalman gain is literally a ratio of uncertainties.
@@ -297,26 +297,26 @@ export default function KalmanLab({ tasks }: LabProps) {
       }
     >
       <Canvas camera={{ position: [10, 8.5, 12], fov: 46 }} dpr={[1, 1.7]}>
-        <color attach="background" args={['#02060f']} />
-        <fog attach="fog" args={['#02060f', 18, 40]} />
+        <color attach="background" args={['#030e0d']} />
+        <fog attach="fog" args={['#030e0d', 18, 40]} />
         <ambientLight intensity={0.6} />
         <directionalLight position={[6, 12, 5]} intensity={1.1} />
-        <pointLight position={[-6, 3, -6]} color="#4338ca" intensity={2} distance={26} />
+        <pointLight position={[-6, 3, -6]} color="#2f6b5f" intensity={2} distance={26} />
         <Sim params={{ sigma, q, bias, rate }} onSample={onSample} paths={paths} outage={outage} />
-        {paths.real.length > 1 && <Line points={[...paths.real]} color="#f5b301" lineWidth={3} />}
+        {paths.real.length > 1 && <Line points={[...paths.real]} color="#f7c77c" lineWidth={3} />}
         {showMeas && paths.meas.length > 1 && (
-          <Line points={[...paths.meas]} color="#8c82a8" lineWidth={1} dashed dashSize={0.18} gapSize={0.14} transparent opacity={0.7} />
+          <Line points={[...paths.meas]} color="#8fa08c" lineWidth={1} dashed dashSize={0.18} gapSize={0.14} transparent opacity={0.7} />
         )}
-        {showDr && paths.dr.length > 1 && <Line points={[...paths.dr]} color="#ff6b1a" lineWidth={2} />}
-        {paths.kf.length > 1 && <Line points={[...paths.kf]} color="#6ee7a8" lineWidth={2.6} />}
-        <gridHelper args={[26, 26, '#1b3a52', '#0b1d2b']} />
+        {showDr && paths.dr.length > 1 && <Line points={[...paths.dr]} color="#f2853a" lineWidth={2} />}
+        {paths.kf.length > 1 && <Line points={[...paths.kf]} color="#a6eb9b" lineWidth={2.6} />}
+        <gridHelper args={[26, 26, '#204d4a', '#0e2826']} />
         <OrbitControls enablePan target={[0, 1, 0]} minDistance={6} maxDistance={34} />
       </Canvas>
       <div className="pointer-events-none absolute bottom-3 left-3 space-y-0.5 rounded-lg border border-white/10 bg-black/50 px-2.5 py-1.5 font-mono text-[10px]">
-        <div style={{ color: '#f5b301' }}>■ ground truth</div>
-        <div style={{ color: '#8c82a8' }}>■ noisy GNSS fixes</div>
-        <div style={{ color: '#ff6b1a' }}>■ dead reckoning</div>
-        <div style={{ color: '#6ee7a8' }}>■ Kalman fused</div>
+        <div style={{ color: '#f7c77c' }}>■ ground truth</div>
+        <div style={{ color: '#8fa08c' }}>■ noisy GNSS fixes</div>
+        <div style={{ color: '#f2853a' }}>■ dead reckoning</div>
+        <div style={{ color: '#a6eb9b' }}>■ Kalman fused</div>
       </div>
     </LabFrame>
   );

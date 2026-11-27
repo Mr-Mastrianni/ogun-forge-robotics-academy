@@ -2,6 +2,9 @@
    Same palette and type as the Solar Genesis homepage. Scoped to .sg. */
 
 .sg { overflow: clip; }
+/* The site header and footer, worn by the academy's app layout. */
+.sg.sg-chrome { min-height: 0; overflow: visible; background: rgb(var(--k-ink) / .92); }
+.sg.sg-chrome .kf { margin-top: 0; }
 
 .sg-nav a.is-current { color: var(--gold); text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px; }
 .kp-loading { min-height: 70vh; display: grid; place-items: center; color: #c5d1bd; font-size: .9rem; }
@@ -177,8 +180,6 @@
 
 /* The 3D viewer is shared with the academy; re-tint it for the studio. */
 .kv-viewer .glass { background: #0b1612; border: 1px solid #8caa842e; border-radius: 0; box-shadow: none; }
-.kv-viewer .text-\[\#f5b301\] { color: var(--gold); }
-.kv-viewer .text-\[\#c9bde6\] { color: #b8c7b6; }
 .kv-viewer .bg-gradient-to-b { background: radial-gradient(ellipse at 50% 40%, #28402a, #081310 75%); }
 .kv-viewer input[type="range"] { accent-color: #efc47c; background: linear-gradient(90deg, #f7c77c88, #81dcd466); }
 .kv-viewer input[type="range"]::-webkit-slider-thumb { background: radial-gradient(circle at 35% 30%, #fff, #f7c77c 50%, #b4742f); border-color: #081310; }

@@ -44,8 +44,8 @@ export const lesson: Lesson = {
       chartType: 'line',
       x: [32, 64, 128, 256, 512, 1024],
       series: [
-        { key: 'astar', label: 'A* (ms, to first solution)', color: '#f5b301', data: [0.4, 2.1, 9.8, 46, 210, 980] },
-        { key: 'rrtstar', label: 'RRT* (ms, 2000 samples)', color: '#c026d3', data: [12, 26, 61, 148, 352, 860] },
+        { key: 'astar', label: 'A* (ms, to first solution)', color: '#f7c77c', data: [0.4, 2.1, 9.8, 46, 210, 980] },
+        { key: 'rrtstar', label: 'RRT* (ms, 2000 samples)', color: '#e0782f', data: [12, 26, 61, 148, 352, 860] },
       ],
       caption:
         'On a 2-D grid A* wins until the grid gets large, because its cost grows with cells explored. RRT* is nearly resolution independent — which is exactly why it is used in 7-DOF configuration space where a grid is impossible.',

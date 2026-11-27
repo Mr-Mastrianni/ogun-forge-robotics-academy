@@ -110,11 +110,11 @@ function Drone({ gains, target, mass, wind, onSample, trail, trailOn }: {
       <group ref={group}>
         <mesh castShadow>
           <boxGeometry args={[0.72, 0.16, 0.72]} />
-          <meshStandardMaterial color="#1b1440" metalness={0.85} roughness={0.25} />
+          <meshStandardMaterial color="#16261d" metalness={0.85} roughness={0.25} />
         </mesh>
         <mesh position={[0, 0.07, 0]}>
           <sphereGeometry args={[0.14, 16, 16]} />
-          <meshStandardMaterial color="#f5b301" emissive="#ff6b1a" emissiveIntensity={0.9} />
+          <meshStandardMaterial color="#f7c77c" emissive="#f2853a" emissiveIntensity={0.9} />
         </mesh>
         {[
           [0.52, 0, 0.52],
@@ -137,18 +137,18 @@ function Drone({ gains, target, mass, wind, onSample, trail, trailOn }: {
             <group key={i} position={p as [number, number, number]}>
               <mesh>
                 <cylinderGeometry args={[0.4, 0.4, 0.012, 20]} />
-                <meshStandardMaterial color="#67e8f9" transparent opacity={0.28} metalness={0.4} />
+                <meshStandardMaterial color="#81dcd4" transparent opacity={0.28} metalness={0.4} />
               </mesh>
               <mesh position={[0, 0.02, 0]}>
                 <sphereGeometry args={[0.07, 12, 12]} />
-                <meshStandardMaterial color="#c026d3" emissive="#c026d3" emissiveIntensity={0.8} />
+                <meshStandardMaterial color="#e0782f" emissive="#e0782f" emissiveIntensity={0.8} />
               </mesh>
             </group>
           ))}
         </group>
-        <pointLight color="#c026d3" intensity={1.4} distance={4} />
+        <pointLight color="#e0782f" intensity={1.4} distance={4} />
       </group>
-      {trailOn && trail.length > 1 && <Line points={[...trail]} color="#6ee7a8" lineWidth={2} />}
+      {trailOn && trail.length > 1 && <Line points={[...trail]} color="#a6eb9b" lineWidth={2} />}
     </>
   );
 }
@@ -265,17 +265,17 @@ export default function PidDroneLab({ tasks }: LabProps) {
       }
       readouts={
         <>
-          <Readout label="ωₙ (closed loop)" value={wn.toFixed(2) + ' rad/s'} tone="#67e8f9" />
+          <Readout label="ωₙ (closed loop)" value={wn.toFixed(2) + ' rad/s'} tone="#81dcd4" />
           <Readout
             label="ζ (damping ratio)"
             value={zeta.toFixed(3)}
-            tone={zeta > 0.55 && zeta < 1.1 ? '#6ee7a8' : '#ff6b1a'}
+            tone={zeta > 0.55 && zeta < 1.1 ? '#a6eb9b' : '#f2853a'}
           />
           <Readout label="step overshoot" value={((Math.max(0, overshoot - 1)) * 100).toFixed(1) + '%'} />
           <Readout label="~settling time (±2%)" value={settle.toFixed(2) + ' s'} />
-          <Readout label="live position error" value={(latest?.err ?? 0).toFixed(3) + ' m'} tone="#f5b301" />
-          <div className="rounded-xl border border-[#f5b301]/25 bg-black/30 p-2">
-            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[#f5b301]">
+          <Readout label="live position error" value={(latest?.err ?? 0).toFixed(3) + ' m'} tone="#f7c77c" />
+          <div className="rounded-xl border border-k-gold/25 bg-black/30 p-2">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-k-gold">
               analytic unit step response
             </div>
             <div className="h-[96px]">
@@ -285,28 +285,28 @@ export default function PidDroneLab({ tasks }: LabProps) {
                   <XAxis dataKey="t" tick={{ fill: '#e0d3b8', fontSize: 8 }} stroke="#5a4423" />
                   <YAxis domain={[0, 1.6]} tick={{ fill: '#e0d3b8', fontSize: 8 }} stroke="#5a4423" width={26} />
                   <Tooltip contentStyle={{ background: '#1a0f04', border: '1px solid #5a4423', fontSize: 11 }} />
-                  <RLine type="monotone" dataKey="y" stroke="#f5b301" strokeWidth={2} dot={false} />
+                  <RLine type="monotone" dataKey="y" stroke="#f7c77c" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="rounded-xl border border-[#6ee7a8]/25 bg-black/30 p-2">
-            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[#6ee7a8]">
+          <div className="rounded-xl border border-k-moss/25 bg-black/30 p-2">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-k-moss">
               live tracking error (m)
             </div>
             <div className="h-[96px]">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={data}>
                   <CartesianGrid stroke="#1f4d3a" strokeDasharray="2 4" />
-                  <XAxis dataKey="t" tick={{ fill: '#9fd9bb', fontSize: 8 }} stroke="#2f6b52" />
-                  <YAxis tick={{ fill: '#9fd9bb', fontSize: 8 }} stroke="#2f6b52" width={28} />
+                  <XAxis dataKey="t" tick={{ fill: '#a9d4a2', fontSize: 8 }} stroke="#2f6b52" />
+                  <YAxis tick={{ fill: '#a9d4a2', fontSize: 8 }} stroke="#2f6b52" width={28} />
                   <Tooltip contentStyle={{ background: '#08201a', border: '1px solid #2f6b52', fontSize: 11 }} />
-                  <RLine type="monotone" dataKey="err" stroke="#6ee7a8" strokeWidth={2} dot={false} />
+                  <RLine type="monotone" dataKey="err" stroke="#a6eb9b" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="pt-1 text-[11px] leading-snug text-[#c9bde6]">
+          <div className="pt-1 text-[11px] leading-snug text-k-muted">
             Analytic curve assumes a unit-mass second-order plant: ζ = K_d / (2√K_p) and ωₙ = √K_p. Real airframes add
             delays, prop wash and actuator saturation — which is why the live 3D trace is a bit messier than the maths.
           </div>
@@ -314,24 +314,24 @@ export default function PidDroneLab({ tasks }: LabProps) {
       }
     >
       <Canvas shadows camera={{ position: [7.5, 5.6, 8.5], fov: 44 }} dpr={[1, 1.7]}>
-        <color attach="background" args={['#0a0420']} />
-        <fog attach="fog" args={['#0a0420', 14, 32]} />
+        <color attach="background" args={['#0c1914']} />
+        <fog attach="fog" args={['#0c1914', 14, 32]} />
         <ambientLight intensity={0.55} />
         <directionalLight position={[8, 14, 6]} intensity={1.3} castShadow />
-        <pointLight position={[-6, 2, -6]} color="#6ee7a8" intensity={1.6} distance={22} />
+        <pointLight position={[-6, 2, -6]} color="#a6eb9b" intensity={1.6} distance={22} />
         <Drone gains={gains} target={target} mass={mass} wind={wind.current} onSample={onSample} trail={trail} trailOn={trailOn} />
         <mesh position={[target.x, target.y, target.z]}>
           <torusGeometry args={[0.34, 0.028, 10, 40]} />
-          <meshStandardMaterial color="#6ee7a8" emissive="#16a34a" emissiveIntensity={1.4} />
+          <meshStandardMaterial color="#a6eb9b" emissive="#16a34a" emissiveIntensity={1.4} />
         </mesh>
         <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
           <circleGeometry args={[9, 40]} />
-          <meshStandardMaterial color="#120a2e" roughness={0.9} />
+          <meshStandardMaterial color="#12211a" roughness={0.9} />
         </mesh>
-        <gridHelper args={[18, 18, '#4338ca', '#1b1440']} position={[0, 0.01, 0]} />
+        <gridHelper args={[18, 18, '#2f6b5f', '#16261d']} position={[0, 0.01, 0]} />
         <OrbitControls enablePan target={[0, 1.6, 0]} maxPolarAngle={Math.PI / 2.05} minDistance={4} maxDistance={26} />
       </Canvas>
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-[#c9bde6]">
+      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/50 px-2.5 py-1.5 font-mono text-[10px] text-k-muted">
         green torus = waypoint · green line = flown path
       </div>
     </LabFrame>

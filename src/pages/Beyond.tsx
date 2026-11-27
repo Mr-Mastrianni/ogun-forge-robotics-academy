@@ -242,12 +242,12 @@ const UPGRADES: Upgrade[] = [
 ];
 
 const CATS: Record<string, { label: string; color: string }> = {
-  hardware: { label: 'Hardware & Bench', color: '#f5b301' },
-  learning: { label: 'Learning Science', color: '#6ee7a8' },
-  social: { label: 'Cohort & Social', color: '#c026d3' },
-  content: { label: 'Content Depth', color: '#67e8f9' },
-  platform: { label: 'Platform & Access', color: '#ff6b1a' },
-  frontier: { label: 'Frontier', color: '#f5c8ff' },
+  hardware: { label: 'Hardware & Bench', color: '#f7c77c' },
+  learning: { label: 'Learning Science', color: '#a6eb9b' },
+  social: { label: 'Cohort & Social', color: '#e0782f' },
+  content: { label: 'Content Depth', color: '#81dcd4' },
+  platform: { label: 'Platform & Access', color: '#f2853a' },
+  frontier: { label: 'Frontier', color: '#f7dcb8' },
 };
 
 export default function Beyond() {
@@ -270,17 +270,17 @@ export default function Beyond() {
       </div>
 
       <Panel className="p-5">
-        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#6ee7a8]">
+        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-moss">
           do these first — highest leverage per unit of work
         </div>
         <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {highImpactLowEffort.map((u) => (
-            <div key={u.title} className="rounded-xl border border-[#6ee7a8]/25 bg-[#6ee7a8]/5 p-3">
+            <div key={u.title} className="rounded-xl border border-k-moss/25 bg-k-moss/5 p-3">
               <div className="flex items-center gap-2">
                 <span className="text-lg">{u.glyph}</span>
                 <span className="font-heading text-[13px] text-white">{u.title}</span>
               </div>
-              <div className="mt-1 font-mono text-[10.5px] text-[#6ee7a8]">
+              <div className="mt-1 font-mono text-[10.5px] text-k-moss">
                 impact {u.impact} · effort {u.effort}
               </div>
             </div>
@@ -307,7 +307,7 @@ export default function Beyond() {
                 </div>
               </div>
 
-              <p className="mt-3 text-[13px] leading-relaxed text-[#ded4f2]">{u.summary}</p>
+              <p className="mt-3 text-[13px] leading-relaxed text-k-text">{u.summary}</p>
 
               <div className="mt-4 space-y-2">
                 <Meter label="impact" value={u.impact} tone="psy" />
@@ -315,18 +315,18 @@ export default function Beyond() {
               </div>
 
               <div className="mt-4 rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                <div className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">how to build it</div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-k-muted">how to build it</div>
                 <ol className="mt-2 space-y-1.5">
                   {u.how.map((h, hi) => (
-                    <li key={hi} className="flex gap-2 text-[12.5px] leading-relaxed text-[#ded4f2]">
-                      <span className="font-mono text-[10px] text-[#f5b301]">{hi + 1}</span>
+                    <li key={hi} className="flex gap-2 text-[12.5px] leading-relaxed text-k-text">
+                      <span className="font-mono text-[10px] text-k-gold">{hi + 1}</span>
                       {h}
                     </li>
                   ))}
                 </ol>
               </div>
 
-              <div className="mt-3 border-l-2 border-[#c026d3]/50 pl-3 text-[12.5px] italic leading-relaxed text-[#c9bde6]">
+              <div className="mt-3 border-l-2 border-k-ember/50 pl-3 text-[12.5px] italic leading-relaxed text-k-muted">
                 {u.why}
               </div>
             </Panel>
@@ -335,13 +335,13 @@ export default function Beyond() {
       </div>
 
       <Panel tone="myco" className="p-6">
-        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#6ee7a8]">
+        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-moss">
           the through-line
         </div>
         <h3 className="mt-2 font-heading text-xl text-white">
           Every upgrade moves the course from reading to measuring
         </h3>
-        <p className="mt-2 max-w-4xl text-[13.5px] leading-relaxed text-[#cfe9dc]">
+        <p className="mt-2 max-w-4xl text-[13.5px] leading-relaxed text-k-mint">
           The current build has {lessons.length} lessons, {LABS.length} labs, {bossQuizzes.length} boss trials,{' '}
           {flashcards.length} flashcards and {allProjects.length} blueprints. The next version should make the bench
           real: a serial probe in the mycelium rig, a parts kit you can actually order, a Gazebo sandbox that exports

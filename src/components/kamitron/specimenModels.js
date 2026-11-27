@@ -7,7 +7,7 @@ function mats(accent){
   return{
     glass:new THREE.MeshPhysicalMaterial({color:0xe8fff4,transparent:true,opacity:.24,roughness:.04,metalness:0,clearcoat:1,clearcoatRoughness:.05,side:THREE.DoubleSide,depthWrite:false}),
     white:new THREE.MeshStandardMaterial({color:0xf4f6f5,roughness:.35,metalness:.1}),
-    black:new THREE.MeshStandardMaterial({color:0x17181c,roughness:.4,metalness:.5}),
+    black:new THREE.MeshStandardMaterial({color:0x181d1b,roughness:.4,metalness:.5}),
     steel:new THREE.MeshStandardMaterial({color:0x8f979c,roughness:.3,metalness:.85}),
     glow:new THREE.MeshStandardMaterial({color:a,emissive:a,emissiveIntensity:1.4,roughness:.3}),
     glowSoft:new THREE.MeshStandardMaterial({color:a,emissive:a,emissiveIntensity:.6,roughness:.4}),

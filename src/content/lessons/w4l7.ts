@@ -63,8 +63,8 @@ export const lesson: Lesson = {
       chartType: 'line', xLabel: 'Joint 1 angle theta1 (deg), theta2 = 45 deg', yLabel: 'End-effector position (m)',
       x: [0, 30, 60, 90, 120, 150, 180],
       series: [
-        { key: 'x', label: 'X (m)', color: '#38bdf8', data: [0.612, 0.424, 0.122, -0.212, -0.490, -0.636, -0.612] },
-        { key: 'y', label: 'Y (m)', color: '#f59e0b', data: [0.212, 0.490, 0.636, 0.612, 0.424, 0.122, -0.212] },
+        { key: 'x', label: 'X (m)', color: '#5cc8c0', data: [0.612, 0.424, 0.122, -0.212, -0.490, -0.636, -0.612] },
+        { key: 'y', label: 'Y (m)', color: '#e9a64e', data: [0.212, 0.490, 0.636, 0.612, 0.424, 0.122, -0.212] },
       ] },
     { kind: 'code', title: 'Forward kinematics from a DH table', language: 'python',
       note: 'Chaining six DH matrices costs about 100 multiplies. Every inverse-kinematics solver, URDF loader and motion planner sits downstream of this one function.',

@@ -15,7 +15,7 @@ export default function BossQuizPage() {
   if (!boss) {
     return (
       <Panel className="p-6 text-center">
-        <p className="text-[#c9bde6]">No boss trial for that week.</p>
+        <p className="text-k-muted">No boss trial for that week.</p>
         <Link to="/quiz" className="btn btn-primary mt-4">
           back to the arena
         </Link>
@@ -29,12 +29,12 @@ export default function BossQuizPage() {
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#c9bde6]">
-        <Link to="/quiz" className="hover:text-[#f5b301]">
+      <div className="flex flex-wrap items-center gap-2 text-[12px] text-k-muted">
+        <Link to="/quiz" className="hover:text-k-gold">
           ← quiz arena
         </Link>
         <span>/</span>
-        <span className="text-[#f5b301]">boss trial · week {boss.week}</span>
+        <span className="text-k-gold">boss trial · week {boss.week}</span>
       </div>
 
       <div className="grid gap-5 lg:grid-cols-[1fr_280px]">
@@ -47,8 +47,8 @@ export default function BossQuizPage() {
               <Chip tone="dim">+{boss.xp} XP</Chip>
               {passed && <Chip tone="myco">✓ passed</Chip>}
             </div>
-            <h1 className="mt-2 font-display text-3xl text-[#f5b301] md:text-4xl">{boss.title}</h1>
-            <p className="mt-2 text-[14px] text-[#c9bde6]">{boss.subtitle}</p>
+            <h1 className="mt-2 font-display text-3xl text-k-gold md:text-4xl">{boss.title}</h1>
+            <p className="mt-2 text-[14px] text-k-muted">{boss.subtitle}</p>
           </div>
 
           <QuizRunner
@@ -70,10 +70,10 @@ export default function BossQuizPage() {
               <span className="text-3xl">{badge?.glyph ?? '⚔'}</span>
               <div>
                 <div className="font-heading text-sm text-white">{badge?.name ?? 'Trial badge'}</div>
-                <div className="text-[11px] text-[#e8d8ff]">{badge?.adinkra}</div>
+                <div className="text-[11px] text-[#efe3c8]">{badge?.adinkra}</div>
               </div>
             </div>
-            <p className="mt-2 text-[12px] leading-relaxed text-[#e8d8ff]">
+            <p className="mt-2 text-[12px] leading-relaxed text-[#efe3c8]">
               Pass with 80% or more to claim <strong>{badge?.name}</strong> — {badge?.description}
             </p>
             <div className="mt-3">
@@ -82,13 +82,13 @@ export default function BossQuizPage() {
           </Panel>
 
           <Panel className="p-4">
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">covers</div>
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">covers</div>
             <ul className="space-y-1.5">
               {boss.lessonIds.map((id) => {
                 const l = lessonById[id];
                 return (
                   <li key={id}>
-                    <Link to={`/lesson/${id}`} className="text-[12.5px] text-[#ded4f2] hover:text-[#f5b301]">
+                    <Link to={`/lesson/${id}`} className="text-[12.5px] text-k-text hover:text-k-gold">
                       L{l?.number} · {l?.title ?? id}
                     </Link>
                   </li>
@@ -98,8 +98,8 @@ export default function BossQuizPage() {
           </Panel>
 
           <Panel tone="myco" className="p-4">
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#6ee7a8]">before you enter</div>
-            <ul className="space-y-1.5 text-[12.5px] leading-relaxed text-[#cfe9dc]">
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-moss">before you enter</div>
+            <ul className="space-y-1.5 text-[12.5px] leading-relaxed text-k-mint">
               <li>· Run both lessons' labs at least once.</li>
               <li>· Read the key terms; the boss quizzes definitions.</li>
               <li>· The clock is real — 25 seconds is enough to think, not to derive.</li>
@@ -107,7 +107,7 @@ export default function BossQuizPage() {
           </Panel>
 
           <Panel className="p-4">
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">other trials</div>
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">other trials</div>
             <div className="grid grid-cols-4 gap-1.5">
               {bossQuizzes.map((b) => (
                 <Link
@@ -115,8 +115,8 @@ export default function BossQuizPage() {
                   to={`/boss/${b.week}`}
                   className={`rounded-lg border px-1.5 py-1.5 text-center font-mono text-[11px] ${
                     b.week === boss.week
-                      ? 'border-[#f5b301]/60 bg-[#f5b301]/15 text-[#ffe9a8]'
-                      : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                      ? 'border-k-gold/60 bg-k-gold/15 text-k-glint'
+                      : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
                   }`}
                 >
                   W{b.week}

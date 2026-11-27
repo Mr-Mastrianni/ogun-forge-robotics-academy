@@ -37,12 +37,12 @@ export default function QuizArena() {
   if (lesson) {
     return (
       <div className="space-y-5">
-        <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#c9bde6]">
-          <Link to="/quiz" className="hover:text-[#f5b301]">
+        <div className="flex flex-wrap items-center gap-2 text-[12px] text-k-muted">
+          <Link to="/quiz" className="hover:text-k-gold">
             ← quiz arena
           </Link>
           <span>/</span>
-          <span className="text-[#f5b301]">Lesson {lesson.number}</span>
+          <span className="text-k-gold">Lesson {lesson.number}</span>
         </div>
         <QuizRunner
           key={lesson.id}
@@ -53,7 +53,7 @@ export default function QuizArena() {
           onDone={() => nav(`/lesson/${lesson.id}`)}
         />
         <Panel className="p-4">
-          <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">after this</div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">after this</div>
           <div className="mt-2 flex flex-wrap gap-2">
             <Link to={`/lesson/${lesson.id}`} className="btn btn-ghost !py-1.5 text-[12px]">
               re-read the lesson
@@ -74,15 +74,15 @@ export default function QuizArena() {
     const qs = drill === 'mixed' ? mixed : weak;
     return (
       <div className="space-y-5">
-        <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#c9bde6]">
+        <div className="flex flex-wrap items-center gap-2 text-[12px] text-k-muted">
           <button
             onClick={() => setDrill(null)}
-            className="hover:text-[#f5b301]"
+            className="hover:text-k-gold"
           >
             ← quiz arena
           </button>
           <span>/</span>
-          <span className="text-[#f5b301]">{drill === 'mixed' ? 'mixed drill' : 'weak-spot drill'}</span>
+          <span className="text-k-gold">{drill === 'mixed' ? 'mixed drill' : 'weak-spot drill'}</span>
         </div>
         <QuizRunner
           key={drill}
@@ -139,7 +139,7 @@ export default function QuizArena() {
         <Panel tone="psy" hover className="p-5">
           <div className="text-2xl">🎲</div>
           <h3 className="mt-1 font-heading text-base text-white">Mixed drill</h3>
-          <p className="mt-1 text-[12.5px] text-[#c9bde6]">
+          <p className="mt-1 text-[12.5px] text-k-muted">
             Ten questions sampled from all sixteen lessons. The fastest way to find out what you have actually
             retained.
           </p>
@@ -150,7 +150,7 @@ export default function QuizArena() {
         <Panel tone="myco" hover className="p-5">
           <div className="text-2xl">🎯</div>
           <h3 className="mt-1 font-heading text-base text-white">Weak-spot drill</h3>
-          <p className="mt-1 text-[12.5px] text-[#c9bde6]">
+          <p className="mt-1 text-[12.5px] text-k-muted">
             Pulls questions only from lessons where your best score is under 85%. Adaptive and slightly merciless.
           </p>
           <button onClick={() => setDrill('weak')} className="btn btn-myco mt-3 !py-1.5 text-[12px]">
@@ -160,7 +160,7 @@ export default function QuizArena() {
       </div>
 
       <section>
-        <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.24em] text-[#f5b301]">boss trials</h3>
+        <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.24em] text-k-gold">boss trials</h3>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {bossQuizzes.map((b) => {
             const best = bossScores[b.id];
@@ -170,15 +170,15 @@ export default function QuizArena() {
                 <div className="flex items-center justify-between">
                   <Chip tone="psy">WEEK {b.week}</Chip>
                   {best !== undefined && (
-                    <span className={`font-mono text-[11px] ${pct >= 0.8 ? 'text-[#6ee7a8]' : 'text-[#f5b301]'}`}>
+                    <span className={`font-mono text-[11px] ${pct >= 0.8 ? 'text-k-moss' : 'text-k-gold'}`}>
                       {best}/{b.questions.length}
                     </span>
                   )}
                 </div>
                 <h4 className="mt-2 font-heading text-sm font-semibold text-white">{b.title}</h4>
-                <p className="mt-1 flex-1 text-[12px] leading-relaxed text-[#c9bde6]">{b.subtitle}</p>
+                <p className="mt-1 flex-1 text-[12px] leading-relaxed text-k-muted">{b.subtitle}</p>
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-                  <div className="h-full rounded-full bg-gradient-to-r from-[#c026d3] to-[#f5b301]" style={{ width: `${pct * 100}%` }} />
+                  <div className="h-full rounded-full bg-gradient-to-r from-k-ember to-k-gold" style={{ width: `${pct * 100}%` }} />
                 </div>
                 <Link to={`/boss/${b.week}`} className="btn btn-ghost mt-3 !py-1.5 text-[12px]">
                   {best !== undefined ? 'retry trial' : 'enter trial'} →
@@ -190,7 +190,7 @@ export default function QuizArena() {
       </section>
 
       <section>
-        <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.24em] text-[#f5b301]">lesson quizzes</h3>
+        <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.24em] text-k-gold">lesson quizzes</h3>
         <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
           {lessons.map((l) => {
             const s = scores[l.id];
@@ -198,7 +198,7 @@ export default function QuizArena() {
             return (
               <Link key={l.id} to={`/quiz/${l.id}`}>
                 <Panel hover className="flex items-center gap-3 p-3">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-[#f5b301]/35 bg-[#f5b301]/10 font-mono text-[12px] text-[#f5b301]">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-k-gold/35 bg-k-gold/10 font-mono text-[12px] text-k-gold">
                     {l.number}
                   </span>
                   <div className="min-w-0 flex-1">
@@ -208,12 +208,12 @@ export default function QuizArena() {
                         className="h-full rounded-full"
                         style={{
                           width: `${pct * 100}%`,
-                          background: pct >= 0.85 ? '#6ee7a8' : pct > 0 ? '#f5b301' : 'transparent',
+                          background: pct >= 0.85 ? '#a6eb9b' : pct > 0 ? '#f7c77c' : 'transparent',
                         }}
                       />
                     </div>
                   </div>
-                  <span className="shrink-0 font-mono text-[10.5px] text-[#c9bde6]">
+                  <span className="shrink-0 font-mono text-[10.5px] text-k-muted">
                     {s ? `${s.best}/${s.total}` : '—'}
                   </span>
                 </Panel>
@@ -224,8 +224,8 @@ export default function QuizArena() {
       </section>
 
       <Panel className="p-5">
-        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">how scoring works</div>
-        <ul className="mt-2 space-y-1.5 text-[12.5px] leading-relaxed text-[#ded4f2]">
+        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">how scoring works</div>
+        <ul className="mt-2 space-y-1.5 text-[12.5px] leading-relaxed text-k-text">
           <li>
             Each lesson quiz pays <MathTex tex="20 + 15c" /> XP where <MathTex tex="c" /> is your number correct, plus a
             35 XP flawless bonus.

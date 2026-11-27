@@ -23,7 +23,7 @@ export default function ManufacturingLearn() {
       />
       <Panel className="p-5">
         <Progress value={learned.length / manufacturingModules.length} label="Manufacturing lessons read" />
-        <p className="mt-3 text-sm text-[#c9bde6]">
+        <p className="mt-3 text-sm text-k-muted">
           A companion track to the eight-week robotics course. Apply each lesson to your own project. Reading
           and quiz progress are separate from production readiness.
         </p>
@@ -33,11 +33,11 @@ export default function ManufacturingLearn() {
           <Link
             key={mod.id}
             to={`/manufacturing/learn/${mod.id}`}
-            className={`rounded-xl border p-4 ${m?.id === mod.id ? 'border-[#f5b301] bg-[#f5b301]/10' : 'border-white/15 bg-black/20'}`}
+            className={`rounded-xl border p-4 ${m?.id === mod.id ? 'border-k-gold bg-k-gold/10' : 'border-white/15 bg-black/20'}`}
             aria-current={m?.id === mod.id ? 'page' : undefined}
           >
-            <div className="text-[#ffe9a8] font-heading">{mod.title}</div>
-            <div className="mt-2 text-xs text-[#c9bde6]">
+            <div className="text-k-glint font-heading">{mod.title}</div>
+            <div className="mt-2 text-xs text-k-muted">
               {mod.minutes} min · {learned.includes(mod.id) ? '✓ read' : 'not read'}
             </div>
           </Link>
@@ -50,7 +50,7 @@ export default function ManufacturingLearn() {
       ) : (
         <Panel tone="myco" className="p-6">
           <h3 className="font-heading text-xl text-white">Begin with the buyer. Finish with the batch.</h3>
-          <p className="mt-2 text-[#c9bde6]">
+          <p className="mt-2 text-k-muted">
             Follow six lessons, practice the decisions, then carry the evidence into your production gates.
           </p>
           <Link className="btn btn-myco mt-4" to="/manufacturing/learn/validate">
@@ -60,7 +60,7 @@ export default function ManufacturingLearn() {
       )}
       <Panel className="p-5">
         <h3 className="font-heading text-white">Source notes & current references</h3>
-        <p className="mt-2 text-sm text-[#c9bde6]">
+        <p className="mt-2 text-sm text-k-muted">
           Adapted from your supplied manufacturing transcript, with original exercises and corrections. Cost
           examples, timelines and payment splits are scenarios. No universal tariff rate, certification
           shortcut, legal outcome or supplier credit approval is assumed. Check product-specific requirements
@@ -69,7 +69,7 @@ export default function ManufacturingLearn() {
         <ul className="mt-3 space-y-2">
           {sources.map((s) => (
             <li key={s.url}>
-              <a className="text-sm text-[#67e8f9] underline" href={s.url} target="_blank" rel="noreferrer">
+              <a className="text-sm text-k-light underline" href={s.url} target="_blank" rel="noreferrer">
                 {s.label} ↗
               </a>
             </li>
@@ -94,17 +94,17 @@ function Lesson({ module: m }: { module: (typeof manufacturingModules)[number] }
       <Panel className="p-6">
         <Chip>Manufacturing lesson</Chip>
         <h1 className="mt-3 font-heading text-2xl text-white">{m.title}</h1>
-        <p className="mt-2 text-[#c9bde6]">{m.summary}</p>
+        <p className="mt-2 text-k-muted">{m.summary}</p>
       </Panel>
       {m.sections.map((s) => (
         <Panel key={s.title} className="p-5">
-          <h2 className="font-heading text-lg text-[#ffe9a8]">{s.title}</h2>
-          <p className="mt-3 leading-relaxed text-[#ded4f2]">{s.body}</p>
+          <h2 className="font-heading text-lg text-k-glint">{s.title}</h2>
+          <p className="mt-3 leading-relaxed text-k-text">{s.body}</p>
         </Panel>
       ))}
       <Panel tone="myco" className="p-5">
         <h2 className="font-heading text-xl text-white">Take it to the workbench</h2>
-        <p className="my-3 text-[#cfe9dc]">{m.exercise}</p>
+        <p className="my-3 text-k-mint">{m.exercise}</p>
         <Link className="btn btn-myco" to="/manufacturing">
           Apply to a project →
         </Link>
@@ -119,8 +119,8 @@ function Lesson({ module: m }: { module: (typeof manufacturingModules)[number] }
               aria-expanded={!!flipped[i]}
               onClick={() => setFlipped((s) => ({ ...s, [i]: !s[i] }))}
             >
-              <span className="block font-heading text-[#f5b301]">{t.term}</span>
-              <span className="block text-sm mt-3 text-[#ded4f2]">
+              <span className="block font-heading text-k-gold">{t.term}</span>
+              <span className="block text-sm mt-3 text-k-text">
                 {flipped[i] ? t.definition : 'Reveal definition ↻'}
               </span>
             </button>
@@ -129,20 +129,20 @@ function Lesson({ module: m }: { module: (typeof manufacturingModules)[number] }
       </Panel>
       <Panel className="p-5">
         <h2 className="font-heading text-xl text-white">Knowledge check</h2>
-        <p className="text-sm text-[#c9bde6] mt-1">
+        <p className="text-sm text-k-muted mt-1">
           Best score: {best === undefined ? 'not attempted' : `${best}/${m.quiz.length}`}
         </p>
         <div className="space-y-6 mt-5">
           {m.quiz.map((q, i) => (
             <fieldset key={q.question}>
-              <legend className="text-[#ffe9a8] mb-2">
+              <legend className="text-k-glint mb-2">
                 {i + 1}. {q.question}
               </legend>
               <div className="space-y-2">
                 {q.choices.map((choice, j) => (
                   <label
                     key={choice}
-                    className={`flex items-start gap-3 rounded-lg border p-3 text-sm ${graded && j === q.answer ? 'border-[#6ee7a8] bg-[#6ee7a8]/10' : 'border-white/15'}`}
+                    className={`flex items-start gap-3 rounded-lg border p-3 text-sm ${graded && j === q.answer ? 'border-k-moss bg-k-moss/10' : 'border-white/15'}`}
                   >
                     <input
                       type="radio"
@@ -156,7 +156,7 @@ function Lesson({ module: m }: { module: (typeof manufacturingModules)[number] }
                 ))}
               </div>
               {graded && (
-                <p className="mt-2 text-sm text-[#c9bde6]">
+                <p className="mt-2 text-sm text-k-muted">
                   {answers[i] === q.answer ? '✓ Correct. ' : 'Review: '}
                   {q.explanation}
                 </p>

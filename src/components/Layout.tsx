@@ -2,6 +2,8 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Backdrop } from './Backdrop';
+import { SiteHeader, SiteFooter } from '@/components/kamitron/KamitronShell';
+import { Glyph } from '@/components/kamitron/Glyphs';
 import { CommandPalette } from './CommandPalette';
 import { BADGES, levelFromXp, nextRank, rankFor, rankProgress } from '@/lib/progression';
 import { useProgress } from '@/lib/store';
@@ -96,7 +98,7 @@ function sectionLabel(pathname: string): string {
   if (pathname.startsWith('/lesson')) return 'Lesson';
   if (pathname.startsWith('/boss')) return 'Boss trial';
   if (pathname.startsWith('/ideas/')) return 'Blueprint';
-  return 'Ọ̀gún’s Forge';
+  return 'Ogun Forge Academy';
 }
 
 /* ------------------------------------------------------------------ */
@@ -142,7 +144,7 @@ function FieldControls({ compact = false }: { compact?: boolean }) {
 
   return (
     <div className={`space-y-2 ${compact ? '' : 'holo-well p-2.5'}`}>
-      {!compact && <div className="holo-kicker">Kinetic field</div>}
+      {!compact && <div className="holo-kicker">Background</div>}
       <div className="grid grid-cols-3 gap-1">
         {VIBE_ORDER.map((v) => (
           <button
@@ -151,8 +153,8 @@ function FieldControls({ compact = false }: { compact?: boolean }) {
             title={VIBE_META[v].blurb}
             className={`rounded-lg border px-1 py-1.5 text-center font-mono text-[10px] transition-colors ${
               vibe === v
-                ? 'border-[#67e8f9]/60 bg-[#67e8f9]/15 text-[#d8fbff]'
-                : 'border-white/10 bg-white/[0.03] text-[#c9bde6] hover:text-white'
+                ? 'border-k-light/60 bg-k-light/15 text-[#d6f5f1]'
+                : 'border-white/10 bg-white/[0.03] text-k-muted hover:text-white'
             }`}
           >
             <span className="mr-0.5">{VIBE_META[v].glyph}</span>
@@ -161,18 +163,18 @@ function FieldControls({ compact = false }: { compact?: boolean }) {
         ))}
       </div>
       <div className="flex items-center gap-1.5">
-        <span className="font-mono text-[10px] uppercase tracking-wider text-[#c9bde6]">Text</span>
+        <span className="font-mono text-[10px] uppercase tracking-wider text-k-muted">Text</span>
         <button
           onClick={() => bumpFontScale(-0.05)}
-          className="flex-1 rounded-lg border border-white/10 bg-white/[0.03] py-1 font-mono text-[11px] text-[#ded4f2] hover:text-white"
+          className="flex-1 rounded-lg border border-white/10 bg-white/[0.03] py-1 font-mono text-[11px] text-k-text hover:text-white"
           aria-label="Smaller text"
         >
           A−
         </button>
-        <span className="w-9 text-center font-mono text-[10px] text-[#67e8f9]">{Math.round(fontScale * 100)}%</span>
+        <span className="w-9 text-center font-mono text-[10px] text-k-light">{Math.round(fontScale * 100)}%</span>
         <button
           onClick={() => bumpFontScale(0.05)}
-          className="flex-1 rounded-lg border border-white/10 bg-white/[0.03] py-1 font-mono text-[11px] text-[#ded4f2] hover:text-white"
+          className="flex-1 rounded-lg border border-white/10 bg-white/[0.03] py-1 font-mono text-[11px] text-k-text hover:text-white"
           aria-label="Larger text"
         >
           A+
@@ -182,7 +184,7 @@ function FieldControls({ compact = false }: { compact?: boolean }) {
         <button
           onClick={toggleMotion}
           className={`rounded-lg border px-1.5 py-1 font-mono text-[10px] ${
-            motionOn ? 'border-[#6ee7a8]/50 bg-[#6ee7a8]/12 text-[#b8f5d0]' : 'border-white/10 text-[#8c82a8]'
+            motionOn ? 'border-k-moss/50 bg-k-moss/12 text-[#c4f0bb]' : 'border-white/10 text-k-dim'
           }`}
         >
           motion {motionOn ? 'on' : 'off'}
@@ -190,7 +192,7 @@ function FieldControls({ compact = false }: { compact?: boolean }) {
         <button
           onClick={toggleGlow}
           className={`rounded-lg border px-1.5 py-1 font-mono text-[10px] ${
-            glow ? 'border-[#c026d3]/50 bg-[#c026d3]/12 text-[#f5c8ff]' : 'border-white/10 text-[#8c82a8]'
+            glow ? 'border-k-ember/50 bg-k-ember/12 text-k-sand' : 'border-white/10 text-k-dim'
           }`}
         >
           glow {glow ? 'on' : 'off'}
@@ -198,30 +200,27 @@ function FieldControls({ compact = false }: { compact?: boolean }) {
         <button
           onClick={toggleWideReading}
           className={`col-span-2 rounded-lg border px-1.5 py-1 font-mono text-[10px] ${
-            wideReading ? 'border-[#f5b301]/50 bg-[#f5b301]/12 text-[#ffe9a8]' : 'border-white/10 text-[#8c82a8]'
+            wideReading ? 'border-k-gold/50 bg-k-gold/12 text-k-glint' : 'border-white/10 text-k-dim'
           }`}
         >
           reading width: {wideReading ? 'wide' : 'comfortable'}
         </button>
       </div>
-      {!compact && <p className="text-[10.5px] leading-snug text-[#8c82a8]">{VIBE_META[vibe].blurb}</p>}
+      {!compact && <p className="text-[10.5px] leading-snug text-k-dim">{VIBE_META[vibe].blurb}</p>}
     </div>
   );
 }
 
 function Brand({ small = false }: { small?: boolean }) {
   return (
-    <NavLink to="/academy" className="flex items-center gap-2.5">
-      <span className="relative grid h-10 w-10 place-items-center rounded-xl border border-[#67e8f9]/50 bg-gradient-to-br from-[#1b0a3a] to-[#05010f] text-lg shadow-[0_0_18px_rgba(103,232,249,0.35)]">
-        🔥
-        <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-[#6ee7a8] shadow-[0_0_10px_rgba(110,231,168,0.9)]" />
+    <NavLink to="/academy" className="flex items-center gap-2.5" aria-label="Ogun Forge Academy home">
+      <span className="grid h-10 w-10 flex-none place-items-center rounded-lg border border-k-gold/40 bg-k-deep text-k-gold">
+        <Glyph kind="forge" lit className="h-7 w-7" />
       </span>
       {!small && (
         <span className="leading-tight">
-          <span className="block font-display text-[13px] tracking-wide text-vibranium">Ọ̀GÚN&apos;S FORGE</span>
-          <span className="block font-mono text-[9px] uppercase tracking-[0.22em] text-[#8c82a8]">
-            Robotics Engineering
-          </span>
+          <span className="block font-heading text-[15px] font-semibold tracking-tight text-k-paper">Ogun Forge Academy</span>
+          <span className="block text-[11px] text-k-dim">by Kamitron</span>
         </span>
       )}
     </NavLink>
@@ -229,7 +228,7 @@ function Brand({ small = false }: { small?: boolean }) {
 }
 
 export function Layout() {
-  const { xp, streakCount, apprenticeName, markBadgeSeen, seenBadges, resetAll, touchStreak } = useProgress();
+  const { xp, streakCount, markBadgeSeen, seenBadges, resetAll, touchStreak } = useProgress();
   const rank = rankFor(xp);
   const nxt = nextRank(xp);
   const earned = useEarnedBadges();
@@ -301,19 +300,23 @@ export function Layout() {
   return (
     <div className="relative min-h-screen">
       <Backdrop />
+      <div className="sg sg-chrome relative z-30" data-sg-motion={motionOn ? 'on' : 'off'}>
+        <a className="sg-skip" href="#academy-main">Skip to content</a>
+        <SiteHeader />
+      </div>
 
       <div className="mx-auto flex w-full max-w-[1620px]">
         {/* ------------------------------- sidebar ------------------------------ */}
-        <aside className="sticky top-0 z-20 hidden h-screen w-[272px] flex-none flex-col border-r border-[#8b5cf6]/20 bg-[#06031a]/60 px-3 py-4 backdrop-blur-xl lg:flex">
+        <aside className="sticky top-0 z-20 hidden h-screen w-[272px] flex-none flex-col border-r border-k-bronze/20 bg-[#0a1611]/60 px-3 py-4 backdrop-blur-xl lg:flex">
           <Brand />
 
           <button
             onClick={() => setPalette(true)}
-            className="mt-4 flex items-center gap-2 rounded-xl border border-[#67e8f9]/25 bg-white/[0.04] px-3 py-2 text-left transition-colors hover:border-[#67e8f9]/60"
+            className="mt-4 flex items-center gap-2 rounded-xl border border-k-light/25 bg-white/[0.04] px-3 py-2 text-left transition-colors hover:border-k-light/60"
           >
-            <span className="text-[#67e8f9]">⌕</span>
-            <span className="flex-1 font-body text-[12.5px] text-[#8c82a8]">Search everything…</span>
-            <kbd className="rounded border border-white/15 px-1.5 py-0.5 font-mono text-[9.5px] text-[#c9bde6]">⌘K</kbd>
+            <span className="text-k-light">⌕</span>
+            <span className="flex-1 font-body text-[12.5px] text-k-dim">Search everything…</span>
+            <kbd className="rounded border border-white/15 px-1.5 py-0.5 font-mono text-[9.5px] text-k-muted">⌘K</kbd>
           </button>
 
           <nav className="side-nav mt-4 flex-1 space-y-4 overflow-y-auto pr-1">
@@ -344,13 +347,13 @@ export function Layout() {
               <div className="font-heading text-[12.5px] text-white">
                 {rank.glyph} {rank.name}
               </div>
-              <div className="font-mono text-[10px] text-[#8c82a8]">
+              <div className="font-mono text-[10px] text-k-dim">
                 LVL {levelFromXp(xp)} · {xp} XP · 🔥 {streakCount}
               </div>
               <div className="mt-2">
                 <Progress value={rankProgress(xp)} />
               </div>
-              <div className="mt-1.5 font-mono text-[9.5px] text-[#8c82a8]">
+              <div className="mt-1.5 font-mono text-[9.5px] text-k-dim">
                 {nxt ? `${nxt.minXp - xp} XP to ${nxt.name}` : 'Peak rank reached'}
               </div>
             </div>
@@ -359,7 +362,7 @@ export function Layout() {
               onClick={() => {
                 if (confirm('Reset all progress? XP, scores, streaks and saved blueprints are cleared.')) resetAll();
               }}
-              className="w-full rounded-lg border border-white/10 py-1.5 font-mono text-[10px] text-[#8c82a8] hover:text-[#ff6b1a]"
+              className="w-full rounded-lg border border-white/10 py-1.5 font-mono text-[10px] text-k-dim hover:text-k-forge"
             >
               reset progress
             </button>
@@ -368,7 +371,7 @@ export function Layout() {
 
         {/* -------------------------------- main -------------------------------- */}
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="sticky top-0 z-50 border-b border-[#8b5cf6]/25 bg-[#05010f]/85 backdrop-blur-xl">
+          <header className="sticky top-0 z-50 border-b border-k-bronze/25 bg-k-ink/85 backdrop-blur-xl">
             <div className="kente-strip" />
             <div className="flex items-center gap-2 px-3 py-2 sm:px-4">
               <div className="lg:hidden">
@@ -380,9 +383,9 @@ export function Layout() {
                 <span className="h-4 w-px bg-white/10" />
                 <button
                   onClick={() => setPalette(true)}
-                  className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 font-mono text-[11px] text-[#c9bde6] hover:border-[#67e8f9]/50 hover:text-white"
+                  className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 font-mono text-[11px] text-k-muted hover:border-k-light/50 hover:text-white"
                 >
-                  ⌕ search <kbd className="text-[9px] text-[#8c82a8]">⌘K</kbd>
+                  ⌕ search <kbd className="text-[9px] text-k-dim">⌘K</kbd>
                 </button>
               </div>
 
@@ -395,21 +398,21 @@ export function Layout() {
                 </span>
                 <button
                   onClick={() => useUi.getState().cycleVibe()}
-                  title={`Kinetic field: ${VIBE_META[vibe].label}. Click to change.`}
-                  className="rounded-lg border border-[#c026d3]/40 bg-[#c026d3]/10 px-2 py-1.5 font-mono text-[10.5px] text-[#f5c8ff] hover:border-[#c026d3]"
+                  title={`Background: ${VIBE_META[vibe].label}. Click to change.`}
+                  className="rounded-lg border border-k-ember/40 bg-k-ember/10 px-2 py-1.5 font-mono text-[10.5px] text-k-sand hover:border-k-ember"
                 >
                   {VIBE_META[vibe].glyph} {VIBE_META[vibe].label}
                 </button>
                 <button
                   onClick={() => setPalette(true)}
-                  className="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-[13px] text-[#c9bde6] lg:hidden"
+                  className="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-[13px] text-k-muted lg:hidden"
                   aria-label="Search"
                 >
                   ⌕
                 </button>
                 <button
                   onClick={() => setSheet(true)}
-                  className="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-[13px] text-[#c9bde6] lg:hidden"
+                  className="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-[13px] text-k-muted lg:hidden"
                   aria-label="Open menu"
                 >
                   ☰
@@ -418,46 +421,15 @@ export function Layout() {
             </div>
           </header>
 
-          <main className="relative z-10 min-w-0 flex-1 px-3 pb-28 pt-5 sm:px-5 lg:pb-16">
+          <main id="academy-main" className="relative z-10 min-w-0 flex-1 px-3 pb-28 pt-5 sm:px-5 lg:pb-16">
             <Outlet />
           </main>
 
-          <footer className="relative z-10 mt-8 border-t border-[#8b5cf6]/20 bg-[#05010f]/70 backdrop-blur">
-            <div className="kente-strip" />
-            <div className="grid gap-6 px-5 py-8 md:grid-cols-4">
-              <div>
-                <div className="font-display text-sm text-vibranium">Ọ̀GÚN&apos;S FORGE</div>
-                <p className="mt-2 text-xs leading-relaxed text-[#c9bde6]">
-                  An 8-week robotics engineering academy with 3D labs, boss trials, spaced-repetition flashcards and a
-                  living-materials blueprint library. Built in the spirit of the blacksmith who clears the road.
-                </p>
-              </div>
-              {[
-                { title: 'Learn', items: [...NAV_GROUPS[0].items, ...NAV_GROUPS[1].items] },
-                { title: 'Kamitron studio', items: NAV_GROUPS.find(g => g.label === 'Kamitron studio')!.items },
-                { title: 'Practise, reference & build', items: NAV_GROUPS.filter(g => ['Practise', 'Reference', 'Build'].includes(g.label)).flatMap(g => g.items) },
-              ].map((col) => (
-                <div key={col.title}>
-                  <div className="mb-2 font-heading text-xs uppercase tracking-widest text-[#d8fbff]">{col.title}</div>
-                  <ul className="space-y-1 text-xs text-[#c9bde6]">
-                    {col.items.map((i) => (
-                      <li key={i.to}>
-                        <NavLink className="hover:text-[#67e8f9]" to={i.to}>
-                          {i.glyph} {i.label}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            <div className="border-t border-white/5 px-5 py-3 text-center font-mono text-[10px] tracking-wider text-[#8c82a8]">
-              Built with Vite · React · three.js · Recharts · KaTeX — themed after Ọ̀gún&apos;s forge, Dogon starlight and
-              living mycelium. Press <span className="text-[#67e8f9]">⌘K</span> anywhere to search. Apprentice:{' '}
-              <span className="text-[#c9bde6]">{apprenticeName}</span>.
-            </div>
-          </footer>
         </div>
+      </div>
+
+      <div className="sg sg-chrome relative z-10" data-sg-motion={motionOn ? 'on' : 'off'}>
+        <SiteFooter />
       </div>
 
       {/* ---------------------------- mobile tab bar ---------------------------- */}
@@ -483,20 +455,20 @@ export function Layout() {
             className="fixed inset-0 z-[70] lg:hidden"
             onClick={() => setSheet(false)}
           >
-            <div className="absolute inset-0 bg-[#02000a]/85 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-[#050c0a]/85 backdrop-blur-sm" />
             <motion.div
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 260 }}
               onClick={(e) => e.stopPropagation()}
-              className="absolute bottom-0 left-0 right-0 max-h-[88vh] overflow-y-auto rounded-t-3xl border-t border-[#8b5cf6]/40 bg-[#07031c]/95 p-4 pb-24"
+              className="absolute bottom-0 left-0 right-0 max-h-[88vh] overflow-y-auto rounded-t-3xl border-t border-k-bronze/40 bg-[#0a1710]/95 p-4 pb-24"
             >
               <div className="mb-4 flex items-center justify-between">
                 <span className="holo-kicker">Navigate</span>
                 <button
                   onClick={() => setSheet(false)}
-                  className="rounded-lg border border-white/15 px-3 py-1 font-mono text-[11px] text-[#c9bde6]"
+                  className="rounded-lg border border-white/15 px-3 py-1 font-mono text-[11px] text-k-muted"
                 >
                   close
                 </button>
@@ -506,10 +478,10 @@ export function Layout() {
                   setSheet(false);
                   setPalette(true);
                 }}
-                className="mb-4 flex w-full items-center gap-2 rounded-xl border border-[#67e8f9]/30 bg-white/[0.04] px-3 py-2.5 text-left"
+                className="mb-4 flex w-full items-center gap-2 rounded-xl border border-k-light/30 bg-white/[0.04] px-3 py-2.5 text-left"
               >
-                <span className="text-[#67e8f9]">⌕</span>
-                <span className="font-body text-[13px] text-[#c9bde6]">Search everything…</span>
+                <span className="text-k-light">⌕</span>
+                <span className="font-body text-[13px] text-k-muted">Search everything…</span>
               </button>
               <div className="space-y-4">
                 {NAV_GROUPS.map((g) => (
@@ -521,7 +493,7 @@ export function Layout() {
                           <span className="nav-glyph">{it.glyph}</span>
                           <span className="flex-1">
                             <span className="block font-heading text-[13px] text-white">{it.label}</span>
-                            <span className="block text-[11px] text-[#8c82a8]">{it.hint}</span>
+                            <span className="block text-[11px] text-k-dim">{it.hint}</span>
                           </span>
                         </NavLink>
                       ))}
@@ -550,7 +522,7 @@ export function Layout() {
             <div className="glass panel-edge flex items-center gap-3 px-5 py-3">
               <span className="text-2xl">{toast.glyph}</span>
               <div>
-                <div className="font-mono text-[9px] uppercase tracking-[0.24em] text-[#67e8f9]">Adinkra unlocked</div>
+                <div className="font-mono text-[9px] uppercase tracking-[0.24em] text-k-light">Adinkra unlocked</div>
                 <div className="font-heading text-sm text-white">{toast.name}</div>
               </div>
             </div>

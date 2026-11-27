@@ -61,9 +61,9 @@ export function Term({
     <span className={`term-tip ${className}`} tabIndex={0} aria-label={`${hit.term}: ${hit.definition}`}>
       {children ?? term}
       <span className="term-pop" role="tooltip">
-        <strong className="block font-heading text-[13px] text-[#67e8f9]">{hit.term}</strong>
+        <strong className="block font-heading text-[13px] text-k-light">{hit.term}</strong>
         <span className="mt-1 block">{hit.definition}</span>
-        <span className="mt-1.5 block font-mono text-[10px] text-[#8c82a8]">
+        <span className="mt-1.5 block font-mono text-[10px] text-k-dim">
           Lesson {hit.week} · {hit.lessonTitle}
         </span>
       </span>

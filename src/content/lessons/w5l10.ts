@@ -46,8 +46,8 @@ export const lesson: Lesson = {
       chartType: 'bar',
       x: ['<10', '10-30', '30-100', '0.1-1 ms', '1-5 ms', '>5 ms'],
       series: [
-        { key: 'superloop', label: 'superloop + delay()', color: '#ff6b1a', data: [1800, 2100, 1500, 2600, 1400, 600] },
-        { key: 'timer', label: 'hardware timer ISR', color: '#6ee7a8', data: [9400, 560, 40, 0, 0, 0] },
+        { key: 'superloop', label: 'superloop + delay()', color: '#f2853a', data: [1800, 2100, 1500, 2600, 1400, 600] },
+        { key: 'timer', label: 'hardware timer ISR', color: '#a6eb9b', data: [9400, 560, 40, 0, 0, 0] },
       ],
       caption:
         'Measured loop-period error for the same PID code on an STM32F411 at 1 kHz. The superloop spends most of its samples inside a 0.1 to 5 ms error band, which is enough to make a 20 Hz attitude loop visibly ragged. The timer ISR is essentially exact.',

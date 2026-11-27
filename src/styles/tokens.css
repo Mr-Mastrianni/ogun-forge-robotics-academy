@@ -1,0 +1,23 @@
+/* Kamitron color tokens, shared by the studio pages and the Ogun Forge Academy.
+   Channels are space-separated RGB so Tailwind opacity modifiers work
+   (text-k-gold/60). Change a color here and it changes everywhere. */
+:root {
+  --k-ink: 8 19 16;        /* obsidian: page background */
+  --k-deep: 12 25 20;      /* raised background */
+  --k-panel: 18 33 26;     /* panels and cards */
+  --k-line: 61 84 68;      /* borders */
+  --k-forest: 40 64 42;    /* forest green */
+  --k-paper: 246 237 218;  /* ivory: headings */
+  --k-text: 214 224 207;   /* body text */
+  --k-muted: 184 199 182;  /* secondary text */
+  --k-dim: 143 160 140;    /* hints, captions */
+  --k-gold: 247 199 124;   /* solar gold: primary accent */
+  --k-glint: 255 230 176;  /* light gold */
+  --k-sand: 247 220 184;   /* warm highlight */
+  --k-bronze: 201 164 109; /* quiet gold */
+  --k-ember: 224 120 47;   /* ember: energy, warnings */
+  --k-forge: 242 133 58;   /* forge orange */
+  --k-moss: 166 235 155;   /* moss: success, living systems */
+  --k-mint: 211 230 203;   /* pale moss */
+  --k-light: 129 220 212;  /* living light: links, focus, data */
+}

@@ -114,9 +114,9 @@ export default function Home() {
   return (
     <div className="space-y-12">
       {/* ------------------------------- hero ------------------------------- */}
-      <section className="relative overflow-hidden rounded-3xl border border-[#67e8f9]/25 bg-gradient-to-br from-[#150735] via-[#0a0422] to-[#05010f] p-6 md:p-10">
-        <div className="pointer-events-none absolute -right-28 -top-28 h-[420px] w-[420px] rounded-full bg-[#8b5cf6]/25 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 -left-24 h-[340px] w-[340px] rounded-full bg-[#6ee7a8]/15 blur-3xl" />
+      <section className="relative overflow-hidden rounded-3xl border border-k-light/25 bg-gradient-to-br from-[#132c20] via-[#0c1c14] to-k-ink p-6 md:p-10">
+        <div className="pointer-events-none absolute -right-28 -top-28 h-[420px] w-[420px] rounded-full bg-k-bronze/25 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-32 -left-24 h-[340px] w-[340px] rounded-full bg-k-moss/15 blur-3xl" />
         <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -125,13 +125,13 @@ export default function Home() {
               <Chip tone="myco">LIVING MACHINES</Chip>
             </div>
 
-            <h1 className="font-display text-[13vw] leading-[0.86] sm:text-6xl lg:text-7xl">
+            <h1 className="font-display text-[8.2vw] leading-[0.9] tracking-tight sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl">
               <span className="text-vibranium">ROBOTICS</span>
               <br />
               <span className="text-afro">ENGINEERING</span>
             </h1>
 
-            <p className="mt-5 max-w-2xl text-[15.5px] leading-relaxed text-[#e6dcff] md:text-base">
+            <p className="mt-5 max-w-2xl text-[15.5px] leading-relaxed text-[#efe5cf] md:text-base">
               An interactive academy where every concept is something you can push, break and rebuild: drive the
               kinematics, tune the controller, fuse the sensors, grow the mycelium, rotate the qubit. Written plainly,
               measured honestly, and themed after the forge that clears the road.
@@ -149,7 +149,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-2 text-[12px] text-[#c9bde6]">
+            <div className="mt-6 flex flex-wrap items-center gap-2 text-[12px] text-k-muted">
               <span className="stat-bead">✦ {xp} XP</span>
               <span className="stat-bead">📖 {done}/16 lessons</span>
               <span className="stat-bead">⚙ {labTasks} lab challenges</span>
@@ -162,15 +162,15 @@ export default function Home() {
             <Panel className="p-5">
               <div className="holo-kicker">Instructor</div>
               <div className="mt-2 flex items-center gap-3">
-                <div className="grid h-14 w-14 place-items-center rounded-2xl border border-[#67e8f9]/40 bg-gradient-to-br from-[#1b0a3a] to-[#05010f] text-2xl">
+                <div className="grid h-14 w-14 place-items-center rounded-2xl border border-k-light/40 bg-gradient-to-br from-[#153224] to-k-ink text-2xl">
                   🔥
                 </div>
                 <div>
                   <div className="font-display text-lg text-white">BHANU KUSHWAHA</div>
-                  <div className="text-[12px] text-[#c9bde6]">Lead Robotics Engineer, OXA</div>
+                  <div className="text-[12px] text-k-muted">Lead Robotics Engineer, OXA</div>
                 </div>
               </div>
-              <p className="mt-3 text-[13px] leading-relaxed text-[#ded4f2]">
+              <p className="mt-3 text-[13px] leading-relaxed text-k-text">
                 Hands-on builds, simulation, sensors, control systems, AI and perception, IoT, safety, industry insights,
                 teamwork, problem solving, automation, embedded systems, prototyping, real-world impact and future skills.
               </p>
@@ -178,7 +178,7 @@ export default function Home() {
 
             <Panel tone="psy" className="p-5">
               <div className="holo-kicker">Finding your way around</div>
-              <ul className="mt-2 space-y-2 text-[12.5px] leading-relaxed text-[#f3e9ff]">
+              <ul className="mt-2 space-y-2 text-[12.5px] leading-relaxed text-k-paper">
                 <li>
                   <strong className="text-white">The sidebar</strong> groups everything: Start here, Learn, Practise,
                   Reference, Build. On a phone it becomes five tabs plus a menu.
@@ -189,7 +189,7 @@ export default function Home() {
                 </li>
                 <li>
                   <strong className="text-white">The field button</strong> in the header changes how alive the
-                  background is. Currently <span className="text-[#f5c8ff]">{VIBE_META[vibe].label}</span> — switch to
+                  background is. Currently <span className="text-k-sand">{VIBE_META[vibe].label}</span> — switch to
                   Calm if motion bothers you.
                 </li>
                 <li>
@@ -210,7 +210,7 @@ export default function Home() {
           sub="If you only do one thing today, do step one. The app tracks all four automatically — nothing to configure."
           right={
             <div className="flex items-center gap-3">
-              <span className="font-mono text-[11px] text-[#c9bde6]">{completedSteps}/4 done</span>
+              <span className="font-mono text-[11px] text-k-muted">{completedSteps}/4 done</span>
               <div className="flex gap-1">
                 {STEPS.map((s) => (
                   <span key={s.n} className="step-dot" data-on={s.done} />
@@ -224,14 +224,14 @@ export default function Home() {
             <FadeIn key={s.n} delay={i * 0.05}>
               <Panel hover tone={s.done ? 'myco' : 'gold'} className="flex h-full flex-col p-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-display text-2xl text-[#67e8f9]">{String(s.n).padStart(2, '0')}</span>
+                  <span className="font-display text-2xl text-k-light">{String(s.n).padStart(2, '0')}</span>
                   <span className="text-xl">{s.glyph}</span>
                 </div>
                 <h3 className="mt-2 font-heading text-[15px] font-semibold text-white">{s.title}</h3>
-                <p className="mt-1.5 flex-1 text-[12.5px] leading-relaxed text-[#ded4f2]">{s.why}</p>
+                <p className="mt-1.5 flex-1 text-[12.5px] leading-relaxed text-k-text">{s.why}</p>
                 <div className="mt-3 rounded-xl border border-white/10 bg-black/25 px-3 py-2">
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-[#8c82a8]">{s.minutes}</div>
-                  <div className="mt-0.5 text-[12.5px] text-[#ffe9a8]">{s.doThis}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-k-dim">{s.minutes}</div>
+                  <div className="mt-0.5 text-[12.5px] text-k-glint">{s.doThis}</div>
                 </div>
                 <Link to={s.to} className={`btn mt-3 !py-1.5 text-[12px] ${s.done ? 'btn-ghost' : 'btn-primary'}`}>
                   {s.done ? '✓ revisit' : s.cta}
@@ -243,20 +243,20 @@ export default function Home() {
       </section>
 
       {/* --------------------------- mycelium spotlight ---------------------- */}
-      <section className="relative overflow-hidden rounded-3xl border border-[#6ee7a8]/30 bg-gradient-to-br from-[#04160f] via-[#061a2e] to-[#05010f] p-6 md:p-8">
-        <div className="pointer-events-none absolute -right-16 -bottom-20 h-[300px] w-[300px] rounded-full bg-[#6ee7a8]/20 blur-3xl" />
+      <section className="relative overflow-hidden rounded-3xl border border-k-moss/30 bg-gradient-to-br from-[#04160f] via-[#0a2a28] to-k-ink p-6 md:p-8">
+        <div className="pointer-events-none absolute -right-16 -bottom-20 h-[300px] w-[300px] rounded-full bg-k-moss/20 blur-3xl" />
         <div className="relative grid gap-6 lg:grid-cols-[1.3fr_1fr]">
           <div>
             <div className="mb-2 flex flex-wrap items-center gap-2">
               <Chip tone="myco">🍄 FEATURED</Chip>
               <Chip tone="dim">advanced tier</Chip>
             </div>
-            <h2 className="font-display text-3xl text-[#6ee7a8] md:text-4xl">Mycelium robo-tech</h2>
-            <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-[#cfe9dc]">
+            <h2 className="font-display text-3xl text-k-moss md:text-4xl">Mycelium robo-tech</h2>
+            <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-k-mint">
               The oldest technology on Earth is also the most advanced idea in this course. A fungal network grows its own
               structure, senses chemistry, routes nutrients, repairs itself and composts at end of life. The hub gives you
               the grow protocol, the substrate data, the biosafety rules, the living-circuit lab and{' '}
-              <strong className="text-[#b8f5d0]">{counts['mycelium'] ?? 0} blueprints</strong> — each split into what has
+              <strong className="text-[#c4f0bb]">{counts['mycelium'] ?? 0} blueprints</strong> — each split into what has
               been measured versus what is still story.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
@@ -271,10 +271,10 @@ export default function Home() {
           <div className="grid gap-3">
             {MYCO_FACTS.map((f) => (
               <div key={f.label} className="holo-well flex items-center gap-4 p-3">
-                <div className="font-heading text-lg text-[#6ee7a8]">{f.value}</div>
+                <div className="font-heading text-lg text-k-moss">{f.value}</div>
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-[#8c82a8]">{f.label}</div>
-                  <div className="text-[12px] text-[#cfe9dc]">{f.note}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-k-dim">{f.label}</div>
+                  <div className="text-[12px] text-k-mint">{f.note}</div>
                 </div>
               </div>
             ))}
@@ -296,7 +296,7 @@ export default function Home() {
                 <Panel hover tone={p.tone} className="h-full p-4">
                   <div className="text-2xl">{p.glyph}</div>
                   <div className="mt-2 font-heading text-[15px] font-semibold text-white">{p.title}</div>
-                  <p className="mt-1.5 text-[12.5px] leading-relaxed text-[#c9bde6]">{p.text}</p>
+                  <p className="mt-1.5 text-[12.5px] leading-relaxed text-k-muted">{p.text}</p>
                 </Panel>
               </Link>
             </FadeIn>
@@ -321,23 +321,23 @@ export default function Home() {
             <FadeIn key={w.week} delay={i * 0.04}>
               <Panel hover className="h-full p-4">
                 <div className="flex items-baseline justify-between">
-                  <span className="font-display text-2xl text-[#f5b301]">{String(w.week).padStart(2, '0')}</span>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#c9bde6]">
+                  <span className="font-display text-2xl text-k-gold">{String(w.week).padStart(2, '0')}</span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-k-muted">
                     {w.lessons.length} lessons
                   </span>
                 </div>
                 <div className="mt-1 font-heading text-sm font-semibold text-white">{w.title}</div>
-                <div className="mt-0.5 text-[12px] text-[#c9bde6]">{w.theme}</div>
+                <div className="mt-0.5 text-[12px] text-k-muted">{w.theme}</div>
                 <ul className="mt-3 space-y-1.5">
                   {w.lessons.map((l) => (
                     <li key={l.id}>
                       <Link
                         to={`/lesson/${l.id}`}
-                        className="flex items-start gap-2 text-[12.5px] leading-snug text-[#ded4f2] hover:text-[#67e8f9]"
+                        className="flex items-start gap-2 text-[12.5px] leading-snug text-k-text hover:text-k-light"
                       >
-                        <span className="font-mono text-[10px] text-[#67e8f9]">L{l.number}</span>
+                        <span className="font-mono text-[10px] text-k-light">L{l.number}</span>
                         <span className="flex-1">{l.title}</span>
-                        {completedLessons[l.id] && <span className="text-[#6ee7a8]">✓</span>}
+                        {completedLessons[l.id] && <span className="text-k-moss">✓</span>}
                       </Link>
                     </li>
                   ))}
@@ -369,11 +369,11 @@ export default function Home() {
                     <span className="text-xl">{l.glyph}</span>
                     <span className="font-heading text-sm text-white">{l.name}</span>
                   </div>
-                  <p className="mt-2 text-[12.5px] leading-relaxed text-[#c9bde6]">{l.blurb}</p>
+                  <p className="mt-2 text-[12.5px] leading-relaxed text-k-muted">{l.blurb}</p>
                   <div className="mt-2 flex flex-wrap items-center gap-1.5">
                     <Chip tone="dim">{l.track}</Chip>
                     {l.threeD && <Chip tone="psy">3D</Chip>}
-                    <span className="ml-auto font-mono text-[10.5px] text-[#c9bde6]">
+                    <span className="ml-auto font-mono text-[10.5px] text-k-muted">
                       {(labs[l.id]?.length ?? 0)}/{l.tasks.length}
                     </span>
                   </div>
@@ -413,7 +413,7 @@ export default function Home() {
                   <span className="text-2xl">{c.glyph}</span>
                   <div className="min-w-0">
                     <div className="font-heading text-[13px] text-white">{c.name}</div>
-                    <div className="font-mono text-[10.5px] text-[#c9bde6]">
+                    <div className="font-mono text-[10.5px] text-k-muted">
                       {c.id === 'all' ? `${allProjects.length} total` : `${counts[c.id] ?? 0} blueprints`}
                     </div>
                   </div>
@@ -441,7 +441,7 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-3 font-heading text-sm text-white">{p.name}</div>
-                <div className="text-[11.5px] italic leading-snug text-[#c9bde6]">{p.inspiration}</div>
+                <div className="text-[11.5px] italic leading-snug text-k-muted">{p.inspiration}</div>
               </Panel>
             </FadeIn>
           ))}
@@ -468,15 +468,15 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.03 }}
-              className="rounded-xl border border-[#67e8f9]/20 bg-white/[0.03] p-3 text-center"
+              className="rounded-xl border border-k-light/20 bg-white/[0.03] p-3 text-center"
             >
-              <div className="text-2xl text-[#67e8f9]">{g.glyph}</div>
+              <div className="text-2xl text-k-light">{g.glyph}</div>
               <div className="mt-1 font-heading text-[11px] text-white">{g.name}</div>
-              <div className="text-[10px] leading-tight text-[#c9bde6]">{g.meaning}</div>
+              <div className="text-[10px] leading-tight text-k-muted">{g.meaning}</div>
             </motion.div>
           ))}
         </div>
-        <div className="mt-4 text-center font-mono text-[11px] text-[#8c82a8]">
+        <div className="mt-4 text-center font-mono text-[11px] text-k-dim">
           {BADGES.length} badges · {flashcards.length} flashcards · {lessons.length} lessons · {LABS.length} labs ·{' '}
           {allProjects.length} blueprints
         </div>
@@ -487,7 +487,7 @@ export default function Home() {
         <Panel tone="psy" className="mx-auto max-w-3xl p-8">
           <div className="holo-kicker">Begin</div>
           <h2 className="mt-2 font-display text-3xl text-white">Pick your next move</h2>
-          <p className="mt-3 text-sm leading-relaxed text-[#c9bde6]">
+          <p className="mt-3 text-sm leading-relaxed text-k-muted">
             {done === 0
               ? 'Start with lesson 1. It takes about fifteen minutes and it sets up everything else.'
               : `You have ${done} of 16 lessons and ${xp} XP. The fastest way to grow from here is a quiz on your weakest lesson, then a lab.`}

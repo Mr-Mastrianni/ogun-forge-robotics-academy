@@ -29,9 +29,9 @@ export default function Achievements() {
 
   const tiers: { id: string; label: string; color: string }[] = [
     { id: 'bronze', label: 'Bronze', color: '#c96f2b' },
-    { id: 'silver', label: 'Silver', color: '#c9c9d6' },
-    { id: 'gold', label: 'Gold', color: '#f5b301' },
-    { id: 'orisha', label: 'Orisha', color: '#c026d3' },
+    { id: 'silver', label: 'Silver', color: '#cfd2cd' },
+    { id: 'gold', label: 'Gold', color: '#f7c77c' },
+    { id: 'orisha', label: 'Orisha', color: '#e0782f' },
   ];
 
   const nextBadge = BADGES.find((b) => !earned.has(b.id));
@@ -64,7 +64,7 @@ export default function Achievements() {
                     {tier.label}
                   </span>
                   <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
-                  <span className="font-mono text-[10.5px] text-[#c9bde6]">
+                  <span className="font-mono text-[10.5px] text-k-muted">
                     {list.filter((b) => earned.has(b.id)).length}/{list.length}
                   </span>
                 </div>
@@ -87,12 +87,12 @@ export default function Achievements() {
                           <div className="min-w-0">
                             <div className="flex items-center gap-2">
                               <span className="font-heading text-[13.5px] text-white">{b.name}</span>
-                              {has && <span className="text-[11px] text-[#6ee7a8]">✓</span>}
+                              {has && <span className="text-[11px] text-k-moss">✓</span>}
                             </div>
-                            <div className="font-mono text-[10px] uppercase tracking-widest text-[#f5b301]">{b.adinkra}</div>
-                            <p className="mt-1 text-[12px] leading-relaxed text-[#c9bde6]">{b.description}</p>
-                            <p className="mt-1.5 text-[11.5px] text-[#ded4f2]">
-                              <span className="text-[#8c82a8]">require:</span> {b.requirement}
+                            <div className="font-mono text-[10px] uppercase tracking-widest text-k-gold">{b.adinkra}</div>
+                            <p className="mt-1 text-[12px] leading-relaxed text-k-muted">{b.description}</p>
+                            <p className="mt-1.5 text-[11.5px] text-k-text">
+                              <span className="text-k-dim">require:</span> {b.requirement}
                             </p>
                           </div>
                         </div>
@@ -107,37 +107,37 @@ export default function Achievements() {
 
         <aside className="space-y-4">
           <Panel className="p-4">
-            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">current rank</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">current rank</div>
             <div className="mt-2 flex items-center gap-3">
               <span className="text-3xl">{rank.glyph}</span>
               <div>
                 <div className="font-display text-lg text-white">{rank.name}</div>
-                <div className="text-[11.5px] text-[#c9bde6]">{rank.blurb}</div>
+                <div className="text-[11.5px] text-k-muted">{rank.blurb}</div>
               </div>
             </div>
             <div className="mt-3">
               <Progress value={rankProgress(xp)} label={nxt ? `to ${nxt.name}` : 'peak rank'} />
             </div>
-            <div className="mt-2 font-mono text-[11px] text-[#c9bde6]">
+            <div className="mt-2 font-mono text-[11px] text-k-muted">
               {nxt ? `${nxt.minXp - xp} XP remaining` : 'You have reached the end of the ladder — for now.'}
             </div>
           </Panel>
 
           {nextBadge && (
             <Panel tone="myco" className="p-4">
-              <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#6ee7a8]">next badge</div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-moss">next badge</div>
               <div className="mt-2 flex items-center gap-3">
                 <span className="text-3xl">{nextBadge.glyph}</span>
                 <div>
                   <div className="font-heading text-sm text-white">{nextBadge.name}</div>
-                  <div className="text-[11.5px] text-[#cfe9dc]">{nextBadge.requirement}</div>
+                  <div className="text-[11.5px] text-k-mint">{nextBadge.requirement}</div>
                 </div>
               </div>
             </Panel>
           )}
 
           <Panel className="p-4">
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">the ladder</div>
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">the ladder</div>
             <ol className="space-y-1.5">
               {RANKS.map((r) => {
                 const reached = xp >= r.minXp;
@@ -146,10 +146,10 @@ export default function Achievements() {
                     key={r.id}
                     className={`flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-[12px] ${
                       r.id === rank.id
-                        ? 'border-[#f5b301]/60 bg-[#f5b301]/12 text-[#ffe9a8]'
+                        ? 'border-k-gold/60 bg-k-gold/12 text-k-glint'
                         : reached
-                          ? 'border-white/10 bg-white/[0.03] text-[#ded4f2]'
-                          : 'border-white/5 text-[#8c82a8]'
+                          ? 'border-white/10 bg-white/[0.03] text-k-text'
+                          : 'border-white/5 text-k-dim'
                     }`}
                   >
                     <span>{r.glyph}</span>
@@ -162,10 +162,10 @@ export default function Achievements() {
           </Panel>
 
           <Panel tone="psy" className="p-4">
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5c8ff]">
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-sand">
               ways to earn XP
             </div>
-            <ul className="space-y-1 text-[12px] text-[#f3e9ff]">
+            <ul className="space-y-1 text-[12px] text-k-paper">
               <li>· read a lesson — +40</li>
               <li>· lesson quiz — 20 + 15/correct (+35 flawless)</li>
               <li>· boss trial — 90 + 22/correct</li>
@@ -177,10 +177,10 @@ export default function Achievements() {
           </Panel>
 
           <Panel className="p-4">
-            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">
               course content
             </div>
-            <div className="space-y-1 font-mono text-[11.5px] text-[#c9bde6]">
+            <div className="space-y-1 font-mono text-[11.5px] text-k-muted">
               <div className="flex justify-between">
                 <span>lessons</span>
                 <span>{lessons.length}</span>
@@ -210,8 +210,8 @@ export default function Achievements() {
       </div>
 
       <Panel className="p-5">
-        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5b301]">about the symbols</div>
-        <p className="mt-2 text-[13px] leading-relaxed text-[#c9bde6]">
+        <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-k-gold">about the symbols</div>
+        <p className="mt-2 text-[13px] leading-relaxed text-k-muted">
           Adinkra are visual symbols created by the Akan peoples of Ghana and Côte d'Ivoire, traditionally stamped
           onto cloth. Each encodes a proverb, a value or an observation about how systems behave. Using them as an
           achievement language is a deliberate design choice: it keeps the course's reward system rooted in a

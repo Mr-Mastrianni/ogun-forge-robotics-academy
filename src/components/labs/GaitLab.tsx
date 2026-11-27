@@ -60,13 +60,13 @@ const HIP_OFF: [number, number, number, number] = [0.3, 0.3, -0.3, -0.3];
 const NEAR = [false, true, true, false];
 
 const C = {
-  bg: '#05010f',
-  green: '#6ee7a8',
-  gold: '#f5b301',
-  magenta: '#c026d3',
-  cyan: '#67e8f9',
-  text: '#c9bde6',
-  far: '#4338ca',
+  bg: '#081310',
+  green: '#a6eb9b',
+  gold: '#f7c77c',
+  magenta: '#e0782f',
+  cyan: '#81dcd4',
+  text: '#b8c7b6',
+  far: '#2f6b5f',
 };
 
 const clamp = (v: number, a: number, b: number) => (v < a ? a : v > b ? b : v);
@@ -443,7 +443,7 @@ export default function GaitLab({ tasks }: LabProps) {
       const SY = (wy: number) => gy - wy * scale;
 
       /* terrain */
-      ctx.strokeStyle = P.rough > 0.02 ? '#c026d3' : '#4338ca';
+      ctx.strokeStyle = P.rough > 0.02 ? '#e0782f' : '#2f6b5f';
       ctx.lineWidth = 2;
       ctx.beginPath();
       for (let sx = -4; sx <= w + 4; sx += 3) {
@@ -453,7 +453,7 @@ export default function GaitLab({ tasks }: LabProps) {
         else ctx.lineTo(sx, yy);
       }
       ctx.stroke();
-      ctx.fillStyle = 'rgba(67,56,202,0.12)';
+      ctx.fillStyle = 'rgba(47,107,95,0.12)';
       ctx.fillRect(0, gy, w, h - gy);
 
       /* support polygon = fore–aft span of the feet currently in stance */
@@ -469,10 +469,10 @@ export default function GaitLab({ tasks }: LabProps) {
       }
       if (nStance > 0) {
         const tipping = margin < 0;
-        ctx.fillStyle = tipping ? 'rgba(255,60,60,0.35)' : 'rgba(110,231,168,0.28)';
+        ctx.fillStyle = tipping ? 'rgba(239,90,74,0.35)' : 'rgba(166,235,155,0.28)';
         const bw = Math.max(3, (hi - lo) * scale);
         ctx.fillRect(SX(lo), gy - 5, bw, 8);
-        ctx.strokeStyle = tipping ? '#ff3c3c' : C.green;
+        ctx.strokeStyle = tipping ? '#ef5a4a' : C.green;
         ctx.lineWidth = 1;
         ctx.strokeRect(SX(lo), gy - 5, bw, 8);
       }
@@ -490,7 +490,7 @@ export default function GaitLab({ tasks }: LabProps) {
         const ky = SY(j.ky);
         const ex = SX(fx);
         const ey = SY(fy);
-        const colour = !j.reached ? '#ff3c3c' : near ? C.green : C.far;
+        const colour = !j.reached ? '#ef5a4a' : near ? C.green : C.far;
         ctx.lineCap = 'round';
         ctx.strokeStyle = colour;
         ctx.lineWidth = near ? 7 : 5;
@@ -503,11 +503,11 @@ export default function GaitLab({ tasks }: LabProps) {
         ctx.moveTo(kx, ky);
         ctx.lineTo(ex, ey);
         ctx.stroke();
-        ctx.fillStyle = near ? '#ded4f2' : '#7c6bb0';
+        ctx.fillStyle = near ? '#d6e0cf' : '#79a287';
         ctx.beginPath();
         ctx.arc(kx, ky, near ? 3.6 : 2.6, 0, TAU);
         ctx.fill();
-        ctx.fillStyle = '#1b1440';
+        ctx.fillStyle = '#16261d';
         ctx.beginPath();
         ctx.arc(px, py, near ? 4 : 3, 0, TAU);
         ctx.fill();
@@ -525,7 +525,7 @@ export default function GaitLab({ tasks }: LabProps) {
           ctx.lineWidth = 2;
           ctx.stroke();
         }
-        ctx.fillStyle = near ? '#ded4f2' : '#8f83b8';
+        ctx.fillStyle = near ? '#d6e0cf' : '#8ead98';
         ctx.font = '9px ui-monospace, monospace';
         ctx.textAlign = 'center';
         ctx.fillText(LEG_NAMES[leg], ex, ey + (near ? -9 : -7));
@@ -539,8 +539,8 @@ export default function GaitLab({ tasks }: LabProps) {
       const by0 = SY(hipY + 0.16);
       const bw2 = BODY_LEN * scale;
       const bh = 0.16 * scale;
-      ctx.fillStyle = '#1b1440';
-      ctx.strokeStyle = '#7c3aed';
+      ctx.fillStyle = '#16261d';
+      ctx.strokeStyle = '#b8863f';
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.roundRect(bx0, by0, bw2, bh, 5);
@@ -562,14 +562,14 @@ export default function GaitLab({ tasks }: LabProps) {
       const zy = SY(groundH(zmp, P.rough));
       const tipping = margin < 0;
       ctx.setLineDash([3, 3]);
-      ctx.strokeStyle = tipping ? '#ff3c3c' : 'rgba(245,179,1,0.6)';
+      ctx.strokeStyle = tipping ? '#ef5a4a' : 'rgba(247,199,124,0.6)';
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(SX(bodyX), SY(hipY + 0.08));
       ctx.lineTo(zx, zy);
       ctx.stroke();
       ctx.setLineDash([]);
-      ctx.fillStyle = tipping ? '#ff3c3c' : C.magenta;
+      ctx.fillStyle = tipping ? '#ef5a4a' : C.magenta;
       ctx.beginPath();
       ctx.arc(zx, zy, 5, 0, TAU);
       ctx.fill();
@@ -577,7 +577,7 @@ export default function GaitLab({ tasks }: LabProps) {
       ctx.lineWidth = 1;
       ctx.stroke();
       ctx.font = '9px ui-monospace, monospace';
-      ctx.fillStyle = tipping ? '#ff3c3c' : C.magenta;
+      ctx.fillStyle = tipping ? '#ef5a4a' : C.magenta;
       ctx.textAlign = 'left';
       ctx.fillText(tipping ? 'ZMP outside support — tipping' : 'ZMP', zx + 8, zy - 8);
 
@@ -610,7 +610,7 @@ export default function GaitLab({ tasks }: LabProps) {
       ctx.font = '9px ui-monospace, monospace';
       for (let leg = 0; leg < 4; leg++) {
         const ry = stripY + leg * rowH;
-        ctx.fillStyle = NEAR[leg] ? '#ded4f2' : '#8f83b8';
+        ctx.fillStyle = NEAR[leg] ? '#d6e0cf' : '#8ead98';
         ctx.textAlign = 'left';
         ctx.fillText(LEG_NAMES[leg], 6, ry + rowH * 0.72);
         const cells = 120;
@@ -622,18 +622,18 @@ export default function GaitLab({ tasks }: LabProps) {
           const x0 = barX + (j / cells) * barW;
           const x1 = barX + ((j + 1) / cells) * barW;
           if (up) {
-            ctx.fillStyle = NEAR[leg] ? 'rgba(245,179,1,0.95)' : 'rgba(245,179,1,0.5)';
+            ctx.fillStyle = NEAR[leg] ? 'rgba(247,199,124,0.95)' : 'rgba(247,199,124,0.5)';
             ctx.fillRect(x0, ry + rowH * 0.3, Math.max(1, x1 - x0), rowH * 0.42);
           } else {
-            ctx.fillStyle = 'rgba(103,232,249,0.08)';
+            ctx.fillStyle = 'rgba(129,220,212,0.08)';
             ctx.fillRect(x0, ry + rowH * 0.3, Math.max(1, x1 - x0), rowH * 0.42);
-            ctx.strokeStyle = NEAR[leg] ? 'rgba(103,232,249,0.9)' : 'rgba(103,232,249,0.45)';
+            ctx.strokeStyle = NEAR[leg] ? 'rgba(129,220,212,0.9)' : 'rgba(129,220,212,0.45)';
             ctx.lineWidth = 1;
             ctx.strokeRect(x0 + 0.5, ry + rowH * 0.3 + 0.5, Math.max(1, x1 - x0) - 1, rowH * 0.42 - 1);
           }
         }
       }
-      ctx.strokeStyle = 'rgba(192,38,211,0.9)';
+      ctx.strokeStyle = 'rgba(224,120,47,0.9)';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(barX + phase * barW, stripY);
@@ -669,9 +669,9 @@ export default function GaitLab({ tasks }: LabProps) {
               </LabButton>
             ))}
           </div>
-          <div className="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-[11px] leading-snug text-[#c9bde6]">
+          <div className="rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-[11px] leading-snug text-k-muted">
             {GAITS[pattern].note}
-            <div className="mt-0.5 font-mono text-[10px] text-[#8f83b8]">
+            <div className="mt-0.5 font-mono text-[10px] text-[#8ead98]">
               offsets FR/FL/BL/BR = {GAITS[pattern].offsets.join(' / ')}
             </div>
           </div>
@@ -700,34 +700,34 @@ export default function GaitLab({ tasks }: LabProps) {
       }
       readouts={
         <>
-          <Readout label="forward speed (stride/cycle)" value={speed.toFixed(3) + ' m/s'} tone="#67e8f9" />
+          <Readout label="forward speed (stride/cycle)" value={speed.toFixed(3) + ' m/s'} tone="#81dcd4" />
           <Readout label="step frequency" value={freq.toFixed(2) + ' Hz'} />
           <Readout
             label="feet in stance (critical)"
             value={`${table.minStance} of 4`}
-            tone={table.minStance >= 2 ? '#6ee7a8' : '#ff6b1a'}
+            tone={table.minStance >= 2 ? '#a6eb9b' : '#f2853a'}
           />
           <Readout
             label="stability margin (now)"
             value={marginText(live.margin)}
-            tone={live.margin > 0.05 ? '#6ee7a8' : live.margin > 0 ? '#f5b301' : '#ff3c3c'}
+            tone={live.margin > 0.05 ? '#a6eb9b' : live.margin > 0 ? '#f7c77c' : '#ef5a4a'}
           />
           <Readout
             label="worst margin in cycle"
             value={table.minStance === 0 ? 'flight phase' : marginText(table.minMargin)}
-            tone={table.minMargin > 0 ? '#6ee7a8' : '#ff3c3c'}
+            tone={table.minMargin > 0 ? '#a6eb9b' : '#ef5a4a'}
           />
-          <Readout label="Froude number v/√(g·L)" value={froude.toFixed(3)} tone={froude < 0.5 ? '#6ee7a8' : '#ff6b1a'} />
-          <Readout label="leg reach faults" value={faultPct.toFixed(1) + ' %'} tone={faultPct < 0.5 ? '#6ee7a8' : '#ff3c3c'} />
+          <Readout label="Froude number v/√(g·L)" value={froude.toFixed(3)} tone={froude < 0.5 ? '#a6eb9b' : '#f2853a'} />
+          <Readout label="leg reach faults" value={faultPct.toFixed(1) + ' %'} tone={faultPct < 0.5 ? '#a6eb9b' : '#ef5a4a'} />
           {faultPct >= 0.5 && (
-            <div className="rounded-lg border border-[#ff3c3c]/40 bg-[#ff3c3c]/10 px-2.5 py-1.5 text-[11px] leading-snug text-[#ffd7d7]">
+            <div className="rounded-lg border border-[#ef5a4a]/40 bg-[#ef5a4a]/10 px-2.5 py-1.5 text-[11px] leading-snug text-[#ffd7d7]">
               A leg cannot reach its foot: the hip sits {(height + bobAmp(stride)).toFixed(2)} m up and the foot swings
               ±{((stride * duty) / 2).toFixed(2)} m fore–aft, which needs more than l₁+l₂ = {legLen.toFixed(2)} m.
               Lengthen the links, lower the body or shorten the stride.
             </div>
           )}
-          <div className="rounded-xl border border-[#6ee7a8]/25 bg-black/30 p-2">
-            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-[#6ee7a8]">
+          <div className="rounded-xl border border-k-moss/25 bg-black/30 p-2">
+            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-k-moss">
               stability margin vs duty factor ({pattern})
             </div>
             <div className="h-[106px]">
@@ -738,23 +738,23 @@ export default function GaitLab({ tasks }: LabProps) {
                     dataKey="duty"
                     type="number"
                     domain={[0.3, 0.9]}
-                    tick={{ fill: '#9fd9bb', fontSize: 8 }}
+                    tick={{ fill: '#a9d4a2', fontSize: 8 }}
                     stroke="#2f6b52"
                     height={22}
-                    label={{ value: 'duty factor β', position: 'insideBottom', offset: -4, fill: '#9fd9bb', fontSize: 8 }}
+                    label={{ value: 'duty factor β', position: 'insideBottom', offset: -4, fill: '#a9d4a2', fontSize: 8 }}
                   />
                   <YAxis
                     domain={[-0.65, 0.65]}
                     ticks={[-0.6, -0.3, 0, 0.3, 0.6]}
-                    tick={{ fill: '#9fd9bb', fontSize: 8 }}
+                    tick={{ fill: '#a9d4a2', fontSize: 8 }}
                     stroke="#2f6b52"
                     width={30}
-                    label={{ value: 'margin (m)', angle: -90, position: 'insideLeft', offset: 8, fill: '#9fd9bb', fontSize: 8 }}
+                    label={{ value: 'margin (m)', angle: -90, position: 'insideLeft', offset: 8, fill: '#a9d4a2', fontSize: 8 }}
                   />
                   <Tooltip contentStyle={{ background: '#08201a', border: '1px solid #2f6b52', fontSize: 11 }} />
-                  <ReferenceLine y={0} stroke="#ff3c3c" strokeDasharray="3 3" />
-                  <ReferenceLine x={duty} stroke="#f5b301" strokeDasharray="3 3" />
-                  <Line type="monotone" dataKey="margin" stroke="#6ee7a8" strokeWidth={2} dot={{ r: 2 }} />
+                  <ReferenceLine y={0} stroke="#ef5a4a" strokeDasharray="3 3" />
+                  <ReferenceLine x={duty} stroke="#f7c77c" strokeDasharray="3 3" />
+                  <Line type="monotone" dataKey="margin" stroke="#a6eb9b" strokeWidth={2} dot={{ r: 2 }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -763,11 +763,11 @@ export default function GaitLab({ tasks }: LabProps) {
               at all. Dashed yellow = your current duty factor.
             </div>
           </div>
-          <div className="rounded-xl border border-[#6ee7a8]/25 bg-black/30 p-2">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-[#6ee7a8]">
+          <div className="rounded-xl border border-k-moss/25 bg-black/30 p-2">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-k-moss">
               duty factor: the speed / stability / energy trade
             </div>
-            <p className="mt-1 text-[11px] leading-snug text-[#c9bde6]">
+            <p className="mt-1 text-[11px] leading-snug text-k-muted">
               Duty factor β is the fraction of the cycle a foot spends on the ground, and it sets almost everything
               else. Raise β and more feet share the load, so the support polygon is longer and the ZMP has room to move:
               static stability is easy and a walking machine can even stop mid-stride. But the swing time is only
@@ -796,10 +796,10 @@ export default function GaitLab({ tasks }: LabProps) {
       <div ref={wrapRef} className="absolute inset-0">
         <canvas ref={canvasRef} className="block h-full w-full" />
       </div>
-      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/55 px-2.5 py-1.5 font-mono text-[10px] leading-relaxed text-[#c9bde6]">
+      <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-white/10 bg-black/55 px-2.5 py-1.5 font-mono text-[10px] leading-relaxed text-k-muted">
         <div>
-          <span className="text-[#f5b301]">●</span> stance foot · <span className="text-[#67e8f9]">○</span> swing foot ·{' '}
-          <span className="text-[#c026d3]">●</span> ZMP · dashed line = CoM above it
+          <span className="text-k-gold">●</span> stance foot · <span className="text-k-light">○</span> swing foot ·{' '}
+          <span className="text-k-ember">●</span> ZMP · dashed line = CoM above it
         </div>
         <div>green band = support polygon (red when the ZMP has left it) · far-side legs drawn dimmer</div>
       </div>
